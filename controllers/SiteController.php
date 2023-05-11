@@ -89,6 +89,26 @@ public function behaviors()
         ]);
     }
 
+    // public function actionLogin()
+    // {
+    //     $this->layout = 'LoginLayout';
+    //     if (!Yii::$app->user->isGuest) {
+    //         return $this->goHome();
+    //     }
+
+    //     $model = new LoginForm();
+
+    //     if ($model->load(Yii::$app->request->post())) {
+    //         if ($model->login()) {
+    //             return $this->goBack();
+    //         }
+    //     }
+
+    //     return $this->render('login', [
+    //         'model' => $model,
+    //     ]);
+    // }
+
     /**
      * Logout action.
      *
