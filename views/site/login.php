@@ -3,7 +3,7 @@ use yii\helpers\Html;
 ?>
 <div>
 <div class="card">
-    <div class="card-header">Digitization Software</div>
+    <div class="card-header">Digitization</div>
     <div class="card-body login-card-body">
         <h4 class="card-title"></h4>
         <!-- <p class="login-box-msg">Sign in to start your session</p> -->
