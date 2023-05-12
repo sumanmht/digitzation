@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/pscnepal/public_html/
+    - /bin/cp * $DEPLOYPATH
+    
