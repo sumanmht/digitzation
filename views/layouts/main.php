@@ -13,6 +13,9 @@ use yii\bootstrap4\NavBar;
 AppAsset::register($this);
 \hail812\adminlte3\assets\FontAwesomeAsset::register($this);
 \hail812\adminlte3\assets\AdminLteAsset::register($this);
+
+$assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
+
 $this->registerJsFile(Yii::$app->request->baseUrl.'/js/nepalitrad.js',['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerJsFile(Yii::$app->request->baseUrl.'/js/radiobtn.js',['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerJsFile(Yii::$app->request->baseUrl.'/js/jquery.min.js',['depends' => [\yii\web\JqueryAsset::className()]]);
@@ -34,7 +37,7 @@ $this->registerJsFile(Yii::$app->request->baseUrl.'/js/jquery.min.js',['depends'
     <div class="wrapper">
         
         <!-- Main Sidebar Container -->
-        <?= $this->render('sidebar') ?>
+        <?= $this->render('sidebar', ['assetDir' => $assetDir]) ?>
         <!-- Navbar -->
         <?= $this->render('navbar') ?>
         <!-- /.navbar -->   

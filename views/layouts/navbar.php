@@ -21,20 +21,27 @@ AppAsset::register($this);
         <li class="nav-item d-none d-sm-inline-block">
             <a href="<?=\yii\helpers\Url::home()?>" class="nav-link">Home</a>
         </li>
-        
-<!--         <li class="nav-item">
-            <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                <i class="fas fa-th-large"></i>
-            </a>
+        <!-- <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Contact</a>
         </li> -->
         
     </ul>
-    <ul class="navbar-nav justify-content-end text-end">
-        <li class="nav-item justify-content-end " >
-            <?= Html::a('<i class="fas fa-sign-out-alt "></i>', ['/site/logout'], ['data-method' => 'post', 'class' => 'nav-link']) ?>
+
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <?= Html::a('<i class="fas fa-sign-out-alt"></i>', ['/site/logout'], ['data-method' => 'post', 'class' => 'nav-link']) ?>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                <i class="fas fa-expand-arrows-alt"></i>
+            </a>
+        </li>
+        
     </ul>
 </nav>
+
+
+
 <!-- /.navbar -->
 <!-- 
     <?php
@@ -48,7 +55,12 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index'], 'class' => "nav-link", 'data-widget' => "push-menu", 'href' => "#", 'role' => "button"],
+            ['label' => 'Home', 'url' => ['/site/index'], 'class' => "nav-link", 'data-widget' => "push-menu", 'href' => "#",
+             'role' => "button",
+            'items' => [
+                'class' => "fas fa-bars"
+            ]
+                ],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
