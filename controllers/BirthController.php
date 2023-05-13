@@ -39,35 +39,47 @@ class BirthController extends Controller
      *
      * @return string
      */
+
     public function actionIndex()
     {
         $searchModel = new BirthSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
-        
-
-        //$searchModel = new BirthSearch();
-        $query = Birth::find();
-
-        // add conditions that should always apply here
-
-        // $pages = new Pagination([
-        //     'totalCount' => $query->count(),
-        //     'pageSize' => 1,
-        // ]);
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' => [
-                'pageSize' => 10
-            ],
-
-        ]);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+
+    // public function actionIndex()
+    // {
+    //     $searchModel = new BirthSearch();
+    //     $dataProvider = $searchModel->search($this->request->queryParams);
+
+        
+
+    //     //$searchModel = new BirthSearch();
+    //     $query = Birth::find();
+
+    //     // add conditions that should always apply here
+
+    //     // $pages = new Pagination([
+    //     //     'totalCount' => $query->count(),
+    //     //     'pageSize' => 1,
+    //     // ]);
+
+    //     $dataProvider = new ActiveDataProvider([
+    //         'query' => $query,
+    //         'pagination' => [
+    //             'pageSize' => 10
+    //         ],
+
+    //     ]);
+    //     return $this->render('index', [
+    //         'searchModel' => $searchModel,
+    //         'dataProvider' => $dataProvider,
+    //     ]);
+    // }
 
     /**
      * Displays a single Birth model.
@@ -87,31 +99,51 @@ class BirthController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
+
     public function actionCreate()
     {
         $model = new Birth();
 
-            if ($this->request->isPost) {             
-        
-                if ($model->load($this->request->post()) ) {
-                    
-                    $model->scanned_image = UploadedFile::getInstance($model, 'scanned_image'); //upload files
-                    $fileName = $model->fname. '-' .$model->mname. '-' .$model->lname.'.'.$model->scanned_image->extension; //save as timestamp+imageextension
-                    $model->scanned_image->saveAs('uploads/' .$fileName); //save in directory
-                    $model->scanned_image = $fileName; //save in database
+        if ($model->load($this->request->post()) && $model->save()) {
+            $model->scanned_image = UploadedFile::getInstance($model, 'scanned_image');
+            $fileName = $model->fname. '-' .$model->mname. '-' .$model->lname.'.'.$model->scanned_image->extension;
+            $model->scanned_image->saveAs('uploads/' .$fileName);
+            $model->scanned_image = $fileName;
+            $model->save();
+            
+            return $this->redirect(['view', 'id' => $model->id]); //redirect to view action with created id
+        }
 
-
-                    $model->save();               
-                    return $this->redirect(['view', 'id' => $model->id]);
-                }
-            } else {
-                $model->loadDefaultValues();
-            }
-
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
+
+    // public function actionCreate()
+    // {
+    //     $model = new Birth();
+
+    //         if ($this->request->isPost) {             
+        
+    //             if ($model->load($this->request->post()) ) {
+                    
+    //                 $model->scanned_image = UploadedFile::getInstance($model, 'scanned_image'); //upload files
+    //                 $fileName = $model->fname. '-' .$model->mname. '-' .$model->lname.'.'.$model->scanned_image->extension; //save as timestamp+imageextension
+    //                 $model->scanned_image->saveAs('uploads/' .$fileName); //save in directory
+    //                 $model->scanned_image = $fileName; //save in database
+
+
+    //                 $model->save();               
+    //                 return $this->redirect(['view', 'id' => $model->id]);
+    //             }
+    //         } else {
+    //             $model->loadDefaultValues();
+    //         }
+
+    //         return $this->render('create', [
+    //             'model' => $model,
+    //         ]);
+    // }
 
     /**
      * Updates an existing Birth model.

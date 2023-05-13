@@ -17,14 +17,7 @@ use app\models\Registrar;
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<!-- <script type="text/javascript">
-    
-        function father_function(){
-            var father_fname = document.getElementById("father_fname").value;
-            document.getElementById("informant_fname").value = father_fname;
-        }
 
-</script> -->
 
 <div class="card">
     <div class="card-body">
@@ -171,7 +164,7 @@ use app\models\Registrar;
         </div>
         <div class="col-sm-१">
             <label>विवाह भएको साल</label>
-            <div class="row nepalify">
+            <div class="row ">
                 <div class="col-sm-12">
                     <?= $form->field($model, 'married_year')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'विवाह भएको साल'])->label(' ') ?>
                     </div>
