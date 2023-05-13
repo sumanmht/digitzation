@@ -1,18 +1,16 @@
 <?php
 
 namespace app\models;
+use yii\web\IdentityInterface;
 use yii\helpers\Security;
 
 class User extends Acc implements \yii\web\IdentityInterface
 {
-    // public $id;
-    // public $username;
-    // public $password;
+    
     public $authKey;
     public $accessToken;
-    public $status;
 
-    // private static $users = [
+    //private static $users = [
     //     '100' => [
     //         'id' => '100',
     //         'username' => 'admin',
@@ -53,25 +51,12 @@ class User extends Acc implements \yii\web\IdentityInterface
      * @param string $username
      * @return static|null
      */
-
     public static function findByUsername($username)
     {
+
         return User::findOne(['username' => $username]);
     }
-     /**To get username and email, which will enable logging in with both */
-    // public static function findByUsernameOrEmail($usernameOrEmail)
-    // {
 
-    //     return User::find()
-    //     ->where(['or', ['username' => $usernameOrEmail], ['email' => $usernameOrEmail]])
-    //     ->one();
-    // }
-
-    /** To merge the username and email values to login */
-    // public function findByLogin($login)
-    // {
-    //     return User::find()->andWhere(['or', ['username' => $login], ['email' => $login]])->one();
-    // }
     /**
      * {@inheritdoc}
      */
@@ -111,6 +96,11 @@ class User extends Acc implements \yii\web\IdentityInterface
     public function setPassword($password)
     {
         $this->password_hash = Security::generatePasswordHash($password);
+    }
+
+    public function getPassword()
+    {
+        return $this->password_hash;
     }
 
     /**
