@@ -82,3 +82,8 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+/*.table-responsive{
+    overflow-x: auto; !important
+    width:100%; !important
+}*/
