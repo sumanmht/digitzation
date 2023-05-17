@@ -5,41 +5,68 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\Registrar;
 use app\models\District;
+use app\models\FamilyMember;
+use app\models\Model;
+use wbraganca\dynamicform\DynamicFormWidget;
 /** @var yii\web\View $this */
 /** @var app\models\Migrated $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
+<?php $form = ActiveForm::begin([
+'id' => 'dynamic-form',
+'options' => ['enctype' => 'multipart/form-data', 'style' => 'font-size:13px;', 'class' =>'nepali'],
+'fieldConfig' => ['labelOptions' => ['class' => 'col-sm-1 control-label'],]
+]); ?>
+
 <div class ="card">
     <div class="card-body">
         <div class="migrated-form">
-
-            <?php $form = ActiveForm::begin([
-                'options' => ['enctype' => 'multipart/form-data', 'style' => 'font-size:13px;', 'class' =>'nepali'],
-                'fieldConfig' => ['labelOptions' => ['class' => 'col-sm-1 control-label'],]
-            ]); ?>
             <hr>
-            <label>दर्ता विवरण</label>
-            <div class="row form-group">
-                <div class="col-sm-1">
-                    <?= $form->field($model, 'reg_no')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'दर्ता नं.'])->label('') ?>
-                </div>
-                <div class="col-sm-1">
-                    <?= $form->field($model, 'reg_year')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'साल'])->label('') ?>
-                </div>
-                <div class="col-sm-1">
-                    <?= $form->field($model, 'reg_month')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना'])->label('') ?>
-                </div>
-                <div class="col-sm-1">
-                    <?= $form->field($model, 'reg_day')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'गते'])->label('') ?>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label>दर्ता विवरण</label>
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            <?= $form->field($model, 'reg_no')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'दर्ता नं.'])->label('') ?>
+                        </div>
+                        <div class="col-sm-3">
+                            <?= $form->field($model, 'reg_year')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'साल'])->label('') ?>
+                        </div>
+                        <div class="col-sm-3">
+                            <?= $form->field($model, 'reg_month')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना'])->label('') ?>
+                        </div>
+                        <div class="col-sm-3">
+                            <?= $form->field($model, 'reg_day')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'गते'])->label('') ?>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-sm-3">
-                    <?= $form->field($model, 'registrar_name')->label(' ')->dropdownList(
-                        ArrayHelper::map(Registrar::find()->all(),'name', 'name'),
-                        ['prompt'=>'',
-                         'placeholder' => '',
-                        'class' => 'form-control form-control-sm' ]
-                    )?>
+                    <label>बसाई सराई मिति(वि.स.)</label>
+                    <div class="row form-group">
+                        <div class="col-sm-4">
+                            <?= $form->field($model, 'migration_year')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'साल'])->label('') ?>
+                        </div>
+                        <div class="col-sm-4">
+                            <?= $form->field($model, 'migration_month')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना'])->label('') ?>
+                        </div>
+                        <div class="col-sm-4">
+                            <?= $form->field($model, 'migration_day')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'गते'])->label('') ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <label>स्थानीय पञ्जिकाधिकारी</label>
+                    <div class="row form-group">
+                        <div class="col-sm-12">
+                            <?= $form->field($model, 'registrar_name')->label('')->dropdownList(
+                                ArrayHelper::map(Registrar::find()->all(),'name', 'name'),
+                                ['prompt'=>'',
+                                 'placeholder' => '',
+                                'class' => 'form-control form-control-sm' ]
+                            )?>
+                        </div>
+                    </div>
                 </div>
             </div>
             <hr>
@@ -148,34 +175,143 @@ use app\models\District;
             </div>
             <hr>
 
-            <?= $form->field($model, 'going_district')->textInput(['maxlength' => true]) ?>
-
-            <?= $form->field($model, 'going_local_level')->textInput(['maxlength' => true]) ?>
-
-            <?= $form->field($model, 'going_ward')->textInput(['maxlength' => true]) ?>
-
-            <?= $form->field($model, 'coming_district')->textInput(['maxlength' => true]) ?>
-
-            <?= $form->field($model, 'coming_local_level')->textInput(['maxlength' => true]) ?>
-
-            <?= $form->field($model, 'coming_ward')->textInput(['maxlength' => true]) ?>
-
-            <?= $form->field($model, 'migration_year')->textInput(['maxlength' => true]) ?>
-
-            <?= $form->field($model, 'migration_month')->textInput(['maxlength' => true]) ?>
-
-            <?= $form->field($model, 'migration_day')->textInput(['maxlength' => true]) ?>
-
-            <?= $form->field($model, 'reason')->textInput(['maxlength' => true]) ?>
-
-            <?= $form->field($model, 'migration_scanned_image')->textInput() ?>
-
-            <div class="form-group">
-                <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+            <div class="row">
+                
+                <div class="col">
+                    <label>बसाई सरी जाने ठेगाना</label>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <?= $form->field($model, 'going_district')->label(' ')->dropdownList(
+                                ArrayHelper::map(District::find()->all(),'name', 'name'),
+                                ['prompt'=>'जिल्ला',
+                                 'class' => 'form-control form-control-sm',
+                                 'id' => 'father_ctz_district']
+                            ) ?>
+                        </div>
+                        <div class="col-sm-3">
+                            <?= $form->field($model, 'going_local_level')->textInput(['maxlength' => true, 'class'=>'form-control form-control-sm'])->label(' ') ?>
+                        </div>
+                        <div class="col-sm-1">
+                            <?= $form->field($model, 'going_ward')->textInput(['maxlength' => true, 'class'=>'form-control form-control-sm'])->label(' ') ?>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <?php ActiveForm::end(); ?>
+            <div class="row">
+                
+                <div class="col">
+                    <label>बसाई सरी आएको ठेगाना</label>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <?= $form->field($model, 'coming_district')->label(' ')->dropdownList(
+                                ArrayHelper::map(District::find()->all(),'name', 'name'),
+                                ['prompt'=>'जिल्ला',
+                                 'class' => 'form-control form-control-sm',
+                                 'id' => 'father_ctz_district']
+                            ) ?>
+                        </div>
+                        <div class="col-sm-3">
+                            <?= $form->field($model, 'coming_local_level')->textInput(['maxlength' => true, 'class'=>'form-control form-control-sm'])->label(' ') ?>
+                        </div>
+                        <div class="col-sm-1">
+                            <?= $form->field($model, 'coming_ward')->textInput(['maxlength' => true, 'class'=>'form-control form-control-sm'])->label(' ') ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <?php DynamicFormWidget::begin([
+                'widgetContainer' => 'dynamicform_wrapper', // required: only alphanumeric characters plus "_" [A-Za-z0-9_]
+                'widgetBody' => '.container-items', // required: css class selector
+                'widgetItem' => '.item', // required: css class
+                'limit' => 4, // the maximum times, an element can be added (default 999)
+                'min' => 0, // 0 or 1 (default 1)
+                'insertButton' => '.add-item', // css class
+                'deleteButton' => '.remove-item', // css class
+                'model' => $mems[0],
+                'formId' => 'dynamic-form',
+                'formFields' => [
+                    'member_fname',
+                    'member_mname',
+                    'member_lname',
+                    'birth_year',
+                    'birth_month',
+                    'birth_day',
+                    'mem_gender',
+                    'mem_birth_place',
+                    'relation_with_inf',
+                ],
+            ]); ?>
+            <div class="card">
+                <div class="card-body">
+                    <label>Members</label>
+                    <div class="container-items">
+                                <!-- widgetBody -->
+                        <?php foreach ($mems as $i => $mem): ?>
+                                    <!-- widgetItem -->
+                            <?php
+                                                // necessary for update action.
+                                if (! $mem->isNewRecord) 
+                                {
+                                    echo Html::activeHiddenInput($mem, "[{$i}]id");
+                                }
+                            ?>
 
+                            <div class="form form-group item">
+                                <table class="table-responsive">
+                                    <tr>
+                                        <td>
+                                            <?= $form->field($mem, "[{$i}]member_fname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
+                                        </td>
+                                        <td>
+                                            <?= $form->field($mem, "[{$i}]member_mname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
+                                        </td>
+                                        <td>
+                                            <?= $form->field($mem, "[{$i}]member_lname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
+                                        </td>
+                                        <td>
+                                            <?= $form->field($mem, "[{$i}]birth_year")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
+                                        </td>
+                                        <td>
+                                            <?= $form->field($mem, "[{$i}]birth_month")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
+                                        </td>
+                                        <td>
+                                            <?= $form->field($mem, "[{$i}]birth_day")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
+                                        </td>
+                                        <td>
+                                            <?= $form->field($mem, "[{$i}]mem_gender")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
+                                        </td>
+                                        <td>
+                                            <?= $form->field($mem, "[{$i}]mem_birth_place")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
+                                        </td>
+                                        <td>
+                                            <?= $form->field($mem, "[{$i}]relation_with_inf")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="remove-item btn btn-danger btn-sm">Del</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                        <?php endforeach; ?>                    
+                        
+                    </div>
+                    <button type="button" class="add-item btn btn-success btn-sm ">Add Members</button>
+                </div>
+            </div>
+            <?php DynamicFormWidget::end(); ?>
         </div>
+        
+        <?= $form->field($model, 'migration_scanned_image')->textInput() ?>
+
+            <div class="form-group">
+                <?= Html::submitButton($mem->isNewRecord ? 'Create' : 'Update', ['class' => 'btn btn-primary']) ?>
+
+            </div>
+
     </div>
 </div>
+<?php ActiveForm::end(); ?>
+

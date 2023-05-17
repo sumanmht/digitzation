@@ -18,7 +18,7 @@ $assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/admi
 
 $this->registerJsFile(Yii::$app->request->baseUrl.'/js/nepalitrad.js',['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerJsFile(Yii::$app->request->baseUrl.'/js/radiobtn.js',['depends' => [\yii\web\JqueryAsset::className()]]);
-$this->registerJsFile(Yii::$app->request->baseUrl.'/js/jquery.min.js',['depends' => [\yii\web\JqueryAsset::className()]]);
+//$this->registerJsFile(Yii::$app->request->baseUrl.'/js/jquery.min.js',['depends' => [\yii\web\JqueryAsset::className()]]);
 //this->registerCssFile('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback');
 
 ?>

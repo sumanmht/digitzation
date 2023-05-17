@@ -1,13 +1,14 @@
 <?php
 
 namespace app\controllers;
-
+use yii;
 use app\models\Migrated;
 use app\models\MigratedSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\models\Model;
+use app\models\FamilyMember;
 /**
  * MigratedController implements the CRUD actions for Migrated model.
  */
@@ -55,8 +56,11 @@ class MigratedController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findmodel($id);
+        $mems = $model->mems;
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'mems' => $mems,
         ]);
     }
 
@@ -68,10 +72,48 @@ class MigratedController extends Controller
     public function actionCreate()
     {
         $model = new Migrated();
+        $mems =[new FamilyMember];
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                $mems = Model::createMultiple(FamilyMember::classname());
+                Model::loadMultiple($mems, Yii::$app->request->post());
+
+                // ajax validation
+                // if (Yii::$app->request->isAjax) {
+                //     Yii::$app->response->format = Response::FORMAT_JSON;
+                //     return ArrayHelper::merge(
+                //         ActiveForm::validateMultiple($modelsAddress),
+                //         ActiveForm::validate($modelCustomer)
+                //     );
+                // }
+
+                // validate all models
+                $valid = $model->validate();
+                $valid = Model::validateMultiple($mems) && $valid;
+                
+                if ($valid) {
+                    $transaction = \Yii::$app->db->beginTransaction();
+                    try {
+                        if ($flag = $model->save(false)) {
+                            foreach ($mems as $mem) 
+                            {
+                                $mem->inf_id = $model->id;
+                                if (! ($flag = $mem->save(false))) {
+                                    $transaction->rollBack();
+                                    break;
+                                }
+                            }
+                        }
+                        if ($flag) {
+                            $transaction->commit();
+                            return $this->redirect(['view', 'id' => $model->id]);
+                        }
+                    } catch (Exception $e) {
+                        $transaction->rollBack();
+                    }
+                }
+                
             }
         } else {
             $model->loadDefaultValues();
@@ -79,7 +121,10 @@ class MigratedController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'mems' => (empty($mems)) ? [new FamilyMember] : $mems
         ]);
+
+        
     }
 
     /**
@@ -91,14 +136,47 @@ class MigratedController extends Controller
      */
     public function actionUpdate($id)
     {
+        
         $model = $this->findModel($id);
-
+        $mems = $model->mems;
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            $oldIDs = ArrayHelper::map($mems, 'id', 'id');
+            $mems = Model::createMultiple(FamilyMember::classname(), $mems);
+            Model::loadMultiple($mems, Yii::$app->request->post());
+            $deletedIDs = array_diff($oldIDs, array_filter(ArrayHelper::map($mems, 'id', 'id')));
+
+             // validate all models
+            $valid = $model->validate();
+            $valid = Model::validateMultiple($mems) && $valid;
+            if ($valid) {
+                $transaction = \Yii::$app->db->beginTransaction();
+                try {
+                    if ($flag = $model->save(false)) {
+                        if (! empty($deletedIDs)) {
+                            Address::deleteAll(['id' => $deletedIDs]);
+                        }
+                        foreach ($mems as $mem) {
+                            $mem->inf_id = $model->id;
+                            if (! ($flag = $mem->save(false))) {
+                                $transaction->rollBack();
+                                break;
+                            }
+                        }
+                    }
+                    if ($flag) {
+                        $transaction->commit();
+                        return $this->redirect(['view', 'id' => $model->id]);
+                    }
+                } catch (Exception $e) {
+                    $transaction->rollBack();
+                }
+            }
+
         }
 
         return $this->render('update', [
             'model' => $model,
+            'mems' => (empty($mems)) ? [new FamilyMember] : $mems
         ]);
     }
 

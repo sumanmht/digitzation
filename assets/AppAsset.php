@@ -23,9 +23,8 @@ class AppAsset extends AssetBundle
         'css/site.css',
     ];
     public $js = [
-        //'nepalitrad.js',
-        'checkbox.js',
-        'jquery.min.js',
+        'js/radiobtn.js',
+        
     ];
     public $depends = [
         'yii\web\YiiAsset',
