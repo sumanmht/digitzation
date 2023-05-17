@@ -8,6 +8,7 @@ use app\models\District;
 use app\models\FamilyMember;
 use app\models\Model;
 use wbraganca\dynamicform\DynamicFormWidget;
+use app\models\Gender;
 /** @var yii\web\View $this */
 /** @var app\models\Migrated $model */
 /** @var yii\widgets\ActiveForm $form */
@@ -174,12 +175,24 @@ use wbraganca\dynamicform\DynamicFormWidget;
                 </div>
             </div>
             <hr>
+            <div class="row form-check" >
+                <div class="form-check-inline ">
+                    <label >बसाई सरी जाने
+                    <input class="form-check-input" type="radio"  name="radiobtn" id="goingbtn"  >
+                    </label>
+                </div>
+                <div class="form-check-inline ">
+                    <label>बसाई सरी आउने
+                    <input class="form-check-input" type="radio"  name="radiobtn" id="comingbtn"  >
+                    </label>
+                </div>
 
-            <div class="row">
-                
+            </div>
+            <hr>
+            <div class="row hidden " id="goingrow">                
                 <div class="col">
                     <label>बसाई सरी जाने ठेगाना</label>
-                    <div class="row">
+                    <div class="row " >
                         <div class="col-sm-2">
                             <?= $form->field($model, 'going_district')->label(' ')->dropdownList(
                                 ArrayHelper::map(District::find()->all(),'name', 'name'),
@@ -198,11 +211,10 @@ use wbraganca\dynamicform\DynamicFormWidget;
                 </div>
             </div>
 
-            <div class="row">
-                
+            <div class="row  hidden" id="comingrow">                
                 <div class="col">
                     <label>बसाई सरी आएको ठेगाना</label>
-                    <div class="row">
+                    <div class="row " >
                         <div class="col-sm-2">
                             <?= $form->field($model, 'coming_district')->label(' ')->dropdownList(
                                 ArrayHelper::map(District::find()->all(),'name', 'name'),
@@ -225,8 +237,8 @@ use wbraganca\dynamicform\DynamicFormWidget;
                 'widgetContainer' => 'dynamicform_wrapper', // required: only alphanumeric characters plus "_" [A-Za-z0-9_]
                 'widgetBody' => '.container-items', // required: css class selector
                 'widgetItem' => '.item', // required: css class
-                'limit' => 4, // the maximum times, an element can be added (default 999)
-                'min' => 0, // 0 or 1 (default 1)
+                'limit' => 15, // the maximum times, an element can be added (default 999)
+                'min' => 1, // 0 or 1 (default 1)
                 'insertButton' => '.add-item', // css class
                 'deleteButton' => '.remove-item', // css class
                 'model' => $mems[0],
@@ -261,35 +273,41 @@ use wbraganca\dynamicform\DynamicFormWidget;
                             <div class="form form-group item">
                                 <table class="table-responsive">
                                     <tr>
-                                        <td>
-                                            <?= $form->field($mem, "[{$i}]member_fname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
+                                        <td class="col-sm-2">
+                                            <?= $form->field($mem, "[{$i}]member_fname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder'=>'पहिलो नाम'])->label('') ?>
+                                        </td>
+                                        <td class="col-sm-2">
+                                            <?= $form->field($mem, "[{$i}]member_mname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder'=>'बीचको नाम'])->label('') ?>
+                                        </td>
+                                        <td class="col-sm-2">
+                                            <?= $form->field($mem, "[{$i}]member_lname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder'=>'थर'])->label('') ?>
+                                        </td>
+                                        <td class="col-sm-1">
+                                            <?= $form->field($mem, "[{$i}]birth_year")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder'=>'साल'])->label('') ?>
+                                        </td>
+                                        <td class="col-sm-1">
+                                            <?= $form->field($mem, "[{$i}]birth_month")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder'=>'महिना'])->label('') ?>
+                                        </td>
+                                        <td class="col-sm-1">
+                                            <?= $form->field($mem, "[{$i}]birth_day")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder'=>'गते'])->label('') ?>
+                                        </td>
+                                        <td class="col-sm-1">
+                                            <?= $form->field($mem, "[{$i}]mem_gender")->textInput(['maxlength' => true])->label('')->dropdownList(
+                                                ArrayHelper::map(Gender::find()->all(),'gender', 'gender'),
+                                                ['prompt'=>'',
+                                                 'class' => 'form-control form-control-sm',
+                                                 'id' => 'mem_gender',
+                                                 'placeholder' => 'लिङ्ग']
+                                            )  ?>
+                                        </td>
+                                        <td class="col-sm-1">
+                                            <?= $form->field($mem, "[{$i}]mem_birth_place")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder'=>'जन्मस्थान'])->label('') ?>
+                                        </td>
+                                        <td class="col-sm-1">
+                                            <?= $form->field($mem, "[{$i}]relation_with_inf")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder'=>'सूचकसँगको नाता'])->label('') ?>
                                         </td>
                                         <td>
-                                            <?= $form->field($mem, "[{$i}]member_mname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
-                                        </td>
-                                        <td>
-                                            <?= $form->field($mem, "[{$i}]member_lname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
-                                        </td>
-                                        <td>
-                                            <?= $form->field($mem, "[{$i}]birth_year")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
-                                        </td>
-                                        <td>
-                                            <?= $form->field($mem, "[{$i}]birth_month")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
-                                        </td>
-                                        <td>
-                                            <?= $form->field($mem, "[{$i}]birth_day")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
-                                        </td>
-                                        <td>
-                                            <?= $form->field($mem, "[{$i}]mem_gender")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
-                                        </td>
-                                        <td>
-                                            <?= $form->field($mem, "[{$i}]mem_birth_place")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
-                                        </td>
-                                        <td>
-                                            <?= $form->field($mem, "[{$i}]relation_with_inf")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
-                                        </td>
-                                        <td>
-                                            <button type="button" class="remove-item btn btn-danger btn-sm">Del</button>
+                                            <button type="button" class="remove-item btn btn-danger btn-sm"><i class="bi bi-x-circle"></i></button>
                                         </td>
                                     </tr>
                                 </table>
@@ -314,4 +332,13 @@ use wbraganca\dynamicform\DynamicFormWidget;
     </div>
 </div>
 <?php ActiveForm::end(); ?>
+
+<style type="text/css">
+    .hidden{
+        display: none;
+    }
+    
+</style>
+
+
 

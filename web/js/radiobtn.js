@@ -65,7 +65,10 @@ $(document).ready(function(){
         $('#inf_ctz_month').val(mother_ctz_month);
         $('#inf_ctz_day').val(mother_ctz_day);
         $('#inf_ctz_district').val(mother_ctz_district);
+
+        
     });
 });
+
 
 

@@ -289,7 +289,7 @@ use app\models\Registrar;
     </div>
     <hr>
     <label>आमाको विवरण</label>
-    <div class="row form-group">
+    <div class="row form-group mot" id="mote">
         <div class="col-sm-4">
             <label>आमाको नाम</label>
             <div class="row nepalify">
@@ -501,4 +501,9 @@ use app\models\Registrar;
 
 
 
+<style type="text/css">
+    .mot{
+        display: none;
+    }
+</style>
 

@@ -49,6 +49,8 @@ class Migrated extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+
+    public $radio;
     public static function tableName()
     {
         return 'migrated';
