@@ -6,7 +6,8 @@ use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-// use yii\widgets\LinkPager;
+use app\components\CustomPager;
+
 // use yii\widgets\ListView;
 
 /** @var yii\web\View $this */
@@ -47,6 +48,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             'style' => 'width:100%'],
                         'layout' => "{items}\n{summary}\n{pager}",
                         'options' => ['style' => 'font-size:13px;'],
+                        'pager' => [
+                            'class' =>  CustomPager::class,
+                            
+                        ],
                         // 'filterModel' => $searchModel,
                         'columns' => [
                             ['class' => 'yii\grid\SerialColumn'],
