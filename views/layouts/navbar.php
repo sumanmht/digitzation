@@ -16,7 +16,7 @@ AppAsset::register($this);
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fa-solid fa-bars"></i></a>
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="bi bi-distribute-vertical"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="<?=\yii\helpers\Url::home()?>" class="nav-link">Home</a>

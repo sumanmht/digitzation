@@ -501,9 +501,3 @@ use app\models\Registrar;
 
 
 
-<style type="text/css">
-    .mot{
-        display: none;
-    }
-</style>
-

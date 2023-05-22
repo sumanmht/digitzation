@@ -62,8 +62,8 @@ AppAsset::register($this);
                     ['label' => 'Birth', 'icon' => 'th', 'url' => ['birth/index']],
                     ['label' => 'Death', 'icon' => 'th', 'url' => ['index']],
                     ['label' => 'Marriage', 'icon' => 'th', 'url' => ['index']],
-                    ['label' => 'Migration', 'icon' => 'th', 'url' => ['migrated/index']],
-                    ['label' => 'Divorce', 'icon' => 'th', 'url' => ['index']],
+                    ['label' => 'Migration', 'icon' => 'th', 'url' => ['mig/index']],
+                    ['label' => 'Member', 'icon' => 'th', 'url' => ['fam/index']],
                     //['label' => 'Gender', 'icon' => 'th', 'url' => ['gender/index']],
                     
                 ],

@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var app\models\Migrated $model */
+/** @var app\models\Mig $model */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Migrateds', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Migs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="migrated-view">
+<div class="mig-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -30,25 +30,25 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
+            'inf_fname',
+            'inf_mname',
+            'inf_lname',
             'registrar_name',
             'reg_no',
             'reg_year',
             'reg_month',
             'reg_day',
-            'inf_fname',
-            'inf_mname',
-            'inf_lname',
             'inf_birth_year',
             'inf_birth_month',
             'inf_birth_day',
             'inf_gender',
             'inf_birth_place',
+            'inf_education',
             'inf_ctz_no',
             'inf_ctz_year',
             'inf_ctz_month',
             'inf_ctz_day',
             'inf_ctz_district',
-            'inf_education',
             'inf_occupation',
             'inf_religion',
             'inf_mother_tongue',
@@ -62,8 +62,21 @@ $this->params['breadcrumbs'][] = $this->title;
             'migration_month',
             'migration_day',
             'reason',
-            'migration_scanned_image',
+            'm_scanned_image',
         ],
     ]) ?>
 
+<div class=" birth-view col-sm-6">
+        <?php echo DetailView::widget([
+            'model' => $model,
+            //'valueColOptions'=>['style'=>'width:70%'],
+            'attributes' =>[
+                ['attribute' => 'm_scanned_image',
+                 'label' => false,
+                'value' => Yii::getAlias('@web/uploads').'/'.$model->m_scanned_image,
+                'format' => ['image', ['class' =>'img-fluid']]
+         ],
+        ],
+        ])?>        
+    </div>
 </div>

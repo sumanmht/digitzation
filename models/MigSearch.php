@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Migrated;
+use app\models\Mig;
 
 /**
- * MigratedSearch represents the model behind the search form of `app\models\Migrated`.
+ * MigSearch represents the model behind the search form of `app\models\Mig`.
  */
-class MigratedSearch extends Migrated
+class MigSearch extends Mig
 {
     /**
      * {@inheritdoc}
@@ -18,7 +18,7 @@ class MigratedSearch extends Migrated
     {
         return [
             [['id'], 'integer'],
-            [['registrar_name', 'reg_no', 'reg_year', 'reg_month', 'reg_day', 'inf_fname', 'inf_mname', 'inf_lname', 'inf_birth_year', 'inf_birth_month', 'inf_birth_day', 'inf_gender', 'inf_birth_place', 'inf_ctz_no', 'inf_ctz_year', 'inf_ctz_month', 'inf_ctz_day', 'inf_ctz_district', 'inf_education', 'inf_occupation', 'inf_religion', 'inf_mother_tongue', 'going_district', 'going_local_level', 'going_ward', 'coming_district', 'coming_local_level', 'coming_ward', 'migration_year', 'migration_month', 'migration_day', 'reason', 'migration_scanned_image'], 'safe'],
+            [['inf_fname', 'inf_mname', 'inf_lname', 'registrar_name', 'reg_no', 'reg_year', 'reg_month', 'reg_day', 'inf_birth_year', 'inf_birth_month', 'inf_birth_day', 'inf_gender', 'inf_birth_place', 'inf_education', 'inf_ctz_no', 'inf_ctz_year', 'inf_ctz_month', 'inf_ctz_day', 'inf_ctz_district', 'inf_occupation', 'inf_religion', 'inf_mother_tongue', 'going_district', 'going_local_level', 'going_ward', 'coming_district', 'coming_local_level', 'coming_ward', 'migration_year', 'migration_month', 'migration_day', 'reason', 'm_scanned_image'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class MigratedSearch extends Migrated
      */
     public function search($params)
     {
-        $query = Migrated::find();
+        $query = Mig::find();
 
         // add conditions that should always apply here
 
@@ -61,25 +61,25 @@ class MigratedSearch extends Migrated
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'registrar_name', $this->registrar_name])
+        $query->andFilterWhere(['like', 'inf_fname', $this->inf_fname])
+            ->andFilterWhere(['like', 'inf_mname', $this->inf_mname])
+            ->andFilterWhere(['like', 'inf_lname', $this->inf_lname])
+            ->andFilterWhere(['like', 'registrar_name', $this->registrar_name])
             ->andFilterWhere(['like', 'reg_no', $this->reg_no])
             ->andFilterWhere(['like', 'reg_year', $this->reg_year])
             ->andFilterWhere(['like', 'reg_month', $this->reg_month])
             ->andFilterWhere(['like', 'reg_day', $this->reg_day])
-            ->andFilterWhere(['like', 'inf_fname', $this->inf_fname])
-            ->andFilterWhere(['like', 'inf_mname', $this->inf_mname])
-            ->andFilterWhere(['like', 'inf_lname', $this->inf_lname])
             ->andFilterWhere(['like', 'inf_birth_year', $this->inf_birth_year])
             ->andFilterWhere(['like', 'inf_birth_month', $this->inf_birth_month])
             ->andFilterWhere(['like', 'inf_birth_day', $this->inf_birth_day])
             ->andFilterWhere(['like', 'inf_gender', $this->inf_gender])
             ->andFilterWhere(['like', 'inf_birth_place', $this->inf_birth_place])
+            ->andFilterWhere(['like', 'inf_education', $this->inf_education])
             ->andFilterWhere(['like', 'inf_ctz_no', $this->inf_ctz_no])
             ->andFilterWhere(['like', 'inf_ctz_year', $this->inf_ctz_year])
             ->andFilterWhere(['like', 'inf_ctz_month', $this->inf_ctz_month])
             ->andFilterWhere(['like', 'inf_ctz_day', $this->inf_ctz_day])
             ->andFilterWhere(['like', 'inf_ctz_district', $this->inf_ctz_district])
-            ->andFilterWhere(['like', 'inf_education', $this->inf_education])
             ->andFilterWhere(['like', 'inf_occupation', $this->inf_occupation])
             ->andFilterWhere(['like', 'inf_religion', $this->inf_religion])
             ->andFilterWhere(['like', 'inf_mother_tongue', $this->inf_mother_tongue])
@@ -93,7 +93,7 @@ class MigratedSearch extends Migrated
             ->andFilterWhere(['like', 'migration_month', $this->migration_month])
             ->andFilterWhere(['like', 'migration_day', $this->migration_day])
             ->andFilterWhere(['like', 'reason', $this->reason])
-            ->andFilterWhere(['like', 'migration_scanned_image', $this->migration_scanned_image]);
+            ->andFilterWhere(['like', 'm_scanned_image', $this->m_scanned_image]);
 
         return $dataProvider;
     }

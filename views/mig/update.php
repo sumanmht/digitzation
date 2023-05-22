@@ -3,20 +3,20 @@
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var app\models\Migrated $model */
+/** @var app\models\Mig $model */
 
-$this->title = 'Update Migrated: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Migrateds', 'url' => ['index']];
+$this->title = 'Update Mig: ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Migs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="migrated-update">
+<div class="mig-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    
 
     <?= $this->render('_form', [
         'model' => $model,
-        'mems' => $mems,
+        'fams' => $fams,
     ]) ?>
 
 </div>

@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var app\models\MigratedSearch $model */
+/** @var app\models\MigSearch $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="migrated-search">
+<div class="mig-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -20,21 +20,21 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
+    <?= $form->field($model, 'inf_fname') ?>
+
+    <?= $form->field($model, 'inf_mname') ?>
+
+    <?= $form->field($model, 'inf_lname') ?>
+
     <?= $form->field($model, 'registrar_name') ?>
 
-    <?= $form->field($model, 'reg_no') ?>
+    <?php // echo $form->field($model, 'reg_no') ?>
 
-    <?= $form->field($model, 'reg_year') ?>
+    <?php // echo $form->field($model, 'reg_year') ?>
 
-    <?= $form->field($model, 'reg_month') ?>
+    <?php // echo $form->field($model, 'reg_month') ?>
 
     <?php // echo $form->field($model, 'reg_day') ?>
-
-    <?php // echo $form->field($model, 'inf_fname') ?>
-
-    <?php // echo $form->field($model, 'inf_mname') ?>
-
-    <?php // echo $form->field($model, 'inf_lname') ?>
 
     <?php // echo $form->field($model, 'inf_birth_year') ?>
 
@@ -46,6 +46,8 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'inf_birth_place') ?>
 
+    <?php // echo $form->field($model, 'inf_education') ?>
+
     <?php // echo $form->field($model, 'inf_ctz_no') ?>
 
     <?php // echo $form->field($model, 'inf_ctz_year') ?>
@@ -55,8 +57,6 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'inf_ctz_day') ?>
 
     <?php // echo $form->field($model, 'inf_ctz_district') ?>
-
-    <?php // echo $form->field($model, 'inf_education') ?>
 
     <?php // echo $form->field($model, 'inf_occupation') ?>
 
@@ -84,7 +84,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'reason') ?>
 
-    <?php // echo $form->field($model, 'migration_scanned_image') ?>
+    <?php // echo $form->field($model, 'm_scanned_image') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

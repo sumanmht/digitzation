@@ -2,15 +2,13 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use wbraganca\dynamicform\DynamicFormWidget;
+use app\models\District;
 use yii\helpers\ArrayHelper;
 use app\models\Registrar;
-use app\models\District;
-use app\models\FamilyMember;
-use app\models\Model;
-use wbraganca\dynamicform\DynamicFormWidget;
-use app\models\Gender;
+
 /** @var yii\web\View $this */
-/** @var app\models\Migrated $model */
+/** @var app\models\Mig $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
@@ -70,6 +68,7 @@ use app\models\Gender;
                     </div>
                 </div>
             </div>
+          
             <hr>
             <label>सूचकको विवरण</label>
             <div class="row form-group">
@@ -189,7 +188,7 @@ use app\models\Gender;
 
             </div>
             <hr>
-            <div class="row hidden " id="goingrow">                
+            <div class="row hidden" id="goingrow">                
                 <div class="col">
                     <label>बसाई सरी जाने ठेगाना</label>
                     <div class="row " >
@@ -211,7 +210,7 @@ use app\models\Gender;
                 </div>
             </div>
 
-            <div class="row  hidden" id="comingrow">                
+            <div class="row hidden" id="comingrow">                
                 <div class="col">
                     <label>बसाई सरी आएको ठेगाना</label>
                     <div class="row " >
@@ -232,21 +231,22 @@ use app\models\Gender;
                     </div>
                 </div>
             </div>
-        
+
+            
             <?php DynamicFormWidget::begin([
                 'widgetContainer' => 'dynamicform_wrapper', // required: only alphanumeric characters plus "_" [A-Za-z0-9_]
                 'widgetBody' => '.container-items', // required: css class selector
                 'widgetItem' => '.item', // required: css class
-                'limit' => 15, // the maximum times, an element can be added (default 999)
-                'min' => 1, // 0 or 1 (default 1)
+                'limit' => 4, // the maximum times, an element can be added (default 999)
+                'min' => 0, // 0 or 1 (default 1)
                 'insertButton' => '.add-item', // css class
                 'deleteButton' => '.remove-item', // css class
-                'model' => $mems[0],
+                'model' => $fams[0],
                 'formId' => 'dynamic-form',
                 'formFields' => [
-                    'member_fname',
-                    'member_mname',
-                    'member_lname',
+                    'mem_fname',
+                    'mem_mname',
+                    'mem_lname',
                     'birth_year',
                     'birth_month',
                     'birth_day',
@@ -255,90 +255,94 @@ use app\models\Gender;
                     'relation_with_inf',
                 ],
             ]); ?>
+
             <div class="card">
-                <div class="card-body">
-                    <label>Members</label>
-                    <div class="container-items">
-                                <!-- widgetBody -->
-                        <?php foreach ($mems as $i => $mem): ?>
-                                    <!-- widgetItem -->
-                            <?php
-                                                // necessary for update action.
-                                if (! $mem->isNewRecord) 
-                                {
-                                    echo Html::activeHiddenInput($mem, "[{$i}]id");
-                                }
-                            ?>
+                    <div class="card-body">
+                        <div class="container-items">
+                                    <!-- widgetBody -->
+                            <?php foreach ($fams as $i => $fam): ?>
+                                        <!-- widgetItem -->
+                                <?php
+                                                    // necessary for update action.
+                                    if (! $fam->isNewRecord) 
+                                    {
+                                        echo Html::activeHiddenInput($fam, "[{$i}]id");
+                                    }
+                                ?>
 
-                            <div class="form form-group item">
-                                <table class="table-responsive">
-                                    <tr>
-                                        <td class="col-sm-2">
-                                            <?= $form->field($mem, "[{$i}]member_fname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder'=>'पहिलो नाम'])->label('') ?>
-                                        </td>
-                                        <td class="col-sm-2">
-                                            <?= $form->field($mem, "[{$i}]member_mname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder'=>'बीचको नाम'])->label('') ?>
-                                        </td>
-                                        <td class="col-sm-2">
-                                            <?= $form->field($mem, "[{$i}]member_lname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder'=>'थर'])->label('') ?>
-                                        </td>
-                                        <td class="col-sm-1">
-                                            <?= $form->field($mem, "[{$i}]birth_year")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder'=>'साल'])->label('') ?>
-                                        </td>
-                                        <td class="col-sm-1">
-                                            <?= $form->field($mem, "[{$i}]birth_month")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder'=>'महिना'])->label('') ?>
-                                        </td>
-                                        <td class="col-sm-1">
-                                            <?= $form->field($mem, "[{$i}]birth_day")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder'=>'गते'])->label('') ?>
-                                        </td>
-                                        <td class="col-sm-1">
-                                            <?= $form->field($mem, "[{$i}]mem_gender")->textInput(['maxlength' => true])->label('')->dropdownList(
-                                                ArrayHelper::map(Gender::find()->all(),'gender', 'gender'),
-                                                ['prompt'=>'',
-                                                 'class' => 'form-control form-control-sm',
-                                                 'id' => 'mem_gender',
-                                                 'placeholder' => 'लिङ्ग']
-                                            )  ?>
-                                        </td>
-                                        <td class="col-sm-1">
-                                            <?= $form->field($mem, "[{$i}]mem_birth_place")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder'=>'जन्मस्थान'])->label('') ?>
-                                        </td>
-                                        <td class="col-sm-1">
-                                            <?= $form->field($mem, "[{$i}]relation_with_inf")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder'=>'सूचकसँगको नाता'])->label('') ?>
-                                        </td>
-                                        <td>
-                                            <button type="button" class="remove-item btn btn-danger btn-sm"><i class="bi bi-x-circle"></i></button>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
+                                <div class="form form-group item">                                    
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <?= $form->field($fam, "[{$i}]mem_fname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <?= $form->field($fam, "[{$i}]mem_mname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <?= $form->field($fam, "[{$i}]mem_lname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <?= $form->field($fam, "[{$i}]birth_year")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <?= $form->field($fam, "[{$i}]birth_month")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <?= $form->field($fam, "[{$i}]birth_day")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <?= $form->field($fam, "[{$i}]mem_gender")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <?= $form->field($fam, "[{$i}]mem_birth_place")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <?= $form->field($fam, "[{$i}]relation_with_inf")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('')?>         
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <a role="button"><i class="bi bi-dash-circle remove-item btn btn-sm btn-danger"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            <?php endforeach; ?>                    
                             
-                        <?php endforeach; ?>                    
-                        
+                        </div>
+                        <button type="button" class="add-item btn btn-success btn-sm ">Add Members</button>
                     </div>
-                    <button type="button" class="add-item btn btn-success btn-sm ">Add Members</button>
                 </div>
-            </div>
             <?php DynamicFormWidget::end(); ?>
-        </div>
-        
-        <?= $form->field($model, 'migration_scanned_image')->textInput() ?>
+            
+            <div class="row ">
+                <label>स्क्यान गरिएको फोटो अपलोड गर्नुहोस</label>
+                <div class="col-sm-12">
+                        <?= $form->field($model, 'm_scanned_image')->fileInput(['id' => 'mfileInput'])->label('') ?>
+                            <!-- Display the uploaded image file name -->
+                             <?= $model->m_scanned_image ?></p>
 
-            <div class="form-group">
-                <?= Html::submitButton($mem->isNewRecord ? 'Create' : 'Update', ['class' => 'btn btn-primary']) ?>
-
+                    </div>
             </div>
+
+    </div>
+    <div class=" card-footer form-group">
+
+        <?= Html::submitButton($fam->isNewRecord ? 'Save' :'Update' , ['class' => 'btn btn-primary']) ?>
 
     </div>
 </div>
 <?php ActiveForm::end(); ?>
 
+
 <style type="text/css">
     .hidden{
         display: none;
     }
-    
 </style>
-
-
-

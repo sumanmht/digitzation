@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var app\models\FamilyMember $model */
+/** @var app\models\Fam $model */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Family Members', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Fams', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="family-member-view">
+<div class="fam-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -30,15 +30,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'inf_id',
-            'member_fname',
-            'member_mname',
-            'member_lname',
+            'mem_fname',
+            'mem_mname',
+            'mem_lname',
             'birth_year',
             'birth_month',
             'birth_day',
-            'mem_gender',
+            'inf_id',
             'mem_birth_place',
+            'mem_gender',
             'relation_with_inf',
         ],
     ]) ?>

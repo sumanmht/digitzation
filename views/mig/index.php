@@ -10,12 +10,12 @@ use yii\widgets\Pjax;
 /** @var app\models\MigratedSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Migrateds';
+$this->title = 'Migrated';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="card">
     <div class="card-body">
-    <div class="migrated-index">
+    <div class="mig-index">
         <p>
             <?= Html::a('Create Migrated', ['create'], ['class' => 'btn btn-success']) ?>
         </p>

@@ -118,7 +118,7 @@ class BirthController extends Controller
             'model' => $model,
         ]);
     }
-
+ 
     // public function actionCreate()
     // {
     //     $model = new Birth();
