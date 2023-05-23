@@ -14,11 +14,13 @@ class MigSearch extends Mig
     /**
      * {@inheritdoc}
      */
+
+    public $migsearch;
     public function rules()
     {
         return [
             [['id'], 'integer'],
-            [['inf_fname', 'inf_mname', 'inf_lname', 'registrar_name', 'reg_no', 'reg_year', 'reg_month', 'reg_day', 'inf_birth_year', 'inf_birth_month', 'inf_birth_day', 'inf_gender', 'inf_birth_place', 'inf_education', 'inf_ctz_no', 'inf_ctz_year', 'inf_ctz_month', 'inf_ctz_day', 'inf_ctz_district', 'inf_occupation', 'inf_religion', 'inf_mother_tongue', 'going_district', 'going_local_level', 'going_ward', 'coming_district', 'coming_local_level', 'coming_ward', 'migration_year', 'migration_month', 'migration_day', 'reason', 'm_scanned_image'], 'safe'],
+            [['inf_fname', 'migsearch', 'inf_mname', 'inf_lname', 'registrar_name', 'reg_no', 'reg_year', 'reg_month', 'reg_day', 'inf_birth_year', 'inf_birth_month', 'inf_birth_day', 'inf_gender', 'inf_birth_place', 'inf_education', 'inf_ctz_no', 'inf_ctz_year', 'inf_ctz_month', 'inf_ctz_day', 'inf_ctz_district', 'inf_occupation', 'inf_religion', 'inf_mother_tongue', 'going_district', 'going_local_level', 'going_ward', 'coming_district', 'coming_local_level', 'coming_ward', 'migration_year', 'migration_month', 'migration_day', 'reason', 'm_scanned_image'], 'safe'],
         ];
     }
 
@@ -46,6 +48,9 @@ class MigSearch extends Mig
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 2,  // Limit the number of items per page to 10
+            ],
         ]);
 
         $this->load($params);
@@ -57,43 +62,61 @@ class MigSearch extends Mig
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-        ]);
+        // $query->andFilterWhere([
+        //     'id' => $this->id,
+        //     'reg_year' => $this->reg_year,
+        //     'reg_month' => $this->reg_month,
+        //     'reg_day' => $this->reg_day,
+        //     'inf_birth_year' => $this->inf_birth_year,
+        //     'inf_birth_month' => $this->inf_birth_month,
+        //     'inf_birth_day' => $this->inf_birth_day,
+        //     'inf_fname' => $this->inf_fname,
+        //     'inf_mname' => $this->inf_mname,
+        //     'inf_lname' => $this->inf_lname,
+        //     'going_district' => $this->going_district,
+        //     'going_local_level' => $this->going_local_level,
+        //     'going_ward' => $this->going_ward,
+        //     'coming_district' => $this->coming_district,
+        //     'coming_local_level' => $this->coming_local_level,
+        //     'coming_ward' => $this->coming_ward,
+        //     'migration_year' => $this->migration_year,
+        //     'migration_month' => $this->migration_month,
+        //     'migration_day' => $this->migration_day,
+        // ]);
 
-        $query->andFilterWhere(['like', 'inf_fname', $this->inf_fname])
-            ->andFilterWhere(['like', 'inf_mname', $this->inf_mname])
-            ->andFilterWhere(['like', 'inf_lname', $this->inf_lname])
-            ->andFilterWhere(['like', 'registrar_name', $this->registrar_name])
-            ->andFilterWhere(['like', 'reg_no', $this->reg_no])
-            ->andFilterWhere(['like', 'reg_year', $this->reg_year])
-            ->andFilterWhere(['like', 'reg_month', $this->reg_month])
-            ->andFilterWhere(['like', 'reg_day', $this->reg_day])
-            ->andFilterWhere(['like', 'inf_birth_year', $this->inf_birth_year])
-            ->andFilterWhere(['like', 'inf_birth_month', $this->inf_birth_month])
-            ->andFilterWhere(['like', 'inf_birth_day', $this->inf_birth_day])
-            ->andFilterWhere(['like', 'inf_gender', $this->inf_gender])
-            ->andFilterWhere(['like', 'inf_birth_place', $this->inf_birth_place])
-            ->andFilterWhere(['like', 'inf_education', $this->inf_education])
-            ->andFilterWhere(['like', 'inf_ctz_no', $this->inf_ctz_no])
-            ->andFilterWhere(['like', 'inf_ctz_year', $this->inf_ctz_year])
-            ->andFilterWhere(['like', 'inf_ctz_month', $this->inf_ctz_month])
-            ->andFilterWhere(['like', 'inf_ctz_day', $this->inf_ctz_day])
-            ->andFilterWhere(['like', 'inf_ctz_district', $this->inf_ctz_district])
-            ->andFilterWhere(['like', 'inf_occupation', $this->inf_occupation])
-            ->andFilterWhere(['like', 'inf_religion', $this->inf_religion])
-            ->andFilterWhere(['like', 'inf_mother_tongue', $this->inf_mother_tongue])
-            ->andFilterWhere(['like', 'going_district', $this->going_district])
-            ->andFilterWhere(['like', 'going_local_level', $this->going_local_level])
-            ->andFilterWhere(['like', 'going_ward', $this->going_ward])
-            ->andFilterWhere(['like', 'coming_district', $this->coming_district])
-            ->andFilterWhere(['like', 'coming_local_level', $this->coming_local_level])
-            ->andFilterWhere(['like', 'coming_ward', $this->coming_ward])
-            ->andFilterWhere(['like', 'migration_year', $this->migration_year])
-            ->andFilterWhere(['like', 'migration_month', $this->migration_month])
-            ->andFilterWhere(['like', 'migration_day', $this->migration_day])
-            ->andFilterWhere(['like', 'reason', $this->reason])
-            ->andFilterWhere(['like', 'm_scanned_image', $this->m_scanned_image]);
+        $query->orFilterWhere(['like', 'inf_fname', $this->migsearch])
+            ->orFilterWhere(['like', 'inf_mname', $this->migsearch])
+            ->orFilterWhere(['like', 'inf_lname', $this->migsearch])
+            ->orFilterWhere(['like', 'registrar_name', $this->migsearch])
+            ->orFilterWhere(['like', 'reg_no', $this->migsearch])
+            ->orFilterWhere(['like', 'reg_year', $this->migsearch])
+            ->orFilterWhere(['like', 'reg_month', $this->migsearch])
+            ->orFilterWhere(['like', 'reg_day', $this->migsearch])
+            ->orFilterWhere(['like', 'inf_birth_year', $this->migsearch])
+            ->orFilterWhere(['like', 'inf_birth_month', $this->migsearch])
+            ->orFilterWhere(['like', 'inf_birth_day', $this->migsearch])
+            ->orFilterWhere(['like', 'inf_gender', $this->inf_gender])
+            ->orFilterWhere(['like', 'inf_birth_place', $this->inf_birth_place])
+            ->orFilterWhere(['like', 'inf_education', $this->inf_education])
+            ->orFilterWhere(['like', 'inf_ctz_no', $this->inf_ctz_no])
+            ->orFilterWhere(['like', 'inf_ctz_year', $this->inf_ctz_year])
+            ->orFilterWhere(['like', 'inf_ctz_month', $this->inf_ctz_month])
+            ->orFilterWhere(['like', 'inf_ctz_day', $this->inf_ctz_day])
+            ->orFilterWhere(['like', 'inf_ctz_district', $this->inf_ctz_district])
+            ->orFilterWhere(['like', 'inf_occupation', $this->inf_occupation])
+            ->orFilterWhere(['like', 'inf_religion', $this->inf_religion])
+            ->orFilterWhere(['like', 'inf_mother_tongue', $this->inf_mother_tongue])
+            ->orFilterWhere(['like', 'going_district', $this->migsearch])
+            ->orFilterWhere(['like', 'going_local_level', $this->migsearch])
+            ->orFilterWhere(['like', 'going_ward', $this->migsearch])
+            ->orFilterWhere(['like', 'coming_district', $this->migsearch])
+            ->orFilterWhere(['like', 'coming_local_level', $this->migsearch])
+            ->orFilterWhere(['like', 'coming_ward', $this->migsearch])
+            ->orFilterWhere(['like', 'migration_year', $this->migsearch])
+            ->orFilterWhere(['like', 'migration_month', $this->migsearch])
+            ->orFilterWhere(['like', 'migration_day', $this->migsearch])
+            ->orFilterWhere(['like', 'reason', $this->reason])
+            ->orFilterWhere(['like', 'm_scanned_image', $this->m_scanned_image]);
 
         return $dataProvider;
     }

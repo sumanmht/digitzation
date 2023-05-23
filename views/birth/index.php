@@ -18,10 +18,7 @@ $this->title = 'Births';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="card">
-    
         <div class="birth-index">
-
-    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
             <?php Pjax::begin(); ?>
             <div class="card-body">
                 <div class="row">

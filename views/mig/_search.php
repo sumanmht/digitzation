@@ -2,95 +2,31 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use yii\widgets\Pjax;
 /** @var yii\web\View $this */
 /** @var app\models\MigSearch $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="mig-search">
-
+<?php Pjax::begin(); ?>
+<div class="mig-search" style="float:right;">
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
         'options' => [
-            'data-pjax' => 1
+            'data-pjax' => 1,
+            'class' => 'form-inline', // Add 'form-inline' class for inline form display
         ],
     ]); ?>
+    <div class="row form-group">
+        <div class="col">
+            <?= $form->field($model, 'migsearch')->label('')->textInput(['placeholder' => 'Search', 'class'=>'form-control form-control-sm'])->label(false) ?>
+        </div>
+        <div class="col-auto">
+            <?= Html::submitButton('Search', ['class' => 'btn btn-primary btn-sm']) ?>
 
-    <?= $form->field($model, 'id') ?>
-
-    <?= $form->field($model, 'inf_fname') ?>
-
-    <?= $form->field($model, 'inf_mname') ?>
-
-    <?= $form->field($model, 'inf_lname') ?>
-
-    <?= $form->field($model, 'registrar_name') ?>
-
-    <?php // echo $form->field($model, 'reg_no') ?>
-
-    <?php // echo $form->field($model, 'reg_year') ?>
-
-    <?php // echo $form->field($model, 'reg_month') ?>
-
-    <?php // echo $form->field($model, 'reg_day') ?>
-
-    <?php // echo $form->field($model, 'inf_birth_year') ?>
-
-    <?php // echo $form->field($model, 'inf_birth_month') ?>
-
-    <?php // echo $form->field($model, 'inf_birth_day') ?>
-
-    <?php // echo $form->field($model, 'inf_gender') ?>
-
-    <?php // echo $form->field($model, 'inf_birth_place') ?>
-
-    <?php // echo $form->field($model, 'inf_education') ?>
-
-    <?php // echo $form->field($model, 'inf_ctz_no') ?>
-
-    <?php // echo $form->field($model, 'inf_ctz_year') ?>
-
-    <?php // echo $form->field($model, 'inf_ctz_month') ?>
-
-    <?php // echo $form->field($model, 'inf_ctz_day') ?>
-
-    <?php // echo $form->field($model, 'inf_ctz_district') ?>
-
-    <?php // echo $form->field($model, 'inf_occupation') ?>
-
-    <?php // echo $form->field($model, 'inf_religion') ?>
-
-    <?php // echo $form->field($model, 'inf_mother_tongue') ?>
-
-    <?php // echo $form->field($model, 'going_district') ?>
-
-    <?php // echo $form->field($model, 'going_local_level') ?>
-
-    <?php // echo $form->field($model, 'going_ward') ?>
-
-    <?php // echo $form->field($model, 'coming_district') ?>
-
-    <?php // echo $form->field($model, 'coming_local_level') ?>
-
-    <?php // echo $form->field($model, 'coming_ward') ?>
-
-    <?php // echo $form->field($model, 'migration_year') ?>
-
-    <?php // echo $form->field($model, 'migration_month') ?>
-
-    <?php // echo $form->field($model, 'migration_day') ?>
-
-    <?php // echo $form->field($model, 'reason') ?>
-
-    <?php // echo $form->field($model, 'm_scanned_image') ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        </div>
     </div>
-
     <?php ActiveForm::end(); ?>
-
 </div>
+<?php Pjax::end(); ?>
