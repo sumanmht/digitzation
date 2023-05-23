@@ -237,7 +237,7 @@ use app\models\Registrar;
                 'widgetContainer' => 'dynamicform_wrapper', // required: only alphanumeric characters plus "_" [A-Za-z0-9_]
                 'widgetBody' => '.container-items', // required: css class selector
                 'widgetItem' => '.item', // required: css class
-                'limit' => 4, // the maximum times, an element can be added (default 999)
+                'limit' => 15, // the maximum times, an element can be added (default 999)
                 'min' => 0, // 0 or 1 (default 1)
                 'insertButton' => '.add-item', // css class
                 'deleteButton' => '.remove-item', // css class
@@ -256,7 +256,7 @@ use app\models\Registrar;
                 ],
             ]); ?>
 
-            <div class="card">
+            <div class="card" style="overflow-x:auto;">
                     <div class="card-body">
                         <div class="container-items">
                                     <!-- widgetBody -->
@@ -269,45 +269,48 @@ use app\models\Registrar;
                                         echo Html::activeHiddenInput($fam, "[{$i}]id");
                                     }
                                 ?>
-
-                                <div class="form form-group item">                                    
-                                    <div class="row">
-                                        <div class="col-sm-5">
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <?= $form->field($fam, "[{$i}]mem_fname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <?= $form->field($fam, "[{$i}]mem_mname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <?= $form->field($fam, "[{$i}]mem_lname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
-                                                </div>
-                                            </div>
+                                <div class="form form-group item " >
+                                    <div style="display: flex;">                                        
+                                        <div class="c2" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                            <?= $form->field($fam, "[{$i}]mem_fname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'पहिलो नाम'])->label('') ?>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="row">
-                                                <div class="col-sm-2">
-                                                    <?= $form->field($fam, "[{$i}]birth_year")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <?= $form->field($fam, "[{$i}]birth_month")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <?= $form->field($fam, "[{$i}]birth_day")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <?= $form->field($fam, "[{$i}]mem_gender")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <?= $form->field($fam, "[{$i}]mem_birth_place")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('') ?>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <?= $form->field($fam, "[{$i}]relation_with_inf")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label('')?>         
-                                                </div>
-                                            </div>
+                                        <div class="c2" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                            <?= $form->field($fam, "[{$i}]mem_mname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'बीचको नाम'])->label('') ?>
                                         </div>
-                                        <div class="col-sm-1">
+                                        <div class="c2" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                            <?= $form->field($fam, "[{$i}]mem_lname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'थर'])->label('') ?>
+                                        </div>
+                                        <div class="c1" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                            <?= $form->field($fam, "[{$i}]birth_year")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'जन्म साल'])->label('') ?>
+                                        </div>
+                                        <div class="c1" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                            <?= $form->field($fam, "[{$i}]birth_month")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'जन्म महिना'])->label('') ?>
+                                        </div>
+                                        <div class="c1" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                            <?= $form->field($fam, "[{$i}]birth_day")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'जन्म गते'])->label('') ?>
+                                        </div>
+                                        <div class="c2" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                            <?= $form->field($fam, "[{$i}]mem_ctz_no")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'नागरिकता नं.'])->label('') ?>
+                                        </div>
+                                        <div class="c1" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                            <?= $form->field($fam, "[{$i}]mem_ctz_year")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'जारी साल'])->label('') ?>
+                                        </div>
+                                        <div class="c1" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                            <?= $form->field($fam, "[{$i}]mem_ctz_month")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'जारी महिना'])->label('') ?>
+                                        </div>
+                                        <div class="c1" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                            <?= $form->field($fam, "[{$i}]mem_ctz_day")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'जारी गते'])->label('') ?>
+                                        </div>
+                                        <div class="c2" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;" >
+                                            <?= $form->field($fam, "[{$i}]mem_ctz_district")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'जारी जिल्ला'])->label('') ?>
+                                        </div>
+                                        <div class="c1" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                            <?= $form->field($fam, "[{$i}]mem_gender")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'लिङ्ग'])->label('') ?>
+                                        </div>
+                                        <div class="c2" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                            <?= $form->field($fam, "[{$i}]relation_with_inf")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'सुचकसँगको नाता'])->label('')?>         
+                                        </div>
+                                        <div style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
                                             <a role="button"><i class="bi bi-dash-circle remove-item btn btn-sm btn-danger"></i></a>
                                         </div>
                                     </div>
@@ -344,5 +347,13 @@ use app\models\Registrar;
 <style type="text/css">
     .hidden{
         display: none;
+    }
+    .c1{
+         flex-basis: 10%;
+        max-width: 10%;
+    }
+    .c2{
+        flex-basis: 12%;
+        max-width: 12%;
     }
 </style>

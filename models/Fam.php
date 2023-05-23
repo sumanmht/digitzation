@@ -39,10 +39,11 @@ class Fam extends \yii\db\ActiveRecord
         return [
             [['inf_id'], 'integer'],
             [['mem_fname', 'mem_mname', 'mem_lname'], 'string', 'max' => 40],
-            [['birth_year'], 'string', 'max' => 4],
-            [['birth_month', 'birth_day', 'mem_birth_place'], 'string', 'max' => 2],
+            [['birth_year', 'mem_ctz_year'], 'string', 'max' => 4],
+            [['birth_month', 'birth_day', 'mem_birth_place', 'mem_ctz_month', 'mem_ctz_month'], 'string', 'max' => 2],
             [['mem_gender'], 'string', 'max' => 10],
-            [['relation_with_inf'], 'string', 'max' => 50],
+            [['mem_ctz_no'], 'string', 'max' =>14],
+            [['relation_with_inf','mem_ctz_district'], 'string', 'max' => 50],
             [['inf_id'], 'exist', 'skipOnError' => true, 'targetClass' => Mig::class, 'targetAttribute' => ['inf_id' => 'id']],
         ];
     }

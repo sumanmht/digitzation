@@ -154,7 +154,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="birth-view col-sm-7">
                     <?php echo DetailView::widget([
                     'model' => $model,
-                    'template' => '<tr><th style="width:0%; ">{label}</th><td style="width:100%;">{value}</td></tr>',
+                    'template' => '<tr><td style="width:100%;">{value}</td></tr>',
                     //'valueColOptions'=>['style'=>'width:70%'],
                     'attributes' => [
                         ['attributes' => 'scanned_image',

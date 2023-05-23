@@ -49,7 +49,7 @@ class BirthSearch extends Birth
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 2,  // Limit the number of items per page to 10
+                'pageSize' => 10,  // Limit the number of items per page to 10
             ],
         ]);
 
