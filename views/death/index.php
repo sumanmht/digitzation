@@ -1,6 +1,6 @@
 <?php
 
-use app\models\Birth;
+use app\models\Death;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -9,23 +9,21 @@ use yii\widgets\Pjax;
 use app\components\CustomPager;
 use kartik\export\ExportMenu;
 use kartik\mpdf\Pdf;
-
-// use yii\widgets\ListView;
-
 /** @var yii\web\View $this */
-/** @var app\models\BirthSearch $searchModel */
+/** @var app\models\DeathSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Births';
+$this->title = 'Deaths';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="card">
-        <div class="birth-index">
+        <div class="death-index">
             <?php Pjax::begin(); ?>
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-3">
-                        <?= Html::a('Create Birth', ['create'], ['class' => 'btn btn-success btn-sm']) ?>
+                        <?= Html::a('Create Death', ['create'], ['class' => 'btn btn-success btn-sm']) ?>
                         <?= Html::a('Export Data', ['export'], ['class' => 'btn btn-primary btn-sm']) ?>
                     </div>
                     <div class="col-sm-9 ">
@@ -69,23 +67,23 @@ $this->params['breadcrumbs'][] = $this->title;
                              }
                             ],
                            ['attribute' => 'fname',
-                            'label' =>   'शिशुको नाम', 
+                            'label' =>   'मृतकको नाम', 
                             'value' => function ($model) 
                             {
                                return $model->fname . ' ' . $model->mname . ' ' . $model->lname;
                             }
                             ],
-                            ['attribute' => 'birth_year',
-                             'label' =>   'जन्म मिति(वि.स.)', 
+                            ['attribute' => 'death_year',
+                             'label' =>   'मृत्यु मिति(वि.स.)', 
                              'value' => function ($model) 
                             {
-                               return $model->birth_year . '-' . $model->birth_month . '-' . $model->birth_day;
+                               return $model->death_year . '-' . $model->death_month . '-' . $model->death_day;
                             }
                             ],
-                            ['attribute' => 'grandfather_fname',
+                            ['attribute' => 'grand_fname',
                             'label' =>   'बाजेको नाम', 
                             'value' => function ($model) {
-                               return $model->grandfather_fname . ' ' . $model->grandfather_mname . ' ' . $model->grandfather_lname;
+                               return $model->grand_fname . ' ' . $model->grand_mname . ' ' . $model->grand_lname;
                             }],
                             ['attribute' => 'father_fname',
                                 'label' =>   'बाबुको नाम', 
@@ -93,18 +91,17 @@ $this->params['breadcrumbs'][] = $this->title;
                                    return $model->father_fname . ' ' . $model->father_mname . ' ' . $model->father_lname;
                                }
                             ],  
-                                    
-                            ['attribute' => 'mother_fname',
-                                'label' =>   'आमाको नाम', 
+                            ['attribute' => 'spouse_fname',
+                                'label' =>   'पति/पत्नी नाम', 
                                 'value' => function ($model) {
-                                   return $model->mother_fname . ' ' . $model->mother_mname . ' ' . $model->mother_lname;
+                                   return $model->spouse_fname . ' ' . $model->spouse_mname . ' ' . $model->spouse_lname;
                                }
-                            ],  
+                            ],       
                                     
-                            ['attribute' => 'informant_fname',
+                            ['attribute' => 'inf_fname',
                                 'label' =>   'सूचकको नाम', 
                                 'value' => function ($model) {
-                                   return $model->informant_fname . ' ' . $model->informant_mname . ' ' . $model->informant_lname;
+                                   return $model->inf_fname . ' ' . $model->inf_mname . ' ' . $model->inf_lname;
                                }],
                                    
                             [

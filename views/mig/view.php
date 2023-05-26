@@ -171,6 +171,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
                 </div>
         </div>
+        
+    </div>
+    <div class="card-footer">
         <p>
             <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
             <?= Html::a('Delete', ['delete', 'id' => $model->id], [

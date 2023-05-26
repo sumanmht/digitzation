@@ -13,12 +13,12 @@ use app\models\Registrar;
 ?>
 
 <?php $form = ActiveForm::begin([
-'id' => 'dynamic-form',
-'options' => ['enctype' => 'multipart/form-data', 'style' => 'font-size:13px;', 'class' =>'nepali'],
-'fieldConfig' => ['labelOptions' => ['class' => 'col-sm-1 control-label'],]
+    'id' => 'dynamic-form',
+    'options' => ['enctype' => 'multipart/form-data', 'style' => 'font-size:13px;', 'class' => 'nepali'],
+    'fieldConfig' => ['labelOptions' => ['class' => 'col-sm-1 control-label'],]
 ]); ?>
 
-<div class ="card">
+<div class="card">
     <div class="card-body">
         <div class="migrated-form">
             <hr>
@@ -59,16 +59,18 @@ use app\models\Registrar;
                     <div class="row form-group">
                         <div class="col-sm-12">
                             <?= $form->field($model, 'registrar_name')->label('')->dropdownList(
-                                ArrayHelper::map(Registrar::find()->all(),'name', 'name'),
-                                ['prompt'=>'',
-                                 'placeholder' => '',
-                                'class' => 'form-control form-control-sm' ]
-                            )?>
+                                ArrayHelper::map(Registrar::find()->all(), 'name', 'name'),
+                                [
+                                    'prompt' => '',
+                                    'placeholder' => '',
+                                    'class' => 'form-control form-control-sm'
+                                ]
+                            ) ?>
                         </div>
                     </div>
                 </div>
             </div>
-          
+
             <hr>
             <label>सूचकको विवरण</label>
             <div class="row form-group">
@@ -118,7 +120,7 @@ use app\models\Registrar;
                 </div>
 
             </div>
-            
+
             <div class="row">
                 <div class="col-sm-2">
                     <label>नागरिकता विवरण</label>
@@ -147,14 +149,16 @@ use app\models\Registrar;
                     <div class="row">
                         <div class="col-sm-7">
                             <?= $form->field($model, 'inf_ctz_district')->label(' ')->dropdownList(
-                                ArrayHelper::map(District::find()->all(),'name', 'name'),
-                                ['prompt'=>'जिल्ला',
-                                 'class' => 'form-control form-control-sm',
-                                 'id' => 'father_ctz_district']
+                                ArrayHelper::map(District::find()->all(), 'name', 'name'),
+                                [
+                                    'prompt' => 'जिल्ला',
+                                    'class' => 'form-control form-control-sm',
+                                    'id' => 'father_ctz_district'
+                                ]
                             ) ?>
                         </div>
                         <div class="col-sm-5">
-                            <?= $form->field($model, 'inf_education')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm','placeholder' =>'शैक्षिक योग्यता'])->label('') ?>
+                            <?= $form->field($model, 'inf_education')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'शैक्षिक योग्यता'])->label('') ?>
                         </div>
                     </div>
                 </div>
@@ -162,77 +166,81 @@ use app\models\Registrar;
                     <label>Any</label>
                     <div class="row">
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'inf_occupation')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm','placeholder' =>'पेशा'])->label('') ?>
+                            <?= $form->field($model, 'inf_occupation')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'पेशा'])->label('') ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'inf_religion')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm','placeholder' =>'धर्म'])->label('') ?>
+                            <?= $form->field($model, 'inf_religion')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'धर्म'])->label('') ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'inf_mother_tongue')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm','placeholder' =>'मातृभाषा'])->label('') ?>
+                            <?= $form->field($model, 'inf_mother_tongue')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'मातृभाषा'])->label('') ?>
                         </div>
                     </div>
                 </div>
             </div>
             <hr>
-            <div class="row form-check" >
+            <div class="row form-check">
                 <div class="form-check-inline ">
-                    <label >बसाई सरी जाने
-                    <input class="form-check-input" type="radio"  name="radiobtn" id="goingbtn"  >
+                    <label>बसाई सरी जाने
+                        <input class="form-check-input" type="radio" name="radiobtn" id="goingbtn">
                     </label>
                 </div>
                 <div class="form-check-inline ">
                     <label>बसाई सरी आउने
-                    <input class="form-check-input" type="radio"  name="radiobtn" id="comingbtn"  >
+                        <input class="form-check-input" type="radio" name="radiobtn" id="comingbtn">
                     </label>
                 </div>
 
             </div>
             <hr>
-            <div class="row hidden" id="goingrow">                
+            <div class="row hidden" id="goingrow">
                 <div class="col">
                     <label>बसाई सरी जाने ठेगाना</label>
-                    <div class="row " >
+                    <div class="row ">
                         <div class="col-sm-2">
                             <?= $form->field($model, 'going_district')->label(' ')->dropdownList(
-                                ArrayHelper::map(District::find()->all(),'name', 'name'),
-                                ['prompt'=>'जिल्ला',
-                                 'class' => 'form-control form-control-sm',
-                                 'id' => 'father_ctz_district']
+                                ArrayHelper::map(District::find()->all(), 'name', 'name'),
+                                [
+                                    'prompt' => 'जिल्ला',
+                                    'class' => 'form-control form-control-sm',
+                                    'id' => 'father_ctz_district'
+                                ]
                             ) ?>
                         </div>
                         <div class="col-sm-3">
-                            <?= $form->field($model, 'going_local_level')->textInput(['maxlength' => true, 'class'=>'form-control form-control-sm'])->label(' ') ?>
+                            <?= $form->field($model, 'going_local_level')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label(' ') ?>
                         </div>
                         <div class="col-sm-1">
-                            <?= $form->field($model, 'going_ward')->textInput(['maxlength' => true, 'class'=>'form-control form-control-sm'])->label(' ') ?>
+                            <?= $form->field($model, 'going_ward')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label(' ') ?>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row hidden" id="comingrow">                
+            <div class="row hidden" id="comingrow">
                 <div class="col">
                     <label>बसाई सरी आएको ठेगाना</label>
-                    <div class="row " >
+                    <div class="row ">
                         <div class="col-sm-2">
                             <?= $form->field($model, 'coming_district')->label(' ')->dropdownList(
-                                ArrayHelper::map(District::find()->all(),'name', 'name'),
-                                ['prompt'=>'जिल्ला',
-                                 'class' => 'form-control form-control-sm',
-                                 'id' => 'father_ctz_district']
+                                ArrayHelper::map(District::find()->all(), 'name', 'name'),
+                                [
+                                    'prompt' => 'जिल्ला',
+                                    'class' => 'form-control form-control-sm',
+                                    'id' => 'father_ctz_district'
+                                ]
                             ) ?>
                         </div>
                         <div class="col-sm-3">
-                            <?= $form->field($model, 'coming_local_level')->textInput(['maxlength' => true, 'class'=>'form-control form-control-sm'])->label(' ') ?>
+                            <?= $form->field($model, 'coming_local_level')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label(' ') ?>
                         </div>
                         <div class="col-sm-1">
-                            <?= $form->field($model, 'coming_ward')->textInput(['maxlength' => true, 'class'=>'form-control form-control-sm'])->label(' ') ?>
+                            <?= $form->field($model, 'coming_ward')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label(' ') ?>
                         </div>
                     </div>
                 </div>
             </div>
 
-            
+
             <?php DynamicFormWidget::begin([
                 'widgetContainer' => 'dynamicform_wrapper', // required: only alphanumeric characters plus "_" [A-Za-z0-9_]
                 'widgetBody' => '.container-items', // required: css class selector
@@ -257,103 +265,104 @@ use app\models\Registrar;
             ]); ?>
 
             <div class="card" style="overflow-x:auto;">
-                    <div class="card-body">
-                        <div class="container-items">
-                                    <!-- widgetBody -->
-                            <?php foreach ($fams as $i => $fam): ?>
-                                        <!-- widgetItem -->
-                                <?php
-                                                    // necessary for update action.
-                                    if (! $fam->isNewRecord) 
-                                    {
-                                        echo Html::activeHiddenInput($fam, "[{$i}]id");
-                                    }
-                                ?>
-                                <div class="form form-group item " >
-                                    <div style="display: flex;">                                        
-                                        <div class="c2" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
-                                            <?= $form->field($fam, "[{$i}]mem_fname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'पहिलो नाम'])->label('') ?>
-                                        </div>
-                                        <div class="c2" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
-                                            <?= $form->field($fam, "[{$i}]mem_mname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'बीचको नाम'])->label('') ?>
-                                        </div>
-                                        <div class="c2" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
-                                            <?= $form->field($fam, "[{$i}]mem_lname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'थर'])->label('') ?>
-                                        </div>
-                                        <div class="c1" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
-                                            <?= $form->field($fam, "[{$i}]birth_year")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'जन्म साल'])->label('') ?>
-                                        </div>
-                                        <div class="c1" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
-                                            <?= $form->field($fam, "[{$i}]birth_month")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'जन्म महिना'])->label('') ?>
-                                        </div>
-                                        <div class="c1" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
-                                            <?= $form->field($fam, "[{$i}]birth_day")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'जन्म गते'])->label('') ?>
-                                        </div>
-                                        <div class="c2" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
-                                            <?= $form->field($fam, "[{$i}]mem_ctz_no")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'नागरिकता नं.'])->label('') ?>
-                                        </div>
-                                        <div class="c1" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
-                                            <?= $form->field($fam, "[{$i}]mem_ctz_year")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'जारी साल'])->label('') ?>
-                                        </div>
-                                        <div class="c1" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
-                                            <?= $form->field($fam, "[{$i}]mem_ctz_month")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'जारी महिना'])->label('') ?>
-                                        </div>
-                                        <div class="c1" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
-                                            <?= $form->field($fam, "[{$i}]mem_ctz_day")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'जारी गते'])->label('') ?>
-                                        </div>
-                                        <div class="c2" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;" >
-                                            <?= $form->field($fam, "[{$i}]mem_ctz_district")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'जारी जिल्ला'])->label('') ?>
-                                        </div>
-                                        <div class="c1" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
-                                            <?= $form->field($fam, "[{$i}]mem_gender")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'लिङ्ग'])->label('') ?>
-                                        </div>
-                                        <div class="c2" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
-                                            <?= $form->field($fam, "[{$i}]relation_with_inf")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'सुचकसँगको नाता'])->label('')?>         
-                                        </div>
-                                        <div style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
-                                            <a role="button"><i class="bi bi-dash-circle remove-item btn btn-sm btn-danger"></i></a>
-                                        </div>
+                <div class="card-body">
+                    <div class="container-items">
+                        <!-- widgetBody -->
+                        <?php foreach ($fams as $i => $fam) : ?>
+                            <!-- widgetItem -->
+                            <?php
+                            // necessary for update action.
+                            if (!$fam->isNewRecord) {
+                                echo Html::activeHiddenInput($fam, "[{$i}]id");
+                            }
+                            ?>
+                            <div class="form form-group item ">
+                                <div style="display: flex;">
+                                    <div class="c2" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                        <?= $form->field($fam, "[{$i}]mem_fname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'पहिलो नाम'])->label('') ?>
+                                    </div>
+                                    <div class="c2" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                        <?= $form->field($fam, "[{$i}]mem_mname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'बीचको नाम'])->label('') ?>
+                                    </div>
+                                    <div class="c2" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                        <?= $form->field($fam, "[{$i}]mem_lname")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'थर'])->label('') ?>
+                                    </div>
+                                    <div class="c1" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                        <?= $form->field($fam, "[{$i}]birth_year")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'जन्म साल'])->label('') ?>
+                                    </div>
+                                    <div class="c1" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                        <?= $form->field($fam, "[{$i}]birth_month")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'जन्म महिना'])->label('') ?>
+                                    </div>
+                                    <div class="c1" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                        <?= $form->field($fam, "[{$i}]birth_day")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'जन्म गते'])->label('') ?>
+                                    </div>
+                                    <div class="c2" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                        <?= $form->field($fam, "[{$i}]mem_ctz_no")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'नागरिकता नं.'])->label('') ?>
+                                    </div>
+                                    <div class="c1" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                        <?= $form->field($fam, "[{$i}]mem_ctz_year")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'जारी साल'])->label('') ?>
+                                    </div>
+                                    <div class="c1" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                        <?= $form->field($fam, "[{$i}]mem_ctz_month")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'जारी महिना'])->label('') ?>
+                                    </div>
+                                    <div class="c1" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                        <?= $form->field($fam, "[{$i}]mem_ctz_day")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'जारी गते'])->label('') ?>
+                                    </div>
+                                    <div class="c2" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                        <?= $form->field($fam, "[{$i}]mem_ctz_district")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'जारी जिल्ला'])->label('') ?>
+                                    </div>
+                                    <div class="c1" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                        <?= $form->field($fam, "[{$i}]mem_gender")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'लिङ्ग'])->label('') ?>
+                                    </div>
+                                    <div class="c2" style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                        <?= $form->field($fam, "[{$i}]relation_with_inf")->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'सुचकसँगको नाता'])->label('') ?>
+                                    </div>
+                                    <div style="flex-grow: 1; flex-shrink: 0; margin-right: 5px;">
+                                        <a role="button"><i class="bi bi-dash-circle remove-item btn btn-sm btn-danger"></i></a>
                                     </div>
                                 </div>
-                                
-                            <?php endforeach; ?>                    
-                            
-                        </div>
-                        <button type="button" class="add-item btn btn-success btn-sm ">Add Members</button>
+                            </div>
+
+                        <?php endforeach; ?>
+
                     </div>
+                    <button type="button" class="add-item btn btn-success btn-sm ">Add Members</button>
                 </div>
+            </div>
             <?php DynamicFormWidget::end(); ?>
-            
+
             <div class="row ">
                 <label>स्क्यान गरिएको फोटो अपलोड गर्नुहोस</label>
                 <div class="col-sm-12">
-                        <?= $form->field($model, 'm_scanned_image')->fileInput(['id' => 'mfileInput'])->label('') ?>
-                            <!-- Display the uploaded image file name -->
-                             <?= $model->m_scanned_image ?></p>
+                    <?= $form->field($model, 'm_scanned_image')->fileInput(['id' => 'mfileInput'])->label('') ?>
+                    <!-- Display the uploaded image file name -->
+                    <?= $model->m_scanned_image ?></p>
 
-                    </div>
+                </div>
             </div>
 
+        </div>
+        <div class=" card-footer form-group">
+
+            <?= Html::submitButton($fam->isNewRecord ? 'Save' : 'Update', ['class' => 'btn btn-primary']) ?>
+
+        </div>
     </div>
-    <div class=" card-footer form-group">
-
-        <?= Html::submitButton($fam->isNewRecord ? 'Save' :'Update' , ['class' => 'btn btn-primary']) ?>
-
-    </div>
-</div>
-<?php ActiveForm::end(); ?>
+    <?php ActiveForm::end(); ?>
 
 
-<style type="text/css">
-    .hidden{
-        display: none;
-    }
-    .c1{
-         flex-basis: 10%;
-        max-width: 10%;
-    }
-    .c2{
-        flex-basis: 12%;
-        max-width: 12%;
-    }
-</style>
+    <style type="text/css">
+        .hidden {
+            display: none;
+        }
+
+        .c1 {
+            flex-basis: 10%;
+            max-width: 10%;
+        }
+
+        .c2 {
+            flex-basis: 12%;
+            max-width: 12%;
+        }
+    </style>

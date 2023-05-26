@@ -4,17 +4,17 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var app\models\Birth $model */
+/** @var app\models\Death $model */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Births', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Deaths', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="card">
     <div class="card-body">
         <div class="row">
-            <div class="birth-view col-sm-5">
+            <div class="death-view col-sm-5">
 
                 <!-- <h1><?= Html::encode($this->title) ?></h1> -->
                 <div class="row">
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'label' =>   'ठेगाना',
                                 'value' => function ($form, $widget) {
                                     $model = $widget->model;
-                                    return $model->p_district . ' ' . $model->p_muni . '' . $model->p_ward;
+                                    return $model->district . ' ' . $model->local_level . '' . $model->ward;
                                 }
 
                             ],
@@ -76,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attributes' => [
                             [
                                 'attribute' => 'fname',
-                                'label' =>   'शिशुको नाम',
+                                'label' =>   'मृतकको नाम',
                                 'value' => function ($form, $widget) {
                                     $model = $widget->model;
                                     return $model->fname . ' ' . $model->mname . ' ' . $model->lname;
@@ -88,6 +88,22 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'value' => function ($form, $widget) {
                                     $model = $widget->model;
                                     return $model->birth_year . '-' . $model->birth_month . '-' . $model->birth_day;
+                                }
+                            ],
+                            [
+                                'attribute' => 'death_year',
+                                'label' =>   'मृत्यु मिति(वि.स.)',
+                                'value' => function ($form, $widget) {
+                                    $model = $widget->model;
+                                    return $model->death_year . '-' . $model->death_month . '-' . $model->death_day;
+                                }
+                            ],
+                            [
+                                'attribute' => 'ctz_no.',
+                                'label' =>   'नागरिकता विवरण',
+                                'value' => function ($form, $widget) {
+                                    $model = $widget->model;
+                                    return $model->ctz_no . ' / ' . $model->ctz_year . '-' . $model->ctz_month . '-' . $model->ctz_day . '/ ' . $model->ctz_district;
                                 }
                             ],
                             [
@@ -103,7 +119,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'label' =>   'बाजेको नाम',
                                 'value' => function ($form, $widget) {
                                     $model = $widget->model;
-                                    return $model->grandfather_fname . ' ' . $model->grandfather_mname . ' ' . $model->grandfather_lname;
+                                    return $model->grand_fname . ' ' . $model->grand_mname . ' ' . $model->grand_lname;
                                 }
                             ],
                             [
@@ -114,44 +130,21 @@ $this->params['breadcrumbs'][] = $this->title;
                                     return $model->father_fname . ' ' . $model->father_mname . ' ' . $model->father_lname;
                                 }
                             ],
+
                             [
-                                'attribute' => 'father_ctz_no.',
-                                'label' =>   'नागरिकता विवरण',
+                                'attribute' => 'spouse_fname',
+                                'label' =>   'पति/पत्नीको नाम',
                                 'value' => function ($form, $widget) {
                                     $model = $widget->model;
-                                    return $model->father_ctz_no . ' / ' . $model->father_ctz_year . '-'  . $model->father_ctz_month . '-' . $model->father_ctz_day . ' / ' . $model->father_ctz_district;
-                                },
-                            ],
-                            [
-                                'attribute' => 'mother_fname',
-                                'label' =>   'आमाको नाम',
-                                'value' => function ($form, $widget) {
-                                    $model = $widget->model;
-                                    return $model->mother_fname . ' ' . $model->mother_mname . ' ' . $model->mother_lname;
+                                    return $model->spouse_fname . ' ' . $model->spouse_mname . ' ' . $model->spouse_lname;
                                 }
                             ],
                             [
-                                'attribute' => 'mother_ctz_no.',
-                                'label' =>   'नागरिकता विवरण',
-                                'value' => function ($form, $widget) {
-                                    $model = $widget->model;
-                                    return $model->mother_ctz_no . ' / ' . $model->mother_ctz_year . '-' . $model->mother_ctz_month . '-' . $model->mother_ctz_day . '/ ' . $model->mother_ctz_district;
-                                }
-                            ],
-                            [
-                                'attribute' => 'informant_fname',
+                                'attribute' => 'inf_fname',
                                 'label' =>   'सूचकको नाम',
                                 'value' => function ($form, $widget) {
                                     $model = $widget->model;
-                                    return $model->informant_fname . ' ' . $model->informant_mname . ' ' . $model->informant_lname;
-                                }
-                            ],
-                            [
-                                'attribute' => 'relation',
-                                'label' =>   'शिशुसँगको नाता',
-                                'value' => function ($form, $widget) {
-                                    $model = $widget->model;
-                                    return $model->relation;
+                                    return $model->inf_fname . ' ' . $model->inf_mname . ' ' . $model->inf_lname;
                                 }
                             ],
                             [
@@ -162,6 +155,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                     return $model->inf_ctz_no . ' / ' . $model->inf_ctz_year . '-' . $model->inf_ctz_month . '-' . $model->inf_ctz_day . '/ ' . $model->inf_ctz_district;
                                 }
                             ],
+
+                            // [
+                            //     'attribute' => 'relation',
+                            //     'label' =>   'शिशुसँगको नाता',
+                            //     'value' => function ($form, $widget) {
+                            //         $model = $widget->model;
+                            //         return $model->relation;
+                            //     }
+                            // ],
+
                         ],
                     ]) ?>
                 </div>
@@ -173,9 +176,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     //'valueColOptions'=>['style'=>'width:70%'],
                     'attributes' => [
                         [
-                            'attributes' => 'scanned_image',
+                            'attributes' => 'd_scanned_image',
                             'label' => '',
-                            'value' => Yii::getAlias('@web/uploads') . '/' . $model->scanned_image,
+                            'value' => Yii::getAlias('@web/uploads') . '/' . $model->d_scanned_image,
                             'format' => ['image', ['class' => 'img-fluid']]
                         ],
                     ]
@@ -197,4 +200,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ]) ?>
         </p>
     </div>
+</div>
 </div>
