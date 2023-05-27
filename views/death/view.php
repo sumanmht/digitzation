@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= DetailView::widget([
                         'model' => $model,
                         'options' => ['style' => 'font-size:13px;', 'class' => 'table table-bordered table-hover table-condensed '],
-                        'template' => '<tr><th style="width:40%; border: 1px solid black;">{label}</th><td style="width:60%; border: 1px solid black;">{value}</td></tr>',
+                        'template' => '<tr><th style="width:40%;">{label}</th><td style="width:60%; ">{value}</td></tr>',
                         'attributes' => [
                             [
                                 'attribute' => 'p_district',
@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= DetailView::widget([
                         'model' => $model,
                         'options' => ['style' => 'font-size:13px;', 'class' => 'table table-bordered table-hover table-condensed '],
-                        'template' => '<tr><th style="width:40%; border: 1px solid black;">{label}</th><td style="width:60%; border: 1px solid black;">{value}</td></tr>',
+                        'template' => '<tr><th style="width:40%; ">{label}</th><td style="width:60%; ">{value}</td></tr>',
                         'attributes' => [
                             [
                                 'attribute' => 'reg_no',
@@ -72,7 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= DetailView::widget([
                         'model' => $model,
                         'options' => ['style' => 'font-size:13px;', 'class' => 'table table-bordered table-hover table-condensed '],
-                        'template' => '<tr><th style="width:40%; border: 1px solid black;">{label}</th><td style="width:60%; border: 1px solid black;">{value}</td></tr>',
+                        'template' => '<tr><th style="width:40%; ">{label}</th><td style="width:60%; ">{value}</td></tr>',
                         'attributes' => [
                             [
                                 'attribute' => 'fname',

@@ -1,31 +1,26 @@
 <?php
 
-use app\models\Birth;
+use app\models\Divorce;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-use app\components\CustomPager;
-use kartik\export\ExportMenu;
-use kartik\mpdf\Pdf;
-
-// use yii\widgets\ListView;
 
 /** @var yii\web\View $this */
-/** @var app\models\BirthSearch $searchModel */
+/** @var app\models\DivorceSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Births';
+$this->title = 'Divorces';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="card">
-    <div class="birth-index">
+    <div class="divorce-index">
         <?php Pjax::begin(); ?>
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-3">
-                    <?= Html::a('Create Birth', ['create'], ['class' => 'btn btn-success btn-sm']) ?>
+                    <?= Html::a('Create Divorce', ['create'], ['class' => 'btn btn-success btn-sm']) ?>
                     <?= Html::a('Export Data', ['export'], ['class' => 'btn btn-primary btn-sm']) ?>
                 </div>
                 <div class="col-sm-9 ">
@@ -56,10 +51,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
                         [
-                            'label' => 'ठेगाना',
-                            'attribute' => 'father_permanent_address',
+                            'label' => 'स्थायी ठेगाना',
+                            'attribute' => 'local_level',
                             'value' => function ($model) {
-                                return $model->father_permanent_address;
+                                return $model->district . '-' . $model->local_level . '-' . $model->ward;;
                             }
                         ],
                         [
@@ -77,50 +72,47 @@ $this->params['breadcrumbs'][] = $this->title;
                             }
                         ],
                         [
-                            'attribute' => 'fname',
-                            'label' =>   'शिशुको नाम',
+                            'label' => 'विवाह मिति(वि.स.)',
+                            'attribute' => 'marriage_year',
                             'value' => function ($model) {
-                                return $model->fname . ' ' . $model->mname . ' ' . $model->lname;
+                                return $model->marriage_year . '-' . $model->marriage_month . '-' . $model->marriage_day;
                             }
                         ],
                         [
-                            'attribute' => 'birth_year',
-                            'label' =>   'जन्म मिति(वि.स.)',
+                            'label' => 'अदालतको नाम/ठेगाना',
+                            'attribute' => 'court_name',
                             'value' => function ($model) {
-                                return $model->birth_year . '-' . $model->birth_month . '-' . $model->birth_day;
+                                return $model->court_name . '/' . $model->court_address;
                             }
                         ],
                         [
-                            'attribute' => 'grandfather_fname',
-                            'label' =>   'बाजेको नाम',
+                            'label' => 'निर्णय मिति(वि.स.)',
+                            'attribute' => 'decison_year',
                             'value' => function ($model) {
-                                return $model->grandfather_fname . ' ' . $model->grandfather_mname . ' ' . $model->grandfather_lname;
+                                return $model->decision_year . '-' . $model->decision_month . '-' . $model->decision_day;
                             }
                         ],
                         [
-                            'attribute' => 'father_fname',
-                            'label' =>   'बाबुको नाम',
+                            'attribute' => 'groom_fname',
+                            'label' =>   'दुलहाको नाम',
                             'value' => function ($model) {
-                                return $model->father_fname . ' ' . $model->father_mname . ' ' . $model->father_lname;
+                                return $model->groom_fname . ' ' . $model->groom_mname . ' ' . $model->groom_lname;
                             }
                         ],
-
                         [
-                            'attribute' => 'mother_fname',
-                            'label' =>   'आमाको नाम',
+                            'attribute' => 'bride_fname',
+                            'label' =>   'दुलहीको नाम',
                             'value' => function ($model) {
-                                return $model->mother_fname . ' ' . $model->mother_mname . ' ' . $model->mother_lname;
+                                return $model->bride_fname . ' ' . $model->bride_mname . ' ' . $model->bride_lname;
                             }
                         ],
-
                         [
-                            'attribute' => 'informant_fname',
-                            'label' =>   'सूचकको नाम',
+                            'attribute' => 'inf_fname',
+                            'label' =>   'सुचकको नाम',
                             'value' => function ($model) {
-                                return $model->informant_fname . ' ' . $model->informant_mname . ' ' . $model->informant_lname;
+                                return $model->inf_fname . ' ' . $model->inf_mname . ' ' . $model->inf_lname;
                             }
                         ],
-
                         [
                             'class' => 'yii\grid\ActionColumn',
                             'options' => ['style' => 'width:auto;'],

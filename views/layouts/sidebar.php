@@ -13,11 +13,13 @@ use yii\bootstrap4\NavBar;
 AppAsset::register($this);
 ?>
 
-<aside class="main-sidebar sidebar-dark-primary elevation-4 fixed-left" style="position: fixed;" >
+<aside class="main-sidebar sidebar-dark-primary elevation-4 fixed-left" style="position: fixed;">
     <!-- Brand Logo -->
     <a href="site/index" class="brand-link">
         <!-- <img  class="brand-image img-circle elevation-3" style="opacity: .8"> -->
-        <strong><h4 class="brand-text font-weight-light" style="text-align: center;">DIGITIZATION</h4></strong>
+        <strong>
+            <h4 class="brand-text font-weight-light" style="text-align: center;">DIGITIZATION</h4>
+        </strong>
     </a>
 
     <!-- Sidebar -->
@@ -28,7 +30,7 @@ AppAsset::register($this);
                 <!-- <img  class="img-circle elevation-2" alt="User Image"> -->
             </div>
             <div class="info">
-                
+
             </div>
         </div>
 
@@ -65,7 +67,7 @@ AppAsset::register($this);
                     ['label' => 'Migration', 'icon' => 'th', 'url' => ['mig/index']],
                     ['label' => 'Divorce', 'icon' => 'th', 'url' => ['divorce/index']],
                     //['label' => 'Gender', 'icon' => 'th', 'url' => ['gender/index']],
-                    
+
                 ],
             ]);
             ?>
@@ -74,5 +76,5 @@ AppAsset::register($this);
         <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
-    
+
 </aside>
