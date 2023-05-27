@@ -15,14 +15,13 @@ use app\models\Religion;
 ?>
 
 <div class="card">
+    <?php $form = ActiveForm::begin([
+
+        'options' => ['enctype' => 'multipart/form-data', 'style' => 'font-size:12px;', 'class' => 'nepali'],
+        'fieldConfig' => ['labelOptions' => ['class' => 'col-sm-1 control-label'],]
+    ]); ?>
     <div class="card-body">
         <div class="marriage-form">
-
-            <?php $form = ActiveForm::begin([
-
-                'options' => ['enctype' => 'multipart/form-data', 'style' => 'font-size:12px;', 'class' => 'nepali'],
-                'fieldConfig' => ['labelOptions' => ['class' => 'col-sm-1 control-label'],]
-            ]); ?>
             <hr>
             <label>दर्ता विवरण</label>
             <div class="row form-group">
@@ -455,7 +454,7 @@ use app\models\Religion;
                 <hr>
             </div>
             <label>स्क्यान गरिएको फोटो अपलोड गर्नुहोस</label>
-            <div class="row ">
+            <div class="row form-group">
                 <div class="col-sm-12">
                     <?= $form->field($model, 'ma_scanned_image')->fileInput(['id' => 'mafileInput'])->label('') ?>
                     <!-- Display the uploaded image file name -->
@@ -464,12 +463,13 @@ use app\models\Religion;
                 </div>
             </div>
         </div>
-        <div class="card-footer">
-            <div class="form-group">
+    </div>
+    <div class="card-footer">
+        <div class="form-group">
+            <div class="row">
                 <?= Html::submitButton('Submit', ['class' => 'btn btn-success']) ?>
             </div>
-
-            <?php ActiveForm::end(); ?>
         </div>
     </div>
+    <?php ActiveForm::end(); ?>
 </div>

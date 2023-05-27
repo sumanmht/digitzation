@@ -12,36 +12,42 @@ use app\models\Registrar;
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<?php $form = ActiveForm::begin([
-    'id' => 'dynamic-form',
-    'options' => ['enctype' => 'multipart/form-data', 'style' => 'font-size:13px;', 'class' => 'nepali'],
-    'fieldConfig' => ['labelOptions' => ['class' => 'col-sm-1 control-label'],]
-]); ?>
+
 
 <div class="card">
     <div class="card-body">
         <div class="migrated-form">
+            <?php $form = ActiveForm::begin([
+                'id' => 'dynamic-form',
+                'options' => ['enctype' => 'multipart/form-data', 'style' => 'font-size:12px;', 'class' => 'nepali'],
+                'fieldConfig' => ['labelOptions' => ['class' => 'col-sm-1 control-label'],]
+            ]); ?>
             <hr>
-            <div class="row">
-                <div class="col-sm-4">
-                    <label>दर्ता विवरण</label>
-                    <div class="row form-group">
-                        <div class="col-sm-3">
-                            <?= $form->field($model, 'reg_no')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'दर्ता नं.'])->label('') ?>
-                        </div>
-                        <div class="col-sm-3">
-                            <?= $form->field($model, 'reg_year')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'साल'])->label('') ?>
-                        </div>
-                        <div class="col-sm-3">
-                            <?= $form->field($model, 'reg_month')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना'])->label('') ?>
-                        </div>
-                        <div class="col-sm-3">
-                            <?= $form->field($model, 'reg_day')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'गते'])->label('') ?>
-                        </div>
+            <label>दर्ता विवरण</label>
+            <div class="row form-group">
+                <div class="col-sm-1">
+                    <div class="form-heading">दर्ता नं.</div>
+                    <div class="row">
+                        <?= $form->field($model, 'reg_no')->input('integer', ['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'दर्ता नं.'])->label(' ') ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <label>बसाई सराई मिति(वि.स.)</label>
+                    <div class="form-heading">दर्ता मिति(वि.स.)</div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <?= $form->field($model, 'reg_year')->input('number', ['class' => 'form-control form-control-sm', 'placeholder' => 'साल'])->label(' ')  ?>
+                        </div>
+                        <div class="col-sm-4">
+                            <?= $form->field($model, 'reg_month')->input('number', ['class' => 'form-control form-control-sm', 'placeholder' => 'महिना'])->label(' ')  ?>
+                        </div>
+                        <div class="col-sm-4">
+                            <?= $form->field($model, 'reg_day')->input('number', ['class' => 'form-control form-control-sm', 'placeholder' => 'गते'])->label(' ')  ?>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-heading">बसाई सराई मिति(वि.स.)</div>
                     <div class="row form-group">
                         <div class="col-sm-4">
                             <?= $form->field($model, 'migration_year')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'साल'])->label('') ?>
@@ -54,28 +60,25 @@ use app\models\Registrar;
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3">
-                    <label>स्थानीय पञ्जिकाधिकारी</label>
-                    <div class="row form-group">
-                        <div class="col-sm-12">
-                            <?= $form->field($model, 'registrar_name')->label('')->dropdownList(
-                                ArrayHelper::map(Registrar::find()->all(), 'name', 'name'),
-                                [
-                                    'prompt' => '',
-                                    'placeholder' => '',
-                                    'class' => 'form-control form-control-sm'
-                                ]
-                            ) ?>
-                        </div>
-                    </div>
+                <div class="col-sm-2">
+                    <div class="form-heading">स्थानिय पञ्जिकाधिकारी</div>
+                    <?= $form->field($model, 'registrar_name')->label(' ')->dropdownList(
+                        ArrayHelper::map(Registrar::find()->all(), 'name', 'name'),
+                        [
+                            'prompt' => '',
+                            'placeholder' => '',
+                            'class' => 'form-control form-control-sm'
+                        ]
+                    ) ?>
                 </div>
             </div>
+
 
             <hr>
             <label>सूचकको विवरण</label>
             <div class="row form-group">
                 <div class="col-sm-6">
-                    <label>सूचकको नाम</label>
+                    <div class="form-heading">सूचकको नाम</div>
                     <div class="row">
                         <div class="col-sm-4">
                             <?= $form->field($model, 'inf_fname')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'पहिलो नाम'])->label('') ?>
@@ -89,7 +92,7 @@ use app\models\Registrar;
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <label>जन्म मिति</label>
+                    <div class="form-heading">जन्म मिति</div>
                     <div class="row">
                         <div class="col-sm-4">
                             <?= $form->field($model, 'inf_birth_year')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'साल'])->label('') ?>
@@ -103,7 +106,7 @@ use app\models\Registrar;
                     </div>
                 </div>
                 <div class="col-sm-1">
-                    <label>लिङ्ग</label>
+                    <div class="form-heading">लिङ्ग</div>
                     <div class="row">
                         <div class="col-sm-12">
                             <?= $form->field($model, 'inf_gender')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'लिङ्ग'])->label('') ?>
@@ -111,7 +114,7 @@ use app\models\Registrar;
                     </div>
                 </div>
                 <div class="col-sm-2">
-                    <label>जन्मस्थान</label>
+                    <div class="form-heading">जन्मस्थान</div>
                     <div class="row">
                         <div class="col-sm-12">
                             <?= $form->field($model, 'inf_birth_place')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'जन्मस्थान'])->label('') ?>
@@ -123,7 +126,7 @@ use app\models\Registrar;
 
             <div class="row">
                 <div class="col-sm-2">
-                    <label>नागरिकता विवरण</label>
+                    <div class="form-heading">नागरिकता विवरण</div>
                     <div class="row">
                         <div class="col-sm-12">
                             <?= $form->field($model, 'inf_ctz_no')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'नागरिकता नं.'])->label('') ?>
@@ -131,7 +134,7 @@ use app\models\Registrar;
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <label>नागरिकता विवरण</label>
+                    <div class="form-heading">नागरिकता विवरण</div>
                     <div class="row">
                         <div class="col-sm-4">
                             <?= $form->field($model, 'inf_ctz_year')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'साल'])->label('') ?>
@@ -145,7 +148,7 @@ use app\models\Registrar;
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <label>नागरिकता विवरण</label>
+                    <div class="form-heading">नागरिकता विवरण</div>
                     <div class="row">
                         <div class="col-sm-7">
                             <?= $form->field($model, 'inf_ctz_district')->label(' ')->dropdownList(
@@ -331,38 +334,36 @@ use app\models\Registrar;
             </div>
             <?php DynamicFormWidget::end(); ?>
 
-            <div class="row ">
-                <label>स्क्यान गरिएको फोटो अपलोड गर्नुहोस</label>
-                <div class="col-sm-12">
-                    <?= $form->field($model, 'm_scanned_image')->fileInput(['id' => 'mfileInput'])->label('') ?>
-                    <!-- Display the uploaded image file name -->
-                    <?= $model->m_scanned_image ?></p>
+            <label>स्क्यान गरिएको फोटो अपलोड गर्नुहोस</label>
+            <div class="row form-group ">
+                <?= $form->field($model, 'm_scanned_image')->fileInput(['id' => 'mfileInput'])->label('') ?>
+                <!-- Display the uploaded image file name -->
+                <?= $model->m_scanned_image ?></p>
 
-                </div>
             </div>
-
+            <?php ActiveForm::end(); ?>
         </div>
-        <div class=" card-footer form-group">
 
-            <?= Html::submitButton($fam->isNewRecord ? 'Save' : 'Update', ['class' => 'btn btn-primary']) ?>
-
-        </div>
     </div>
-    <?php ActiveForm::end(); ?>
+    <div class=" card-footer form-group">
+        <?= Html::submitButton($fam->isNewRecord ? 'Save' : 'Update', ['class' => 'btn btn-primary']) ?>
+    </div>
+</div>
 
 
-    <style type="text/css">
-        .hidden {
-            display: none;
-        }
 
-        .c1 {
-            flex-basis: 10%;
-            max-width: 10%;
-        }
+<style type="text/css">
+    .hidden {
+        display: none;
+    }
 
-        .c2 {
-            flex-basis: 12%;
-            max-width: 12%;
-        }
-    </style>
+    .c1 {
+        flex-basis: 10%;
+        max-width: 10%;
+    }
+
+    .c2 {
+        flex-basis: 12%;
+        max-width: 12%;
+    }
+</style>

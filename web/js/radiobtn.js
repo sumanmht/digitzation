@@ -20,6 +20,8 @@ $(document).ready(function(){
         $('#informant_mname').val(grandfather_mname);
         var grandfather_lname = $('#grandfather_lname').val();
         $('#informant_lname').val(grandfather_lname);
+        
+        $('#relation').val('baje');
     });
 });
 

@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row">
                     <?= DetailView::widget([
                         'model' => $model,
-                        'options' => ['style' => 'font-size:13px;', 'class' => 'table table-bordered table-hover table-condensed '],
+                        'options' => ['style' => 'font-size:12px;', 'class' => 'table table-bordered table-hover table-condensed '],
                         'template' => '<tr><th style="width:40%;">{label}</th><td style="width:60%; ">{value}</td></tr>',
                         'attributes' => [
                             [
@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row">
                     <?= DetailView::widget([
                         'model' => $model,
-                        'options' => ['style' => 'font-size:13px;', 'class' => 'table table-bordered table-hover table-condensed '],
+                        'options' => ['style' => 'font-size:12px;', 'class' => 'table table-bordered table-hover table-condensed '],
                         'template' => '<tr><th style="width:40%; ">{label}</th><td style="width:60%; ">{value}</td></tr>',
                         'attributes' => [
                             [
@@ -135,7 +135,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <?= DetailView::widget([
                 'model' => $fams,
-                'options' => ['style' => 'font-size:13px;', 'class' => 'table table-bordered table-hover table-condensed '],
+                'options' => ['style' => 'font-size:12px;', 'class' => 'table table-bordered table-hover table-condensed '],
                 'template' => '<tr><th style="text-align:center;">सदस्यहरु</th></tr><tr><td style="width:100%; ">{value}</td></tr>',
                 'attributes' => [
 
