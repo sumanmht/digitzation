@@ -24,7 +24,7 @@ use yii\widgets\Pjax;
         </div>
         <div class="col-auto">
             <?= Html::submitButton('Search', ['class' => 'btn btn-primary btn-sm']) ?>
-
+            <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary btn-sm']) ?>
         </div>
     </div>
     <?php ActiveForm::end(); ?>

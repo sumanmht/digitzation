@@ -49,7 +49,7 @@ class DeathSearch extends Death
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 10,
+                'pageSize' => 5,
             ],
         ]);
 

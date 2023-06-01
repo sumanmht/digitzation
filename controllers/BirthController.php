@@ -101,29 +101,29 @@ class BirthController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-            if ($this->request->isPost && $model->load($this->request->post()) ) {
-            $oldFile = $model->scanned_image; // get the name of the old file
+        $model->scanned_image = $model->scanned_image;
+        //retrieve existing image file name from the database
+        $existingImageFileName = $model->scanned_image; 
+        if ($this->request->isPost && $model->load($this->request->post()) ) {
 
-            $model->scanned_image = UploadedFile::getInstance($model, 'scanned_image'); // retrieve the new file
-
-            if ($model->validate()) {
-                if ($model->scanned_image) {
-                    $fileName = $model->fname. '-' .$model->mname. '-' .$model->lname. '-'. 'new_file_' . time() . '.' . $model->scanned_image->extension;
-                    $model->scanned_image->saveAs('uploads/' . $fileName);
-                    $model->scanned_image = $fileName;
-                }
-
-                if ($model->save()) {
-                    if ($oldFile && $oldFile !== $model->scanned_image) {
-                        unlink('uploads/' . $oldFile); // delete the old file
-                    }
-                    return $this->redirect(['view', 'id' => $model->id]);
-                }
+            if(UploadedFile::getInstance($model, 'scanned_image')!=null){
+                $model->scanned_image = UploadedFile::getInstance($model, 'scanned_image'); //upload files
+                $fileName = $model->fname. '-' .$model->mname. '-' .$model->lname.'.'.$model->scanned_image->extension; //save as timestamp+imageextension
+                $model->scanned_image->saveAs('uploads/' .$fileName); //save in directory
+                $model->scanned_image = $fileName; //save in database
             }
+            else{
+                $model->scanned_image = $existingImageFileName; //assign existing image file name to the model
+            }
+            $model->save();   
+            return $this->redirect(['view', 'id' => $model->id]);
         }
+
         return $this->render('update', [
-                'model' => $model,
-            ]);
+            'model' => $model,
+        ]);
+
+        
     }
 
     /**

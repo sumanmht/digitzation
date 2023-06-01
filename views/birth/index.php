@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'label' => 'ठेगाना',
                             'attribute' => 'father_permanent_address',
                             'value' => function ($model) {
-                                return $model->father_permanent_address;
+                                return $model->p_district . '-' . $model->p_muni . '-' .$model->p_ward;
                             }
                         ],
                         [

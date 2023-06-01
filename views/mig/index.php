@@ -52,6 +52,13 @@ $this->params['breadcrumbs'][] = $this->title;
           'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [
+              'label' => 'ठेगाना',
+              'attribute' => 'district',
+              'value' => function ($model) {
+                return $model->district . '-' . $model->local_level . '-' . $model->ward;
+              }
+            ],
+            [
               'label' => 'दर्ता नं.',
               'attribute' => 'reg_no',
               'value' => function ($model) {
@@ -103,7 +110,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
               'class' => 'yii\grid\ActionColumn',
-              'options' => ['style' => 'width:100px;'],
+              'options' => ['style' => 'width:auto;'],
               'buttonOptions' => ['class' => 'btn btn-default'],
               'template' => '<div class = "btn-group btn-group-sm text-center" role ="group">{view}{update}{delete}</div>'
             ],

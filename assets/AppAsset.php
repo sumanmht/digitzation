@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link http://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -24,9 +25,10 @@ class AppAsset extends AssetBundle
         'css/another.css',
     ];
     public $js = [
-        'js/radiobtn.js',
+        'js/birthradio.js',
         'js/hidden.js',
-        
+        'js/birth.js',
+
     ];
     public $depends = [
         'yii\web\YiiAsset',

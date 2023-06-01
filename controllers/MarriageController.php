@@ -7,6 +7,8 @@ use app\models\MarriageSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
+
 
 /**
  * MarriageController implements the CRUD actions for Marriage model.
@@ -69,12 +71,14 @@ class MarriageController extends Controller
     {
         $model = new Marriage();
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
-        } else {
-            $model->loadDefaultValues();
+        if ($model->load($this->request->post()) && $model->save()) {
+            $model->ma_scanned_image = UploadedFile::getInstance($model, 'ma_scanned_image');
+            $fileName = $model->groom_fname. '-' .$model->bride_fname. '-' .$model->groom_lname.'.'.$model->ma_scanned_image->extension;
+            $model->ma_scanned_image->saveAs('uploads/' .$fileName);
+            $model->ma_scanned_image = $fileName;
+            $model->save();
+            
+            return $this->redirect(['view', 'id' => $model->id]); //redirect to view action with created id
         }
 
         return $this->render('create', [
@@ -93,7 +97,21 @@ class MarriageController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+        $model->ma_scanned_image = $model->ma_scanned_image;
+        //retrieve existing image file name from the database
+        $existingImageFileName = $model->ma_scanned_image; 
+        if ($this->request->isPost && $model->load($this->request->post()) ) {
+
+            if(UploadedFile::getInstance($model, 'ma_scanned_image')!=null){
+                $model->ma_scanned_image = UploadedFile::getInstance($model, 'ma_scanned_image'); //upload files
+                $fileName = $model->groom_fname. '-' .$model->bride_fname. '-' .$model->groom_lname.'.'.$model->ma_scanned_image->extension; //save as timestamp+imageextension
+                $model->ma_scanned_image->saveAs('uploads/' .$fileName); //save in directory
+                $model->ma_scanned_image = $fileName; //save in database
+            }
+            else{
+                $model->ma_scanned_image = $existingImageFileName; //assign existing image file name to the model
+            }
+            $model->save();   
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

@@ -28,20 +28,20 @@ use app\models\Registrar;
                 <div class="col-sm-1">
                     <div class="form-heading">दर्ता नं.</div>
                     <div class="row">
-                        <?= $form->field($model, 'reg_no')->input('integer', ['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'दर्ता नं.'])->label(' ') ?>
+                        <?= $form->field($model, 'reg_no')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'दर्ता नं.'])->label(' ') ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-heading">दर्ता मिति(वि.स.)</div>
                     <div class="row">
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'reg_year')->input('number', ['class' => 'form-control form-control-sm', 'placeholder' => 'साल'])->label(' ')  ?>
+                            <?= $form->field($model, 'reg_year')->textInput(['class' => 'form-control form-control-sm', 'placeholder' => 'साल'])->label(' ')  ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'reg_month')->input('number', ['class' => 'form-control form-control-sm', 'placeholder' => 'महिना'])->label(' ')  ?>
+                            <?= $form->field($model, 'reg_month')->textInput(['class' => 'form-control form-control-sm', 'placeholder' => 'महिना'])->label(' ')  ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'reg_day')->input('number', ['class' => 'form-control form-control-sm', 'placeholder' => 'गते'])->label(' ')  ?>
+                            <?= $form->field($model, 'reg_day')->textInput(['class' => 'form-control form-control-sm', 'placeholder' => 'गते'])->label(' ')  ?>
                         </div>
                     </div>
 
@@ -268,6 +268,7 @@ use app\models\Registrar;
             ]); ?>
 
             <div class="card" style="overflow-x:auto;">
+                <div class="card-header">Family members</div>
                 <div class="card-body">
                     <div class="container-items">
                         <!-- widgetBody -->

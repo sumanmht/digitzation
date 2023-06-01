@@ -16,31 +16,34 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="birth-view col-sm-5">
 
-                <!-- <h1><?= Html::encode($this->title) ?></h1> -->
                 <div class="row">
                     <?= DetailView::widget([
                         'model' => $model,
                         'options' => ['style' => 'font-size:12px;', 'class' => 'table table-bordered table-hover table-condensed '],
-                        'template' => '<tr><th style="width:40%;">{label}</th><td style="width:60%; ">{value}</td></tr>',
+                        'template' =>   function ($attribute, $index, $widget) {
+                            if ($index === 0) {
+                                return '<tr><th colspan="2" style="text-align:center">दर्ता विवरण</th></tr>';
+                            }
+                            return '<tr><th style="width:40%">' . $attribute['label'] . '</th><td style="width:60%">' . $attribute['value'] . '</td></tr>';
+                        },
                         'attributes' => [
+                            [
+                                'attribute' => 'p_district',
+                                'label' => '',
+                                'format' => 'raw',
+                                'value' => function ($model) {
+                                    return '';
+                                },
+                            ],
                             [
                                 'attribute' => 'p_district',
                                 'label' =>   'ठेगाना',
                                 'value' => function ($form, $widget) {
                                     $model = $widget->model;
-                                    return $model->p_district . ' ' . $model->p_muni . '' . $model->p_ward;
+                                    return $model->p_district . '-' . $model->p_muni . '-' . $model->p_ward;
                                 }
 
                             ],
-                        ],
-                    ]) ?>
-                </div>
-                <div class="row">
-                    <?= DetailView::widget([
-                        'model' => $model,
-                        'options' => ['style' => 'font-size:12px;', 'class' => 'table table-bordered table-hover table-condensed '],
-                        'template' => '<tr><th style="width:40%; ">{label}</th><td style="width:60%; ">{value}</td></tr>',
-                        'attributes' => [
                             [
                                 'attribute' => 'reg_no',
                                 'label' =>   'दर्ता नं.',
@@ -72,14 +75,27 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= DetailView::widget([
                         'model' => $model,
                         'options' => ['style' => 'font-size:12px;', 'class' => 'table table-bordered table-hover table-condensed '],
-                        'template' => '<tr><th style="width:40%; ">{label}</th><td style="width:60%; ">{value}</td></tr>',
+                        'template' =>   function ($attribute, $index, $widget) {
+                            if ($index === 0) {
+                                return '<tr><th colspan="2" style="text-align:center">शिशुको विवरण</th></tr>';
+                            }
+                            return '<tr><th style="width:40%">' . $attribute['label'] . '</th><td style="width:60%">' . $attribute['value'] . '</td></tr>';
+                        },
                         'attributes' => [
+                            [
+                                'attribute' => 'fname',
+                                'label' => '',
+                                'format' => 'raw',
+                                'value' => function ($model) {
+                                    return '';
+                                },
+                            ],
                             [
                                 'attribute' => 'fname',
                                 'label' =>   'शिशुको नाम',
                                 'value' => function ($form, $widget) {
                                     $model = $widget->model;
-                                    return $model->fname . ' ' . $model->mname . ' ' . $model->lname;
+                                    return $model->fname . ' ' . $model->mname . ' ' . $model->lname . ' / ' . $model->fname_eng . ' ' . $model->mname_eng . ' ' . $model->lname_eng;
                                 }
                             ],
                             [

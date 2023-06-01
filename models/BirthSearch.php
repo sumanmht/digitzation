@@ -20,7 +20,7 @@ class BirthSearch extends Birth
     {
         return [
             [['id', 'reg_year', 'reg_month', 'reg_day', 'birth_year', 'birth_month', 'birth_day', 'father_age_when_birth', 'mother_age_when_birth', 'father_ctz_year', 'father_ctz_month', 'father_ctz_day', 'mother_ctz_year', 'mother_ctz_month', 'mother_ctz_day', 'father_birth_count', 'father_living_count', 'married_year', 'inf_ctz_year', 'inf_ctz_month', 'inf_ctz_day', 'inf_ctz_district'], 'integer'],
-            [['registrar_name', 'birthsearch','reg_no', 'fname', 'mname', 'lname', 'birth_place', 'gender', 'birth_type', 'grandfather_fname', 'grandfather_mname', 'grandfather_lname', 'father_fname', 'father_mname', 'father_lname', 'father_permanent_address', 'bith_country', 'father_ctz_no', 'father_ctz_district', 'mother_fname', 'mother_mname', 'mother_lname', 'mother_ctz_no', 'mother_ctz_district', 'father_education', 'mother_education', 'father_mother_tongue', 'mother_mother_tongue', 'helper', 'informant_fname', 'informant_mname', 'informant_lname', 'relation', 'inf_ctz_no'], 'safe'],
+            [['registrar_name', 'birthsearch', 'reg_no', 'fname', 'mname', 'lname', 'birth_place', 'gender', 'birth_type', 'grandfather_fname', 'grandfather_mname', 'grandfather_lname', 'father_fname', 'father_mname', 'father_lname', 'father_permanent_address', 'bith_country', 'father_ctz_no', 'father_ctz_district', 'mother_fname', 'mother_mname', 'mother_lname', 'mother_ctz_no', 'mother_ctz_district', 'father_education', 'mother_education', 'father_mother_tongue', 'mother_mother_tongue', 'helper', 'informant_fname', 'informant_mname', 'informant_lname', 'relation', 'inf_ctz_no'], 'safe'],
         ];
     }
 
@@ -49,7 +49,7 @@ class BirthSearch extends Birth
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 10,  // Limit the number of items per page to 10
+                'pageSize' => 5,  // Limit the number of items per page to 10
             ],
         ]);
 

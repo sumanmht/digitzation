@@ -43,7 +43,7 @@ use app\models\Religion;
                 <div class="col-sm-1">
                     <div class="row">
                         <div class="form-heading">दर्ता नं.</div>
-                        <?= $form->field($model, 'reg_no')->input('integer', ['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'दर्ता नं.'])->label(' ') ?>
+                        <?= $form->field($model, 'reg_no')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'दर्ता नं.'])->label(' ') ?>
                     </div>
                 </div>
 
@@ -51,13 +51,13 @@ use app\models\Religion;
                     <div class="form-heading">दर्ता मिति(वि.स.)</div>
                     <div class="row">
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'reg_year')->input('number', ['class' => 'form-control form-control-sm', 'placeholder' => 'दर्ता साल'])->label(' ')  ?>
+                            <?= $form->field($model, 'reg_year')->textInput(['class' => 'form-control form-control-sm', 'placeholder' => 'दर्ता साल'])->label(' ')  ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'reg_month')->input('number', ['class' => 'form-control form-control-sm', 'placeholder' => 'दर्ता महिना'])->label(' ')  ?>
+                            <?= $form->field($model, 'reg_month')->textInput(['class' => 'form-control form-control-sm', 'placeholder' => 'दर्ता महिना'])->label(' ')  ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'reg_day')->input('number', ['class' => 'form-control form-control-sm', 'placeholder' => 'दर्ता गते'])->label(' ')  ?>
+                            <?= $form->field($model, 'reg_day')->textInput(['class' => 'form-control form-control-sm', 'placeholder' => 'दर्ता गते'])->label(' ')  ?>
                         </div>
                     </div>
 
@@ -66,13 +66,13 @@ use app\models\Religion;
                     <div class="form-heading">विवाह मिति(वि.स.)</div>
                     <div class="row">
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'marriage_year')->input('number', ['class' => 'form-control form-control-sm', 'placeholder' => 'दर्ता साल'])->label(' ')  ?>
+                            <?= $form->field($model, 'marriage_year')->textInput(['class' => 'form-control form-control-sm', 'placeholder' => 'दर्ता साल'])->label(' ')  ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'marriage_month')->input('number', ['class' => 'form-control form-control-sm', 'placeholder' => 'दर्ता महिना'])->label(' ')  ?>
+                            <?= $form->field($model, 'marriage_month')->textInput(['class' => 'form-control form-control-sm', 'placeholder' => 'दर्ता महिना'])->label(' ')  ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'marriage_day')->input('number', ['class' => 'form-control form-control-sm', 'placeholder' => 'दर्ता गते'])->label(' ')  ?>
+                            <?= $form->field($model, 'marriage_day')->textInput(['class' => 'form-control form-control-sm', 'placeholder' => 'दर्ता गते'])->label(' ')  ?>
                         </div>
                     </div>
 

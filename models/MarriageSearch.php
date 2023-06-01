@@ -47,6 +47,9 @@ class MarriageSearch extends Marriage
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 5,  // Limit the number of items per page to 10
+            ],
         ]);
 
         $this->load($params);
