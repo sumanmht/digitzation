@@ -46,6 +46,7 @@ class BirthSearch extends Birth
 
         // add conditions that should always apply here
 
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
@@ -118,7 +119,45 @@ class BirthSearch extends Birth
             ->orFilterWhere(['like', 'informant_mname', $this->birthsearch])
             ->orFilterWhere(['like', 'informant_lname', $this->birthsearch])
             ->orFilterWhere(['like', 'relation', $this->birthsearch])
-            ->orFilterWhere(['like', 'inf_ctz_no', $this->birthsearch]);
+            ->orFilterWhere(['like', 'inf_ctz_no', $this->birthsearch])
+            ->orFilterWhere(['like', 'p_district', $this->birthsearch])
+            ->orFilterWhere(['like', 'p_muni', $this->birthsearch])
+            ->orFilterWhere(['like', 'p_ward', $this->birthsearch]);
+
+        // $query->andFilterWhere(['like', 'registrar_name', $this->registrar_name])
+        //     ->andFilterWhere(['like', 'reg_no', $this->reg_no])
+        //     ->andFilterWhere(['like', 'fname', $this->fname])
+        //     ->andFilterWhere(['like', 'mname', $this->mname])
+        //     ->andFilterWhere(['like', 'lname', $this->lname])
+        //     ->andFilterWhere(['like', 'birth_place', $this->birth_place])
+        //     ->andFilterWhere(['like', 'gender', $this->gender])
+        //     ->andFilterWhere(['like', 'birth_type', $this->birth_type])
+        //     ->andFilterWhere(['like', 'grandfather_fname', $this->grandfather_fname])
+        //     ->andFilterWhere(['like', 'grandfather_mname', $this->grandfather_mname])
+        //     ->andFilterWhere(['like', 'grandfather_lname', $this->grandfather_lname])
+        //     ->andFilterWhere(['like', 'father_fname', $this->father_fname])
+        //     ->andFilterWhere(['like', 'father_mname', $this->father_mname])
+        //     ->andFilterWhere(['like', 'father_lname', $this->father_lname])
+        //     ->andFilterWhere(['like', 'father_permanent_address', $this->father_permanent_address])
+        //     ->andFilterWhere(['like', 'bith_country', $this->birthsearch])
+        //     ->andFilterWhere(['like', 'father_ctz_no', $this->birthsearch])
+        //     ->andFilterWhere(['like', 'father_ctz_district', $this->birthsearch])
+        //     ->andFilterWhere(['like', 'mother_fname', $this->birthsearch])
+        //     ->andFilterWhere(['like', 'mother_mname', $this->birthsearch])
+        //     ->andFilterWhere(['like', 'mother_lname', $this->birthsearch])
+        //     ->andFilterWhere(['like', 'mother_ctz_no', $this->birthsearch])
+        //     ->andFilterWhere(['like', 'mother_ctz_district', $this->birthsearch])
+        //     ->andFilterWhere(['like', 'father_education', $this->birthsearch])
+        //     ->andFilterWhere(['like', 'mother_education', $this->birthsearch])
+        //     ->andFilterWhere(['like', 'father_mother_tongue', $this->birthsearch])
+        //     ->andFilterWhere(['like', 'mother_mother_tongue', $this->birthsearch])
+        //     ->andFilterWhere(['like', 'helper', $this->birthsearch])
+        //     ->andFilterWhere(['like', 'informant_fname', $this->birthsearch])
+        //     ->andFilterWhere(['like', 'informant_mname', $this->birthsearch])
+        //     ->andFilterWhere(['like', 'informant_lname', $this->birthsearch])
+        //     ->andFilterWhere(['like', 'relation', $this->birthsearch])
+        //     ->andFilterWhere(['like', 'inf_ctz_no', $this->birthsearch]);
+
 
         return $dataProvider;
     }

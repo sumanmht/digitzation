@@ -19,6 +19,11 @@ use kartik\mpdf\Pdf;
 $this->title = 'Births';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<?php
+$this->registerJsFile('@web/js/nepa.js', ['depends' => 'yii\web\JqueryAsset']);
+
+
+?>
 <div class="card">
     <div class="birth-index">
         <?php Pjax::begin(); ?>
@@ -52,14 +57,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         'class' =>  CustomPager::class,
 
                     ],
-                    // 'filterModel' => $searchModel,
+                    //'filterModel' => $searchModel,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
                         [
                             'label' => 'ठेगाना',
                             'attribute' => 'father_permanent_address',
                             'value' => function ($model) {
-                                return $model->p_district . '-' . $model->p_muni . '-' .$model->p_ward;
+                                return $model->p_district . '-' . $model->p_muni . '-' . $model->p_ward;
                             }
                         ],
                         [

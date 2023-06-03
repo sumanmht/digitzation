@@ -28,6 +28,8 @@ class AppAsset extends AssetBundle
         'js/birthradio.js',
         'js/hidden.js',
         'js/birth.js',
+        'js/nepa.js',
+
 
     ];
     public $depends = [

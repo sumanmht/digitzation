@@ -20,7 +20,11 @@ use app\models\Municipality;
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
+<?php
+$this->registerJsFile('@web/js/birth.js', ['depends' => 'yii\web\JqueryAsset']);
+$this->registerJsFile('@web/js/birthradio.js', ['depends' => 'yii\web\JqueryAsset']);
 
+?>
 <div class="card">
     <div class="card-body">
         <div class="marriage-form">
@@ -30,7 +34,7 @@ use app\models\Municipality;
                 'options' => ['enctype' => 'multipart/form-data', 'style' => 'font-size:12px;', 'class' => 'nepali'],
                 'fieldConfig' => ['labelOptions' => ['class' => 'col-sm-1 control-label'],]
             ]); ?>
-            <hr>
+
             <label>दर्ता विवरण</label>
             <div class="row form-group">
                 <div class="col-sm-3">
@@ -640,11 +644,6 @@ use app\models\Municipality;
 
             </div>
         </div>
-
-        <hr>
-
-
-
 
     </div>
     <div class="card-footer form-group">

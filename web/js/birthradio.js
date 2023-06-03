@@ -39,10 +39,10 @@ $(document).ready(function(){
         var father_fname_eng = $('#father_fname_eng').val();
         var father_mname_eng = $('#father_mname_eng').val();
         var father_lname_eng = $('#father_lname_eng').val();
-        var father_ctz_no = $('#father_ctz_no').val();
-        var father_ctz_year = $('#father_ctz_year').val();
-        var father_ctz_month = $('#father_ctz_month').val();
-        var father_ctz_day = $('#father_ctz_day').val();
+        var father_ctz_no = $('#b_father_ctz_no').val();
+        var father_ctz_year = $('#b_father_ctz_year').val();
+        var father_ctz_month = $('#b_father_ctz_month').val();
+        var father_ctz_day = $('#b_father_ctz_day').val();
         var father_ctz_district= $('#father_ctz_district').val();
         
 
@@ -52,10 +52,10 @@ $(document).ready(function(){
         $('#inf_fname_eng').val(father_fname_eng);
         $('#inf_mname_eng').val(father_mname_eng);
         $('#inf_lname_eng').val(father_lname_eng);
-        $('#inf_ctz_no').val(father_ctz_no);
-        $('#inf_ctz_year').val(father_ctz_year);
-        $('#inf_ctz_month').val(father_ctz_month);
-        $('#inf_ctz_day').val(father_ctz_day);
+        $('#b_inf_ctz_no').val(father_ctz_no);
+        $('#b_inf_ctz_year').val(father_ctz_year);
+        $('#b_inf_ctz_month').val(father_ctz_month);
+        $('#b_inf_ctz_day').val(father_ctz_day);
         $('#inf_ctz_district ').val(father_ctz_district);
         $('#relation').val('बाबु');
     });
@@ -69,10 +69,10 @@ $(document).ready(function(){
         var mother_fname_eng = $('#mother_fname_eng').val();
         var mother_mname_eng = $('#mother_mname_eng').val();
         var mother_lname_eng = $('#mother_lname_eng').val();
-        var mother_ctz_no = $('#mother_ctz_no').val();
-        var mother_ctz_year = $('#mother_ctz_year').val();
-        var mother_ctz_month = $('#mother_ctz_month').val();
-        var mother_ctz_day = $('#mother_ctz_day').val();
+        var mother_ctz_no = $('#b_mother_ctz_no').val();
+        var mother_ctz_year = $('#b_mother_ctz_year').val();
+        var mother_ctz_month = $('#b_mother_ctz_month').val();
+        var mother_ctz_day = $('#b_mother_ctz_day').val();
         var mother_ctz_district = $('#mother_ctz_district').val();
 
         $('#inf_fname').val(mother_fname);
@@ -81,10 +81,10 @@ $(document).ready(function(){
         $('#inf_fname_eng').val(mother_fname_eng);
         $('#inf_mname_eng').val(mother_mname_eng);
         $('#inf_lname_eng').val(mother_lname_eng);
-        $('#inf_ctz_no').val(mother_ctz_no);
-        $('#inf_ctz_year').val(mother_ctz_year);
-        $('#inf_ctz_month').val(mother_ctz_month);
-        $('#inf_ctz_day').val(mother_ctz_day);
+        $('#b_inf_ctz_no').val(mother_ctz_no);
+        $('#b_inf_ctz_year').val(mother_ctz_year);
+        $('#b_inf_ctz_month').val(mother_ctz_month);
+        $('#b_inf_ctz_day').val(mother_ctz_day);
         $('#inf_ctz_district').val(mother_ctz_district);
         $('#relation').val('आमा');
 

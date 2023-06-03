@@ -1,28 +1,66 @@
 <?php
 
+use app\models\Birth;
+use app\models\Registrar;
+use app\models\District;
+use app\models\Municipality;
+use app\models\MotherTongue;
+use app\models\Education;
+use app\models\Helper;
+use app\models\Gender;
+use app\models\Religion;
+use app\models\Ward;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use kartik\mpdf\Pdf;
+use yii\widgets\Pjax;
 
-/** @var yii\web\View $this */
-/** @var app\models\Birth $model */
-
-$this->title = $model->fname_eng . ' ' . $model->mname_eng . ' ' . $model->lname_eng;;
-$this->params['breadcrumbs'][] = ['label' => 'Births', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
 ?>
-<div class="card">
-    <div class="card-header">
-        <h5>
-            <center>जन्म दर्ता अभिलेख: <?= $model->fname . ' ' . $model->mname . ' ' . $model->lname;; ?></center>
-        </h5>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="birth-view col-sm-5">
+<!DOCTYPE html>
+<html lang="<?= Yii::$app->language ?>" class="h-100">
 
-                <div class="row">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <?php $this->registerCsrfMetaTags() ?>
+    <title><?= Html::encode($this->title) ?></title>
+    <?php $this->head() ?>
+</head>
+
+<table class="table table-responsive">
+    <colgroup>
+        <col style="width: 90%;">
+        <col style="width: 10%;">
+    </colgroup>
+    <!-- <tr>
+        <td>Column 1</td>
+        <td>Column 2</td>
+    <tr>
+        <th>hhh</th>
+        <td><?= $model->p_district . '-' . $model->p_muni . '-' . $model->p_ward; ?></td>
+    </tr> -->
+    <!-- <tr>
+            <th style=" width:40%">Hello</th>
+            <td style="width:60%"><?= $model->reg_no; ?></td>
+        </tr> -->
+    <tr>
+        <td>
+            <img src="<?= Yii::getAlias('@web/uploads') . '/' . $model->scanned_image ?>">
+        </td>
+        <td>
+            <img src="<?= Yii::getAlias('@web/uploads') . '/' . $model->scanned_image ?>">
+        </td>
+    </tr>
+    </tbody>
+
+</table>
+
+
+<!-- <div class="">
+    <table class=" table table-responsive col-sm-5">
+
+        <tbody>
+            <tr>
+                <td>
                     <?= DetailView::widget([
                         'model' => $model,
                         'options' => ['style' => 'font-size:12px;', 'class' => 'table table-bordered table-hover table-condensed '],
@@ -76,8 +114,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             ],
                         ],
                     ]) ?>
-                </div>
-                <div class="row">
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <?= DetailView::widget([
                         'model' => $model,
                         'options' => ['style' => 'font-size:12px;', 'class' => 'table table-bordered table-hover table-condensed '],
@@ -155,8 +195,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         ],
                     ]) ?>
-                </div>
-                <div class="row">
+                </td>
+
+            </tr>
+            <tr>
+                <td>
                     <?= DetailView::widget([
                         'model' => $model,
                         'options' => ['style' => 'font-size:12px;', 'class' => 'table table-bordered table-hover table-condensed '],
@@ -234,84 +277,31 @@ $this->params['breadcrumbs'][] = $this->title;
                             ],
                         ],
                     ]) ?>
-                </div>
-                <div class="row">
-                    <?= DetailView::widget([
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-responsive col-sm-7">
+        <tbody>
+            <tr>
+                <td>
+                    <?php echo DetailView::widget([
                         'model' => $model,
-                        'options' => ['style' => 'font-size:12px;', 'class' => 'table table-bordered table-hover table-condensed '],
-                        'template' =>   function ($attribute, $index, $widget) {
-                            if ($index === 0) {
-                                return '<tr><th colspan="2" style="text-align:center">सूचकको विवरण</th></tr>';
-                            }
-                            return '<tr><th style="width:40%">' . $attribute['label'] . '</th><td style="width:60%">' . $attribute['value'] . '</td></tr>';
-                        },
+                        'template' => '<tr><td style="width:100%;">{value}</td></tr>',
+                        //'valueColOptions'=>['style'=>'width:70%'],
                         'attributes' => [
                             [
-                                'attribute' => 'informant_fname',
+                                'attributes' => 'scanned_image',
                                 'label' => '',
-                                'format' => 'raw',
-                                'value' => function ($model) {
-                                    return '';
-                                },
+                                'value' => Yii::getAlias('@web/uploads') . '/' . $model->scanned_image,
+                                'format' => ['image', ['class' => 'img-fluid']]
                             ],
-                            [
-                                'attribute' => 'informant_fname',
-                                'label' =>   'सूचकको नाम',
-                                'value' => function ($form, $widget) {
-                                    $model = $widget->model;
-                                    return $model->informant_fname . ' ' . $model->informant_mname . ' ' . $model->informant_lname . ' / ' . $model->inf_fname_eng . ' ' . $model->inf_mname_eng . ' ' . $model->inf_lname_eng;
-                                }
-                            ],
-                            [
-                                'attribute' => 'relation',
-                                'label' =>   'शिशुसँगको नाता',
-                                'value' => function ($form, $widget) {
-                                    $model = $widget->model;
-                                    return $model->relation;
-                                }
-                            ],
-                            [
-                                'attribute' => 'inf_ctz_no.',
-                                'label' =>   'नागरिकता विवरण',
-                                'value' => function ($form, $widget) {
-                                    $model = $widget->model;
-                                    return $model->inf_ctz_no . ' / ' . $model->inf_ctz_year . '-' . $model->inf_ctz_month . '-' . $model->inf_ctz_day . '/ ' . $model->inf_ctz_district;
-                                }
-                            ],
-                        ],
+                        ]
                     ]) ?>
-                </div>
-            </div>
-            <div class="birth-view col-sm-7">
-                <?php echo DetailView::widget([
-                    'model' => $model,
-                    'template' => '<tr><td style="width:100%;">{value}</td></tr>',
-                    //'valueColOptions'=>['style'=>'width:70%'],
-                    'attributes' => [
-                        [
-                            'attributes' => 'scanned_image',
-                            'label' => '',
-                            'value' => Yii::getAlias('@web/uploads') . '/' . $model->scanned_image,
-                            'format' => ['image', ['class' => 'img-fluid']]
-                        ],
-                    ]
-                ]) ?>
+                </td>
 
-            </div>
-
-        </div>
-    </div>
-    <div class="card-footer">
-        <p>
-            <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-            <?= Html::a('<i class="fa far fa-hand-point-up"></i> Print', ['/birth/printpdf', 'id' => $model->id], [
-                'class' => 'btn btn-success',
-                'target' => '_blank',
-                'data-toggle' => 'tooltip',
-                'title' => 'Will open the generated PDF file in a new window'
-            ]);
-            ?>
-
-        </p>
-    </div>
-</div>
+            </tr>
+        </tbody>
+    </table>
+</div> -->
