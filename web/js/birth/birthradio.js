@@ -1,17 +1,4 @@
-// function father(){
-            
-//             var father_ctz_district = document.getElementById("father_ctz_district").value;
-//             document.getElementById("inf_ctz_district").value = father_ctz_district;
-//         };
-// function grandfather(){
-//             var grandfather_fname = document.getElementById("grandfather_fname").value;
-//             document.getElementById("informant_fname").value = grandfather_fname;
-//             var grandfather_mname = document.getElementById("grandfather_mname").value;
-//             document.getElementById("informant_mname").value = grandfather_mname;
-//         };
-
-
-
+// //grandfather-checkbox gets values from those id and places in informants id
 $(document).ready(function(){
     $('#grandfather-checkbox').click(function(){
         var grandfather_fname = $('#grandfather_fname').val();
@@ -20,6 +7,7 @@ $(document).ready(function(){
         var grandfather_fname_eng = $('#grandfather_fname_eng').val();
         var grandfather_mname_eng = $('#grandfather_mname_eng').val();
         var grandfather_lname_eng = $('#grandfather_lname_eng').val();
+        
 
         $('#inf_fname').val(grandfather_fname);        
         $('#inf_mname').val(grandfather_mname);        
@@ -28,10 +16,16 @@ $(document).ready(function(){
         $('#inf_mname_eng').val(grandfather_mname_eng);        
         $('#inf_lname_eng').val(grandfather_lname_eng);               
         $('#relation').val('बाजे');
+        $('#b_inf_ctz_no').val('');
+        $('#b_inf_ctz_year').val('');
+        $('#b_inf_ctz_month').val('');
+        $('#b_inf_ctz_day').val('');
+        $('#ad_inf_ctz_year').val('');
+        $('#ad_inf_ctz_month').val('');
+        $('#ad_inf_ctz_day').val('')
+        $('#inf_ctz_district ').val('');
     });
-});
 
-$(document).ready(function(){
     $('#father-checkbox').click(function(){
         var father_fname = $('#father_fname').val();
         var father_mname = $('#father_mname').val();
@@ -43,6 +37,9 @@ $(document).ready(function(){
         var father_ctz_year = $('#b_father_ctz_year').val();
         var father_ctz_month = $('#b_father_ctz_month').val();
         var father_ctz_day = $('#b_father_ctz_day').val();
+        var ad_father_ctz_year = $('#ad_father_ctz_year').val();
+        var ad_father_ctz_month = $('#ad_father_ctz_month').val();
+        var ad_father_ctz_day = $('#ad_father_ctz_day').val();
         var father_ctz_district= $('#father_ctz_district').val();
         
 
@@ -56,12 +53,14 @@ $(document).ready(function(){
         $('#b_inf_ctz_year').val(father_ctz_year);
         $('#b_inf_ctz_month').val(father_ctz_month);
         $('#b_inf_ctz_day').val(father_ctz_day);
+        $('#ad_inf_ctz_year').val(ad_father_ctz_year);
+        $('#ad_inf_ctz_month').val(ad_father_ctz_month);
+        $('#ad_inf_ctz_day').val(ad_father_ctz_day)
         $('#inf_ctz_district ').val(father_ctz_district);
         $('#relation').val('बाबु');
-    });
-});
 
-$(document).ready(function(){
+    });
+    
     $('#mother-checkbox').click(function(){
         var mother_fname = $('#mother_fname').val();
         var mother_mname = $('#mother_mname').val();
@@ -73,6 +72,9 @@ $(document).ready(function(){
         var mother_ctz_year = $('#b_mother_ctz_year').val();
         var mother_ctz_month = $('#b_mother_ctz_month').val();
         var mother_ctz_day = $('#b_mother_ctz_day').val();
+        var ad_mother_ctz_year = $('#ad_mother_ctz_year').val();
+        var ad_mother_ctz_month = $('#ad_mother_ctz_month').val();
+        var ad_mother_ctz_day = $('#ad_mother_ctz_day').val();
         var mother_ctz_district = $('#mother_ctz_district').val();
 
         $('#inf_fname').val(mother_fname);
@@ -85,12 +87,12 @@ $(document).ready(function(){
         $('#b_inf_ctz_year').val(mother_ctz_year);
         $('#b_inf_ctz_month').val(mother_ctz_month);
         $('#b_inf_ctz_day').val(mother_ctz_day);
+        $('#ad_inf_ctz_year').val(ad_mother_ctz_year);
+        $('#ad_inf_ctz_month').val(ad_mother_ctz_month);
+        $('#ad_inf_ctz_day').val(ad_mother_ctz_day);
         $('#inf_ctz_district').val(mother_ctz_district);
         $('#relation').val('आमा');
-
-        
     });
+    
 });
-
-
 

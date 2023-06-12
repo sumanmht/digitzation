@@ -44,6 +44,7 @@ class BirthController extends Controller
 
     public function actionIndex()
     {
+        $models = Birth::find()->orderBy('p_ward ASC')->all();
         $searchModel = new BirthSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 

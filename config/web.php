@@ -14,7 +14,18 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
-
+        'engToUni' => [
+            'class' => 'app\components\EngToUni',
+        ],
+        'customPager' => [
+            'class' => 'app\components\CustomPager',
+        ],
+        'engDis' => [
+            'class' => 'app\components\EngDis',
+        ],
+        'uniToEng' => [
+            'class' => 'app\components\UniToEng',
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'Kngk1ZvUqn',

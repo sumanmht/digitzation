@@ -97,9 +97,9 @@ class Birth extends \yii\db\ActiveRecord
 
             [['birth_type'], 'string', 'max' => 25],
 
-            [['reg_year', 'birth_year', 'father_ctz_year', 'mother_ctz_year', 'inf_ctz_year', 'married_year'], 'string', 'max' => 4],
+            [['reg_year', 'ad_reg_year', 'birth_year', 'ad_birth_year', 'ad_father_ctz_year', 'ad_mother_ctz_year', 'ad_inf_ctz_year', 'father_ctz_year', 'mother_ctz_year', 'inf_ctz_year', 'married_year'], 'string', 'max' => 4],
 
-            [['reg_month', 'reg_day', 'birth_month', 'birth_day', 'father_ctz_month', 'father_ctz_day', 'mother_ctz_month', 'mother_ctz_day', 'inf_ctz_month', 'inf_ctz_day'], 'string', 'max' => 2],
+            [['reg_month', 'ad_reg_month', 'reg_day', 'ad_reg_day', 'birth_month', 'ad_birth_month', 'birth_day', 'ad_birth_day', 'father_ctz_month', 'ad_father_ctz_month', 'father_ctz_day', 'ad_father_ctz_day', 'mother_ctz_month', 'ad_mother_ctz_month', 'mother_ctz_day', 'ad_mother_ctz_day', 'inf_ctz_month', 'ad_inf_ctz_month', 'inf_ctz_day', 'ad_inf_ctz_day'], 'string', 'max' => 2],
 
             [['father_ctz_no', 'mother_ctz_no', 'inf_ctz_no'], 'string', 'max' => 14],
 

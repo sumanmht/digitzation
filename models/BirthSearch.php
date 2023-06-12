@@ -5,6 +5,7 @@ namespace app\models;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Birth;
+use yii\grid\GridView;
 
 /**
  * BirthSearch represents the model behind the search form of `app\models\Birth`.
@@ -52,7 +53,13 @@ class BirthSearch extends Birth
             'pagination' => [
                 'pageSize' => 5,  // Limit the number of items per page to 10
             ],
+            // 'sort' => [
+            //     'defaultOrder' => [
+            //         'p_ward' => SORT_ASC,
+            //     ],
+            // ],
         ]);
+
 
         $this->load($params);
 

@@ -60,12 +60,17 @@ $this->params['breadcrumbs'][] = $this->title;
                             ],
                             [
                                 'attribute' => 'reg_year',
-                                'label' =>   'दर्ता मिति(वि.स.)',
+                                'label' =>   'दर्ता मिति',
                                 'value' => function ($form, $widget) {
                                     $model = $widget->model;
-                                    return $model->reg_year . '-' . $model->reg_month . '-' . $model->reg_day;
+                                    return
+                                        'वि.स.' . ' ' . Yii::$app->engToUni->convert($model->reg_year) . '-' .
+                                        Yii::$app->engToUni->convert($model->reg_month) . '-' .
+                                        Yii::$app->engToUni->convert($model->reg_day) . ' / ' .
+                                        $model->ad_reg_year . '-' . $model->ad_reg_month . '-' . $model->ad_reg_day . ' ' . 'A.D.';
                                 }
                             ],
+
                             [
                                 'attribute' => 'registrar_name',
                                 'label' =>   'स्थानीय पञ्जिकाधिकारी',
@@ -109,7 +114,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'label' =>   'जन्म मिति(वि.स.)',
                                 'value' => function ($form, $widget) {
                                     $model = $widget->model;
-                                    return $model->birth_year . '-' . $model->birth_month . '-' . $model->birth_day;
+                                    return
+                                        'वि.स.' . ' ' . Yii::$app->engToUni->convert($model->birth_year) . '-' .
+                                        Yii::$app->engToUni->convert($model->birth_month) . '-' .
+                                        Yii::$app->engToUni->convert($model->birth_day) . ' / ' .
+                                        $model->ad_birth_year . '-' . $model->ad_birth_month . '-' . $model->ad_birth_day . ' ' . 'A.D.';
                                 }
                             ],
                             [
@@ -197,7 +206,22 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'label' =>   'नागरिकता विवरण',
                                 'value' => function ($form, $widget) {
                                     $model = $widget->model;
-                                    return $model->father_ctz_no . ' / ' . $model->father_ctz_year . '-'  . $model->father_ctz_month . '-' . $model->father_ctz_day . ' / ' . $model->father_ctz_district;
+                                    return
+                                        Yii::$app->engToUni->convert($model->father_ctz_no) . ' / ' .
+                                        Yii::$app->engToUni->convert($model->father_ctz_year) . '-'  .
+                                        Yii::$app->engToUni->convert($model->father_ctz_month) . '-' .
+                                        Yii::$app->engToUni->convert($model->father_ctz_day) . ' / ' . $model->father_ctz_district;
+                                },
+                            ],
+                            [
+                                'attribute' => 'father_ctz_no',
+                                'label' =>   'Citizenship Details',
+                                'value' => function ($form, $widget) {
+                                    $model = $widget->model;
+                                    return
+                                        $model->father_ctz_no . ' / ' .
+                                        $model->ad_father_ctz_year . '-'  . $model->ad_father_ctz_month . '-' . $model->ad_father_ctz_day . ' / ' .
+                                        Yii::$app->engDis->convert($model->father_ctz_district);
                                 },
                             ],
                             [
@@ -221,7 +245,22 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'label' =>   'नागरिकता विवरण',
                                 'value' => function ($form, $widget) {
                                     $model = $widget->model;
-                                    return $model->mother_ctz_no . ' / ' . $model->mother_ctz_year . '-' . $model->mother_ctz_month . '-' . $model->mother_ctz_day . '/ ' . $model->mother_ctz_district;
+                                    return
+                                        Yii::$app->engToUni->convert($model->mother_ctz_no) . ' / ' .
+                                        Yii::$app->engToUni->convert($model->mother_ctz_year) . '-'  .
+                                        Yii::$app->engToUni->convert($model->mother_ctz_month) . '-' .
+                                        Yii::$app->engToUni->convert($model->mother_ctz_day) . ' / ' . $model->mother_ctz_district;
+                                },
+                            ],
+                            [
+                                'attribute' => 'mother_ctz_no.',
+                                'label' =>   'Citizenship Details',
+                                'value' => function ($form, $widget) {
+                                    $model = $widget->model;
+                                    return
+                                        $model->mother_ctz_no . ' / ' .
+                                        $model->ad_mother_ctz_year . '-' . $model->ad_mother_ctz_month . '-' . $model->ad_mother_ctz_day . '/ ' .
+                                        Yii::$app->engDis->convert($model->mother_ctz_district);
                                 }
                             ],
                             [
@@ -275,7 +314,21 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'label' =>   'नागरिकता विवरण',
                                 'value' => function ($form, $widget) {
                                     $model = $widget->model;
-                                    return $model->inf_ctz_no . ' / ' . $model->inf_ctz_year . '-' . $model->inf_ctz_month . '-' . $model->inf_ctz_day . '/ ' . $model->inf_ctz_district;
+                                    return
+                                        Yii::$app->engToUni->convert($model->inf_ctz_no) . ' / ' .
+                                        Yii::$app->engToUni->convert($model->inf_ctz_year) . '-'  .
+                                        Yii::$app->engToUni->convert($model->inf_ctz_month) . '-' .
+                                        Yii::$app->engToUni->convert($model->inf_ctz_day) . ' / ' . $model->inf_ctz_district;
+                                },
+                            ],
+                            [
+                                'attribute' => 'inf_ctz_no.',
+                                'label' =>   'Citizenship Details',
+                                'value' => function ($form, $widget) {
+                                    $model = $widget->model;
+                                    return
+                                        $model->inf_ctz_no . ' / ' . $model->ad_inf_ctz_year . '-' . $model->ad_inf_ctz_month . '-' . $model->ad_inf_ctz_day . '/ ' .
+                                        Yii::$app->engDis->convert($model->inf_ctz_district);
                                 }
                             ],
                         ],

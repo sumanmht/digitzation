@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="row">
                 <div class="col-sm-3">
                     <?= Html::a('Create Marriage', ['create'], ['class' => 'btn btn-success btn-sm']) ?>
-                    <?= Html::a('Export Data', ['export'], ['class' => 'btn btn-primary btn-sm']) ?>
+                    <!-- <?= Html::a('Export Data', ['export'], ['class' => 'btn btn-primary btn-sm']) ?> -->
                 </div>
                 <div class="col-sm-9 ">
                     <div class="row">
@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ['class' => 'yii\grid\SerialColumn'],
                         [
                             'label' => 'ठेगाना',
-                            'attribute' => 'local_level',
+                            'attribute' => 'district',
                             'value' => function ($model) {
                                 return $model->district . '-' . $model->local_level . '-' . $model->ward;;
                             }

@@ -10,6 +10,7 @@ use app\components\CustomPager;
 use kartik\export\ExportMenu;
 use kartik\mpdf\Pdf;
 
+
 // use yii\widgets\ListView;
 
 /** @var yii\web\View $this */
@@ -31,7 +32,7 @@ $this->registerJsFile('@web/js/nepa.js', ['depends' => 'yii\web\JqueryAsset']);
             <div class="row">
                 <div class="col-sm-3">
                     <?= Html::a('Create Birth', ['create'], ['class' => 'btn btn-success btn-sm']) ?>
-                    <?= Html::a('Export Data', ['export'], ['class' => 'btn btn-primary btn-sm']) ?>
+                    <!-- <?= Html::a('Export Data', ['export'], ['class' => 'btn btn-primary btn-sm']) ?> -->
                 </div>
                 <div class="col-sm-9 ">
                     <div class="row">
@@ -62,9 +63,16 @@ $this->registerJsFile('@web/js/nepa.js', ['depends' => 'yii\web\JqueryAsset']);
                         ['class' => 'yii\grid\SerialColumn'],
                         [
                             'label' => 'ठेगाना',
-                            'attribute' => 'father_permanent_address',
+                            'attribute' => 'p_district',
                             'value' => function ($model) {
-                                return $model->p_district . '-' . $model->p_muni . '-' . $model->p_ward;
+                                return $model->p_district . '-' . $model->p_muni;
+                            }
+                        ],
+                        [
+                            'label' => 'वडा',
+                            'attribute' => 'p_ward',
+                            'value' => function ($model) {
+                                return $model->p_ward;
                             }
                         ],
                         [
@@ -74,11 +82,14 @@ $this->registerJsFile('@web/js/nepa.js', ['depends' => 'yii\web\JqueryAsset']);
                                 return $model->reg_no;
                             }
                         ],
+
                         [
                             'label' => 'दर्ता मिति(वि.स.)',
                             'attribute' => 'reg_year',
                             'value' => function ($model) {
-                                return $model->reg_year . '-' . $model->reg_month . '-' . $model->reg_day;
+                                return Yii::$app->engToUni->convert($model->reg_year) . '-' .
+                                    Yii::$app->engToUni->convert($model->reg_month) . '-' .
+                                    Yii::$app->engToUni->convert($model->reg_day);
                             }
                         ],
                         [
@@ -92,16 +103,19 @@ $this->registerJsFile('@web/js/nepa.js', ['depends' => 'yii\web\JqueryAsset']);
                             'attribute' => 'birth_year',
                             'label' =>   'जन्म मिति(वि.स.)',
                             'value' => function ($model) {
-                                return $model->birth_year . '-' . $model->birth_month . '-' . $model->birth_day;
-                            }
+                                return Yii::$app->engToUni->convert($model->birth_year) . '-' .
+                                    Yii::$app->engToUni->convert($model->birth_month) . '-' .
+                                    Yii::$app->engToUni->convert($model->birth_day);
+                            },
+
                         ],
-                        [
-                            'attribute' => 'grandfather_fname',
-                            'label' =>   'बाजेको नाम',
-                            'value' => function ($model) {
-                                return $model->grandfather_fname . ' ' . $model->grandfather_mname . ' ' . $model->grandfather_lname;
-                            }
-                        ],
+                        // [
+                        //     'attribute' => 'grandfather_fname',
+                        //     'label' =>   'बाजेको नाम',
+                        //     'value' => function ($model) {
+                        //         return $model->grandfather_fname . ' ' . $model->grandfather_mname . ' ' . $model->grandfather_lname;
+                        //     }
+                        // ],
                         [
                             'attribute' => 'father_fname',
                             'label' =>   'बाबुको नाम',

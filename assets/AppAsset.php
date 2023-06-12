@@ -25,11 +25,12 @@ class AppAsset extends AssetBundle
         'css/another.css',
     ];
     public $js = [
-        'js/birthradio.js',
-        'js/hidden.js',
-        'js/birth.js',
+        'js/birth/birthradio.js',
+        'js/birth/birthBsToAd.js',
+        'js/birth/birth.js',
         'js/nepa.js',
-
+        'js/hidden.js',
+        'js/marriage/marriageBsToAd.js',
 
     ];
     public $depends = [

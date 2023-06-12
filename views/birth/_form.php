@@ -21,9 +21,9 @@ use app\models\Municipality;
 ?>
 
 <?php
-$this->registerJsFile('@web/js/birth.js', ['depends' => 'yii\web\JqueryAsset']);
-$this->registerJsFile('@web/js/birthradio.js', ['depends' => 'yii\web\JqueryAsset']);
-
+$this->registerJsFile('@web/js/birth/birth.js', ['depends' => 'yii\web\JqueryAsset']);
+$this->registerJsFile('@web/js/birth/birthradio.js', ['depends' => 'yii\web\JqueryAsset']);
+$this->registerJsFile('@web/js/birth/birthBsToAd.js', ['depends' => 'yii\web\JqueryAsset']);
 ?>
 <div class="card">
     <div class="card-body">
@@ -83,16 +83,31 @@ $this->registerJsFile('@web/js/birthradio.js', ['depends' => 'yii\web\JqueryAsse
                     <div class="form-heading">दर्ता मिति(वि.स.)</div>
                     <div class="row">
                         <div class="col-sm-4 b_reg_year">
-                            <?= $form->field($model, 'reg_year')->textInput(['maxlength' => 4, 'class' => 'form-control form-control-sm nepalify', 'placeholder' => 'साल', 'id' => 'b_reg_year'])->label(' ')  ?>
+                            <?= $form->field($model, 'reg_year')->textInput(['onchange' => 'regAd()', 'maxlength' => 4, 'class' => 'form-control form-control-sm ', 'placeholder' => 'साल', 'id' => 'b_reg_year'])->label(' ')  ?>
                         </div>
                         <div class="col-sm-4 ">
-                            <?= $form->field($model, 'reg_month')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm nepalify', 'placeholder' => 'महिना', 'id' => 'b_reg_month'])->label(' ')  ?>
+                            <?= $form->field($model, 'reg_month')->textInput(['onchange' => 'regAd()', 'maxlength' => 2, 'class' => 'form-control form-control-sm ', 'placeholder' => 'महिना', 'id' => 'b_reg_month'])->label(' ')  ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'reg_day')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm day nepalify', 'placeholder' => 'गते', 'id' => 'b_reg_day'])->label(' ') ?>
+                            <?= $form->field($model, 'reg_day')->textInput(['onchange' => 'regAd()', 'maxlength' => 2, 'class' => 'form-control form-control-sm ', 'placeholder' => 'गते', 'id' => 'b_reg_day'])->label(' ') ?>
                         </div>
                         <div class="error-message"></div>
 
+                    </div>
+
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-heading">दर्ता मिति(ई.स.)</div>
+                    <div class="row">
+                        <div class="col-sm-4 ad_reg_year">
+                            <?= $form->field($model, 'ad_reg_year')->textInput(['maxlength' => 4, 'class' => 'form-control form-control-sm', 'placeholder' => 'साल', 'id' => 'ad_reg_year'])->label(' ')  ?>
+                        </div>
+                        <div class="col-sm-4 ">
+                            <?= $form->field($model, 'ad_reg_month')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm ', 'placeholder' => 'महिना', 'id' => 'ad_reg_month'])->label(' ')  ?>
+                        </div>
+                        <div class="col-sm-4">
+                            <?= $form->field($model, 'ad_reg_day')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm day', 'placeholder' => 'गते', 'id' => 'ad_reg_day'])->label(' ') ?>
+                        </div>
                     </div>
 
                 </div>
@@ -154,15 +169,30 @@ $this->registerJsFile('@web/js/birthradio.js', ['depends' => 'yii\web\JqueryAsse
                     <div class="form-heading">जन्म मिति(वि.स.)</div>
                     <div class="row">
                         <div class="col-sm-4 b_birth_year ">
-                            <?= $form->field($model, 'birth_year')->textInput(['maxlength' => 4, 'class' => 'form-control form-control-sm nepalify', 'placeholder' => 'साल', 'id' => 'b_birth_year'])->label(' ') ?>
+                            <?= $form->field($model, 'birth_year')->textInput(['onchange' => 'birthAd()', 'maxlength' => 4, 'class' => 'form-control form-control-sm ', 'placeholder' => 'साल', 'id' => 'b_birth_year'])->label(' ') ?>
                         </div>
                         <div class="col-sm-4 ">
-                            <?= $form->field($model, 'birth_month')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm nepalify', 'placeholder' => 'महिना', 'id' => 'b_birth_month'])->label(' ') ?>
+                            <?= $form->field($model, 'birth_month')->textInput(['onchange' => 'birthAd()', 'maxlength' => 2, 'class' => 'form-control form-control-sm ', 'placeholder' => 'महिना', 'id' => 'b_birth_month'])->label(' ') ?>
                         </div>
                         <div class="col-sm-4 ">
-                            <?= $form->field($model, 'birth_day')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm nepalify', 'placeholder' => 'गते', 'id' => 'b_birth_day'])->label(' ') ?>
+                            <?= $form->field($model, 'birth_day')->textInput(['onchange' => 'birthAd()', 'maxlength' => 2, 'class' => 'form-control form-control-sm ', 'placeholder' => 'गते', 'id' => 'b_birth_day'])->label(' ') ?>
                         </div>
                     </div>
+                </div>
+                <div class="col-sm-3 ">
+                    <div class="form-heading">जन्म मिति(ई.स.)</div>
+                    <div class="row">
+                        <div class="col-sm-4 ad_birth_year">
+                            <?= $form->field($model, 'ad_birth_year')->textInput(['maxlength' => 4, 'class' => 'form-control form-control-sm ', 'placeholder' => 'साल', 'id' => 'ad_birth_year'])->label(' ')  ?>
+                        </div>
+                        <div class="col-sm-4 ">
+                            <?= $form->field($model, 'ad_birth_month')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'ad_birth_month'])->label(' ')  ?>
+                        </div>
+                        <div class="col-sm-4">
+                            <?= $form->field($model, 'ad_birth_day')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm day ', 'placeholder' => 'गते', 'id' => 'ad_birth_day'])->label(' ') ?>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="col-sm-1">
                     <div class="form-heading">लिङ्ग</div>
@@ -295,7 +325,7 @@ $this->registerJsFile('@web/js/birthradio.js', ['depends' => 'yii\web\JqueryAsse
                     <div class="form-heading">नागरिकताको विवरण</div>
                     <div class="row">
                         <div class="col-sm-12 b_father_ctz_no">
-                            <?= $form->field($model, 'father_ctz_no')->textInput(['maxlength' => 14, 'class' => 'form-control form-control-sm nepalify', 'placeholder' => 'नागरिकता नं.', 'id' => 'b_father_ctz_no'])->label(' ') ?>
+                            <?= $form->field($model, 'father_ctz_no')->textInput(['maxlength' => 14, 'class' => 'form-control form-control-sm ', 'placeholder' => 'नागरिकता नं.', 'id' => 'b_father_ctz_no'])->label(' ') ?>
                         </div>
                     </div>
                 </div>
@@ -303,17 +333,31 @@ $this->registerJsFile('@web/js/birthradio.js', ['depends' => 'yii\web\JqueryAsse
                     <div class="form-heading">जारी मिति(वि.स.)</div>
                     <div class="row">
                         <div class="col-sm-4 b_father_ctz_year">
-                            <?= $form->field($model, 'father_ctz_year')->textInput(['maxlength' => 4, 'class' => 'form-control form-control-sm nepalify', 'placeholder' => 'साल', 'id' => 'b_father_ctz_year'])->label(' ') ?>
+                            <?= $form->field($model, 'father_ctz_year')->textInput(['onchange' => 'regAd()', 'maxlength' => 4, 'class' => 'form-control form-control-sm', 'placeholder' => 'साल', 'id' => 'b_father_ctz_year'])->label(' ') ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'father_ctz_month')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm nepalify', 'placeholder' => 'महिना', 'id' => 'b_father_ctz_month'])->label(' ') ?>
+                            <?= $form->field($model, 'father_ctz_month')->textInput(['onchange' => 'regAd()', 'maxlength' => 2, 'class' => 'form-control form-control-sm ', 'placeholder' => 'महिना', 'id' => 'b_father_ctz_month'])->label(' ') ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'father_ctz_day')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm nepalify', 'placeholder' => 'गते', 'id' => 'b_father_ctz_day'])->label(' ') ?>
+                            <?= $form->field($model, 'father_ctz_day')->textInput(['onchange' => 'regAd()', 'maxlength' => 2, 'class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'b_father_ctz_day'])->label(' ') ?>
                         </div>
                     </div>
-
                 </div>
+                <div class="col-sm-4">
+                    <div class="form-heading">जारी मिति(ई.स.)</div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <?= $form->field($model, 'ad_father_ctz_year')->textInput(['maxlength' => 4, 'class' => 'form-control form-control-sm ', 'placeholder' => 'साल', 'id' => 'ad_father_ctz_year'])->label(' ') ?>
+                        </div>
+                        <div class="col-sm-4">
+                            <?= $form->field($model, 'ad_father_ctz_month')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm ', 'placeholder' => 'महिना', 'id' => 'ad_father_ctz_month'])->label(' ') ?>
+                        </div>
+                        <div class="col-sm-4">
+                            <?= $form->field($model, 'ad_father_ctz_day')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'ad_father_ctz_day'])->label(' ') ?>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-sm-2">
                     <div class="form-heading">जारी जिल्ला</div>
                     <div class="row">
@@ -434,7 +478,7 @@ $this->registerJsFile('@web/js/birthradio.js', ['depends' => 'yii\web\JqueryAsse
                     <div class="form-heading">नागरिकताको विवरण</div>
                     <div class="row">
                         <div class="col-sm-12 b_mother_ctz_no">
-                            <?= $form->field($model, 'mother_ctz_no')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm nepalify b_mother_ctz_no', 'placeholder' => 'नागरिकता नं.', 'id' => 'b_mother_ctz_no'])->label(' ') ?>
+                            <?= $form->field($model, 'mother_ctz_no')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm  b_mother_ctz_no', 'placeholder' => 'नागरिकता नं.', 'id' => 'b_mother_ctz_no'])->label(' ') ?>
                         </div>
                     </div>
                 </div>
@@ -442,13 +486,28 @@ $this->registerJsFile('@web/js/birthradio.js', ['depends' => 'yii\web\JqueryAsse
                     <div class="form-heading">जारी मिति(वि.स.)</div>
                     <div class="row">
                         <div class="col-sm-4 b_mother_ctz_year">
-                            <?= $form->field($model, 'mother_ctz_year')->textInput(['maxlength' => 4, 'class' => 'form-control form-control-sm nepalify', 'placeholder' => 'साल', 'id' => 'b_mother_ctz_year'])->label(' ') ?>
+                            <?= $form->field($model, 'mother_ctz_year')->textInput(['onchange' => 'motherAd()', 'maxlength' => 4, 'class' => 'form-control form-control-sm ', 'placeholder' => 'साल', 'id' => 'b_mother_ctz_year'])->label(' ') ?>
                         </div>
                         <div class="col-sm-4 ">
-                            <?= $form->field($model, 'mother_ctz_month')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm nepalify', 'placeholder' => 'महिना', 'id' => 'b_mother_ctz_month'])->label(' ') ?>
+                            <?= $form->field($model, 'mother_ctz_month')->textInput(['onchange' => 'motherAd()', 'maxlength' => 2, 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'b_mother_ctz_month'])->label(' ') ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'mother_ctz_day')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm nepalify', 'placeholder' => 'गते', 'id' => 'b_mother_ctz_day'])->label(' ') ?>
+                            <?= $form->field($model, 'mother_ctz_day')->textInput(['onchange' => 'motherAd()', 'maxlength' => 2, 'class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'b_mother_ctz_day'])->label(' ') ?>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-4 hidden">
+                    <div class="form-heading">दर्ता मिति(ई.स.)</div>
+                    <div class="row">
+                        <div class="col-sm-4 ">
+                            <?= $form->field($model, 'ad_mother_ctz_year')->textInput(['maxlength' => 4, 'class' => 'form-control form-control-sm', 'placeholder' => 'साल', 'id' => 'ad_mother_ctz_year'])->label(' ')  ?>
+                        </div>
+                        <div class="col-sm-4 ">
+                            <?= $form->field($model, 'ad_mother_ctz_month')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'ad_mother_ctz_month'])->label(' ')  ?>
+                        </div>
+                        <div class="col-sm-4">
+                            <?= $form->field($model, 'ad_mother_ctz_day')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm day', 'placeholder' => 'गते', 'id' => 'ad_mother_ctz_day'])->label(' ') ?>
                         </div>
                     </div>
 
@@ -602,7 +661,7 @@ $this->registerJsFile('@web/js/birthradio.js', ['depends' => 'yii\web\JqueryAsse
                                     <?= $form->field($model, 'inf_ctz_no')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm b_inf_ctz_no', 'placeholder' => 'नागरिकता नं.', 'id' => 'b_inf_ctz_no'])->label(' ') ?>
                                 </div>
                             </div>
-                            <div class="col-sm-6 nepalify">
+                            <div class="col-sm-6">
                                 <div class="form-heading">जारी मिति</div>
                                 <div class="row">
                                     <div class="col-sm-4 b_inf_ctz_year">
@@ -613,6 +672,20 @@ $this->registerJsFile('@web/js/birthradio.js', ['depends' => 'yii\web\JqueryAsse
                                     </div>
                                     <div class="col-sm-4 ">
                                         <?= $form->field($model, 'inf_ctz_day')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'b_inf_ctz_day'])->label(' ') ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 hidden">
+                                <div class="form-heading">जारी मिति</div>
+                                <div class="row">
+                                    <div class="col-sm-4 ">
+                                        <?= $form->field($model, 'ad_inf_ctz_year')->textInput(['maxlength' => 4, 'class' => 'form-control form-control-sm b_inf_ctz_year', 'placeholder' => 'साल', 'id' => 'ad_inf_ctz_year'])->label(' ') ?>
+                                    </div>
+                                    <div class="col-sm-4 ">
+                                        <?= $form->field($model, 'ad_inf_ctz_month')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'ad_inf_ctz_month'])->label(' ') ?>
+                                    </div>
+                                    <div class="col-sm-4 ">
+                                        <?= $form->field($model, 'ad_inf_ctz_day')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'ad_inf_ctz_day'])->label(' ') ?>
                                     </div>
                                 </div>
                             </div>
@@ -673,5 +746,9 @@ $this->registerJsFile('@web/js/birthradio.js', ['depends' => 'yii\web\JqueryAsse
     .c6 {
         flex-basis: 35%;
         max-width: 35%;
+    }
+
+    .hidden {
+        display: none;
     }
 </style>
