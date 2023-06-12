@@ -366,7 +366,7 @@ $this->registerJsFile('@web/js/marriage/marriagecheck.js', ['depends' => 'yii\we
             <div class="row form-group">
                 <div class="col-sm-6">
                     <div class="form-heading">बाबुको नाम(नेपालीमा)</div>
-                    <div class="row">
+                    <div class="row nepalify">
                         <div class="col-sm-4">
                             <?= $form->field($model, 'g_father_fname')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'पहिलो नाम', 'id' => 'father_fname'])->label(' ') ?>
                         </div>
@@ -380,7 +380,7 @@ $this->registerJsFile('@web/js/marriage/marriagecheck.js', ['depends' => 'yii\we
                 </div>
                 <div class="col-sm-6">
                     <div class="form-heading">बाबुको नाम(In English)</div>
-                    <div class="row nepalify">
+                    <div class="row">
                         <div class="col-sm-4">
                             <?= $form->field($model, 'g_father_fname_eng')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'पहिलो नाम', 'id' => 'father_fname'])->label(' ') ?>
                         </div>
