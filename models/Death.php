@@ -73,14 +73,15 @@ class Death extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ward'], 'integer'],
-            [['d_scanned_image'], 'file'], 
+
+            [['d_scanned_image'], 'file'],
             [['district', 'local_level', 'place_of_death', 'permanent_address', 'ctz_district', 'inf_ctz_district'], 'string', 'max' => 50],
             [['reg_no', 'gender', 'marital_status'], 'string', 'max' => 10],
-            [['reg_year', 'birth_year', 'death_year', 'ctz_year', 'inf_ctz_year'], 'string', 'max' => 4],
-            [['reg_month', 'reg_day', 'birth_month', 'birth_day', 'death_month', 'death_day', 'ctz_month', 'ctz_day', 'inf_ctz_month', 'inf_ctz_day'], 'string', 'max' => 2],
-            [['registrar_name', 'fname', 'mname', 'lname', 'education', 'religion', 'mother_tongue', 'grand_fname', 'grand_mname', 'grand_lname', 'father_fname', 'father_mname', 'father_lname', 'spouse_fname', 'spouse_mname', 'spouse_lname', 'reason_of_death', 'inf_fname', 'inf_mname', 'inf_lname'], 'string', 'max' => 40],
+            [['reg_year', 'ad_reg_year', 'birth_year', 'ad_birth_year', 'death_year', 'ad_death_year', 'ctz_year', 'ad_ctz_year', 'inf_ctz_year', 'ad_inf_ctz_year'], 'string', 'max' => 4],
+            [['reg_month', 'ad_reg_month', 'reg_day', 'ad_reg_day', 'birth_month', 'ad_birth_month', 'birth_day', 'ad_birth_day', 'death_month', 'ad_death_month', 'death_day', 'ad_death_day', 'ctz_month', 'ad_ctz_month', 'ctz_day', 'ad_ctz_day',  'inf_ctz_month', 'ad_inf_ctz_month', 'inf_ctz_day', 'ad_inf_ctz_day'], 'string', 'max' => 2],
+            [['registrar_name', 'fname', 'fname_eng', 'mname', 'mname_eng', 'lname', 'lname_eng', 'education', 'religion', 'mother_tongue', 'grand_fname', 'grand_fname_eng', 'grand_mname', 'grand_mname_eng', 'grand_lname', 'grand_lname_eng', 'father_fname', 'father_fname_eng', 'father_mname', 'father_mname_eng', 'father_lname', 'father_lname_eng', 'spouse_fname', 'spouse_fname_eng', 'spouse_mname', 'spouse_mname_eng', 'spouse_lname', 'spouse_lname_eng', 'reason_of_death', 'inf_fname', 'inf_fname_eng', 'inf_mname', 'inf_mname_eng', 'inf_lname', 'inf_lname_eng'], 'string', 'max' => 40],
             [['ctz_no', 'inf_ctz_no'], 'string', 'max' => 15],
+            [['relation', 'ward'], 'string', 'max' => 20],
         ];
     }
 

@@ -12,6 +12,7 @@ use app\controllers\Pagination;
 use yii\data\ActiveDataProvider;
 use kartik\mpdf\Pdf;
 use yii;
+use yii\web\ForbiddenHttpException;
 
 /**
  * BirthController implements the CRUD actions for Birth model.
@@ -61,6 +62,7 @@ class BirthController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+
         ]);
     }
 
@@ -113,28 +115,40 @@ class BirthController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-        $model->scanned_image = $model->scanned_image;
-        //retrieve existing image file name from the database
-        $existingImageFileName = $model->scanned_image;
-        if ($this->request->isPost && $model->load($this->request->post())) {
+        if (Yii::$app->user->can('update-birth')) {
+            $model = $this->findModel($id);
+            $model->scanned_image = $model->scanned_image;
+            //retrieve existing image file name from the database
+            $existingImageFileName = $model->scanned_image;
+            if ($this->request->isPost && $model->load($this->request->post())) {
 
-            if (UploadedFile::getInstance($model, 'scanned_image') != null) {
-                $model->scanned_image = UploadedFile::getInstance($model, 'scanned_image'); //upload files
-                $fileName = $model->fname . '-' . $model->mname . '-' . $model->lname . '.' . $model->scanned_image->extension; //save as timestamp+imageextension
-                $model->scanned_image->saveAs('uploads/' . $fileName); //save in directory
-                $model->scanned_image = $fileName; //save in database
-            } else {
-                $model->scanned_image = $existingImageFileName; //assign existing image file name to the model
+                if (UploadedFile::getInstance($model, 'scanned_image') != null) {
+                    $model->scanned_image = UploadedFile::getInstance($model, 'scanned_image'); //upload files
+                    $fileName = $model->fname . '-' . $model->mname . '-' . $model->lname . '.' . $model->scanned_image->extension; //save as timestamp+imageextension
+                    $model->scanned_image->saveAs('uploads/' . $fileName); //save in directory
+                    $model->scanned_image = $fileName; //save in database
+                } else {
+                    $model->scanned_image = $existingImageFileName; //assign existing image file name to the model
+                }
+                $model->save();
+                return $this->redirect(['view', 'id' => $model->id]);
             }
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        } else {
+            Yii::$app->session->setFlash('alert', 'You do not have permission to update birth records.');
+            return $this->redirect(['index']);
+        }
     }
+
+    public function actionErrorPage()
+    {
+        $alert = Yii::$app->session->getFlash('alert');
+        return $this->render('index', ['alert' => $alert]);
+    }
+
 
     /**
      * Deletes an existing Birth model.

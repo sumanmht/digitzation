@@ -18,7 +18,8 @@ $this->registerCssFile('https://fonts.googleapis.com/css?family=Source+Sans+Pro:
 $assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
 $this->registerCssFile('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
 $this->registerJsFile(Yii::$app->request->baseUrl . '/js/nepalitrad.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
-$this->registerJsFile(Yii::$app->request->baseUrl . '/js/birthBsToAd.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+
+$this->registerJsFile(Yii::$app->request->baseUrl . '/js/image.js', ['depends' => 'yii\web\JqueryAsset']);
 
 //$this->registerJsFile(Yii::$app->request->baseUrl.'/js/jquery.min.js',['depends' => [\yii\web\JqueryAsset::className()]]);
 //this->registerCssFile('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback');

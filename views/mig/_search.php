@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
+
 /** @var yii\web\View $this */
 /** @var app\models\MigSearch $model */
 /** @var yii\widgets\ActiveForm $form */
@@ -20,7 +21,7 @@ use yii\widgets\Pjax;
     ]); ?>
     <div class="row form-group">
         <div class="col">
-            <?= $form->field($model, 'migsearch')->label('')->textInput(['placeholder' => 'Search', 'class'=>'form-control form-control-sm'])->label(false) ?>
+            <?= $form->field($model, 'migsearch')->label('')->textInput(['placeholder' => 'Search', 'class' => 'form-control form-control-sm'])->label(false) ?>
         </div>
         <div class="col-auto">
             <?= Html::submitButton('Search', ['class' => 'btn btn-primary btn-sm']) ?>

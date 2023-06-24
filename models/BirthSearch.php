@@ -17,6 +17,7 @@ class BirthSearch extends Birth
      */
 
     public $birthsearch;
+
     public function rules()
     {
         return [
@@ -50,9 +51,10 @@ class BirthSearch extends Birth
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
-                'pageSize' => 5,  // Limit the number of items per page to 10
-            ],
+
+            // 'pagination' => [
+            //     'pageSize' => 5,  // Limit the number of items per page to 10
+            // ],
             // 'sort' => [
             //     'defaultOrder' => [
             //         'p_ward' => SORT_ASC,

@@ -1,6 +1,6 @@
 <?php
 
-
+use Mpdf\Image\ImageTypeGuesser;
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
@@ -14,6 +14,12 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'defaultRoles' => ['guest'],
+            // uncomment if you want to cache RBAC items hierarchy
+            // 'cache' => 'cache',
+        ],
         'engToUni' => [
             'class' => 'app\components\EngToUni',
         ],

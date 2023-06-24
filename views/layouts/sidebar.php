@@ -61,11 +61,11 @@ AppAsset::register($this);
                     //         ['label' => 'Inactive Page', 'iconStyle' => 'far'],
                     //     ]
                     // ],
-                    ['label' => 'Birth', 'icon' => 'th', 'url' => ['birth/index']],
-                    ['label' => 'Death', 'icon' => 'th', 'url' => ['death/index']],
-                    ['label' => 'Marriage', 'icon' => 'th', 'url' => ['marriage/index']],
-                    ['label' => 'Migration', 'icon' => 'th', 'url' => ['mig/index']],
-                    ['label' => 'Divorce', 'icon' => 'th', 'url' => ['divorce/index']],
+                    ['label' => 'Birth', 'icon' => 'fa-solid fa-user fa-bounce', 'url' => ['birth/index']],
+                    ['label' => 'Death', 'icon' => 'fa-solid fa-bed', 'url' => ['death/index']],
+                    ['label' => 'Marriage', 'icon' => 'bi bi-people-fill', 'url' => ['marriage/index']],
+                    ['label' => 'Migration', 'icon' => 'fas fa-envelope', 'url' => ['mig/index']],
+                    ['label' => 'Divorce', 'icon' => 'bi bi-heartbreak-fill', 'url' => ['divorce/index']],
                     //['label' => 'Gender', 'icon' => 'th', 'url' => ['gender/index']],
 
                 ],

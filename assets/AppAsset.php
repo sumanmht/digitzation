@@ -29,9 +29,11 @@ class AppAsset extends AssetBundle
         'js/birth/birthBsToAd.js',
         'js/birth/birth.js',
         'js/nepa.js',
-        'js/hidden.js',
-        'js/marriage/marriageBsToAd.js',
 
+        'js/marriage/marriageBsToAd.js',
+        'js/marriage/marriage.js',
+        'js/image.js',
+        'js/migration/migBsToAd.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

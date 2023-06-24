@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="mig-update">
 
-    
+
 
     <?= $this->render('_form', [
         'model' => $model,

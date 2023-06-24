@@ -16,15 +16,15 @@ AppAsset::register($this);
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="bi bi-distribute-vertical"></i></a>
+            <a class="nav-link" data-widget="pushmenu" href="<?= \yii\helpers\Url::home() ?>" class="nav-link"" role=" button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="<?=\yii\helpers\Url::home()?>" class="nav-link">Home</a>
+            <a href="<?= \yii\helpers\Url::home() ?>" class="nav-link">Home</a>
         </li>
         <!-- <li class="nav-item d-none d-sm-inline-block">
             <a href="#" class="nav-link">Contact</a>
         </li> -->
-        
+
     </ul>
 
     <ul class="navbar-nav ml-auto">
@@ -36,7 +36,7 @@ AppAsset::register($this);
                 <i class="fas fa-expand-arrows-alt"></i>
             </a>
         </li>
-        
+
     </ul>
 </nav>
 
@@ -46,7 +46,7 @@ AppAsset::register($this);
 <!-- 
     <?php
     NavBar::begin([
-        
+
         'options' => [
             'class' => 'navbar navbar-expand-md navbar-dark bg-dark ',
         ],
@@ -55,18 +55,17 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index'], 'class' => "nav-link", 'data-widget' => "push-menu", 'href' => "#",
-             'role' => "button",
-            'items' => [
-                'class' => "fas fa-bars"
-            ]
-                ],
+            [
+                'label' => 'Home', 'url' => ['/site/index'], 'class' => "nav-link", 'data-widget' => "push-menu", 'href' => "#",
+                'role' => "button",
+                'items' => [
+                    'class' => "fas fa-bars"
+                ]
+            ],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
+            Yii::$app->user->isGuest ? (['label' => 'Login', 'url' => ['/site/login']]
+            ) : ('<li>'
                 . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
                 . Html::submitButton(
                     'Logout (' . Yii::$app->user->identity->username . ')',

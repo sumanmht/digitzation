@@ -22,8 +22,29 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= DetailView::widget([
                         'model' => $model,
                         'options' => ['style' => 'font-size:12px;', 'class' => 'table table-bordered table-hover table-condensed '],
-                        'template' => '<tr><th style="width:40%;">{label}</th><td style="width:60%; ">{value}</td></tr>',
+                        'template' =>   function ($attribute, $index, $widget) {
+                            if ($index === 0) {
+                                return '<tr><th colspan="2" style="text-align:center">दर्ता विवरण</th></tr>';
+                            }
+                            return '<tr><th style="width:40%">' . $attribute['label'] . '</th><td style="width:60%">' . $attribute['value'] . '</td></tr>';
+                        },
                         'attributes' => [
+                            [
+                                'attribute' => 'district',
+                                'label' => '',
+                                'format' => 'raw',
+                                'value' => function ($model) {
+                                    return '';
+                                },
+                            ],
+                            [
+                                'attribute' => 'district',
+                                'label' =>   'ठेगाना',
+                                'value' => function ($form, $widget) {
+                                    $model = $widget->model;
+                                    return $model->district . '-' . $model->local_level . '-' . $model->ward;
+                                }
+                            ],
                             [
                                 'attribute' => 'reg_no',
                                 'label' =>   'दर्ता नं.',
@@ -34,10 +55,26 @@ $this->params['breadcrumbs'][] = $this->title;
                             ],
                             [
                                 'attribute' => 'reg_year',
-                                'label' =>   'दर्ता मिति(वि.स.)',
+                                'label' =>   'दर्ता मिति',
                                 'value' => function ($form, $widget) {
                                     $model = $widget->model;
-                                    return $model->reg_year . '-' . $model->reg_month . '-' . $model->reg_day;
+                                    return
+                                        'वि.स.' . Yii::$app->engToUni->convert($model->reg_year) . '-' .
+                                        Yii::$app->engToUni->convert($model->reg_month) . '-' .
+                                        Yii::$app->engToUni->convert($model->reg_day) . ' / ' .
+                                        $model->ad_reg_year . '-' . $model->ad_reg_month . '-' . $model->ad_reg_day . ' A.D.';
+                                }
+                            ],
+                            [
+                                'attribute' => 'migration_year',
+                                'label' =>   'बसाईसराई मिति',
+                                'value' => function ($form, $widget) {
+                                    $model = $widget->model;
+                                    return
+                                        'वि.स.' . Yii::$app->engToUni->convert($model->migration_year) . '-' .
+                                        Yii::$app->engToUni->convert($model->migration_month) . '-' .
+                                        Yii::$app->engToUni->convert($model->migration_day) . ' / ' .
+                                        $model->ad_migration_year . '-' . $model->ad_migration_month . '-' . $model->ad_migration_day . ' A.D.';
                                 }
                             ],
                             [
@@ -55,22 +92,40 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= DetailView::widget([
                         'model' => $model,
                         'options' => ['style' => 'font-size:12px;', 'class' => 'table table-bordered table-hover table-condensed '],
-                        'template' => '<tr><th style="width:40%; ">{label}</th><td style="width:60%; ">{value}</td></tr>',
+                        'template' =>   function ($attribute, $index, $widget) {
+                            if ($index === 0) {
+                                return '<tr><th colspan="2" style="text-align:center">सूचकको विवरण</th></tr>';
+                            }
+                            return '<tr><th style="width:40%">' . $attribute['label'] . '</th><td style="width:60%">' . $attribute['value'] . '</td></tr>';
+                        },
                         'attributes' => [
+                            [
+                                'attribute' => 'inf_fname',
+                                'label' => '',
+                                'format' => 'raw',
+                                'value' => function ($model) {
+                                    return '';
+                                },
+                            ],
                             [
                                 'attribute' => 'inf_fname',
                                 'label' =>   'सुचकको नाम',
                                 'value' => function ($form, $widget) {
                                     $model = $widget->model;
-                                    return $model->inf_fname . ' ' . $model->inf_mname . ' ' . $model->inf_lname;
+                                    return $model->inf_fname . ' ' . $model->inf_mname . ' ' . $model->inf_lname . ' / ' .
+                                        $model->inf_fname_eng . ' ' . $model->inf_mname_eng . ' ' . $model->inf_lname_eng;
                                 }
                             ],
                             [
                                 'attribute' => 'inf_birth_year',
-                                'label' =>   'जन्म मिति(वि.स.)',
+                                'label' =>   'जन्म मिति',
                                 'value' => function ($form, $widget) {
                                     $model = $widget->model;
-                                    return $model->inf_birth_year . '-' . $model->inf_birth_month . '-' . $model->inf_birth_day;
+                                    return
+                                        'वि.स.' . Yii::$app->engToUni->convert($model->inf_birth_year) . '-' .
+                                        Yii::$app->engToUni->convert($model->inf_birth_month) . '-' .
+                                        Yii::$app->engToUni->convert($model->inf_birth_day) . ' / ' .
+                                        $model->ad_inf_birth_year . '-' . $model->ad_inf_birth_month . '-' . $model->ad_inf_birth_day . ' A.D.';
                                 }
                             ],
                             [
@@ -87,7 +142,21 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'label' =>   'नागरिकता विवरण',
                                 'value' => function ($form, $widget) {
                                     $model = $widget->model;
-                                    return $model->inf_ctz_no . ' / ' . $model->inf_ctz_year . '-'  . $model->inf_ctz_month . '-' . $model->inf_ctz_day . ' / ' . $model->inf_ctz_district;
+                                    return
+                                        Yii::$app->engToUni->convert($model->inf_ctz_no) . ' / ' .
+                                        'वि.स.' . Yii::$app->engToUni->convert($model->inf_ctz_year) . '-'  .
+                                        Yii::$app->engToUni->convert($model->inf_ctz_month) . '-' .
+                                        Yii::$app->engToUni->convert($model->inf_ctz_day) . ' / ' .
+                                        $model->inf_ctz_district;
+                                },
+                            ],
+                            [
+                                'attribute' => 'inf_ctz_no.',
+                                'label' =>   'Citizenship Details',
+                                'value' => function ($form, $widget) {
+                                    $model = $widget->model;
+                                    return $model->inf_ctz_no . ' / ' . $model->inf_ctz_year . '-'  . $model->inf_ctz_month . '-' . $model->inf_ctz_day . ' / ' .
+                                        Yii::$app->engDis->convert($model->inf_ctz_district);
                                 },
                             ],
 
@@ -124,7 +193,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'attributes' => 'm_scanned_image',
                             'label' => '',
                             'value' => Yii::getAlias('@web/uploads') . '/' . $model->m_scanned_image,
-                            'format' => ['image', ['class' => 'img-fluid']]
+                            'format' => ['image', ['class' => 'img-fluid full-screen-image']]
                         ],
                     ]
                 ]) ?>
@@ -148,10 +217,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             $html .= '<tr>';
                             $html .= '<th>क्र.स.</th>';
                             $html .= '<th>नाम</th>';
-                            $html .= '<th>जन्म मिति(वि.स.)</th>';
-                            $html .= '<th>नागरिकता नं. </th>';
-                            $html .= '<th>जारी मिति(वि.स.)</th>';
-                            $html .= '<th>जारी जिल्ला</th>';
+                            $html .= '<th>जन्म मिति</th>';
+                            $html .= '<th>नागरिकता विवरण</th>';
+                            $html .= '<th>Citizenship Details</th>';
+                            // $html .= '<th>जारी जिल्ला</th>';
                             $html .= '<th>लिङ्ग</th>';
                             $html .= '<th>सुचकसँको नाता</th>';
                             $html .= '</tr>';
@@ -160,12 +229,19 @@ $this->params['breadcrumbs'][] = $this->title;
                             $serialNumber = 1;
                             foreach ($fams as $data) {
                                 $html .= '<tr>';
-                                $html .= '<td>' . $serialNumber++ . '</td>';
-                                $html .= '<td>' . $data['mem_fname'] . ' ' . $data['mem_mname'] . ' ' . $data['mem_lname'] . '</td>';
-                                $html .= '<td>' . $data['birth_year'] . ' ' . $data['birth_month'] . ' ' . $data['birth_day'] . '</td>';
-                                $html .= '<td>' . $data['mem_ctz_no'] . '</td>';
-                                $html .= '<td>' . $data['mem_ctz_year'] . ' ' . $data['mem_ctz_month'] . ' ' . $data['mem_ctz_day'] . '</td>';
-                                $html .= '<td>' . $data['mem_ctz_district'] . '</td>';
+                                $html .= '<td>' . Yii::$app->engToUni->convert($serialNumber++) . '</td>';
+                                $html .= '<td>' . $data['mem_fname'] . ' ' . $data['mem_mname'] . ' ' . $data['mem_lname'] . ' / ' .
+                                    $data['mem_fname_eng'] . ' ' . $data['mem_mname_eng'] . ' ' . $data['mem_lname_eng'] . '</td>';
+                                $html .= '<td>' . 'वि.स. ' . $data['birth_year'] . '-' . $data['birth_month'] . '-' . $data['birth_day'] . ' / ' .
+                                    $data['ad_birth_year'] . '-' . $data['ad_birth_month'] . '-' . $data['ad_birth_day'] . ' A.D.' . '</td>';
+                                $html .= '<td>' . Yii::$app->engToUni->convert($data['mem_ctz_no']) . ' / ' .
+                                    'वि.स. ' . Yii::$app->engToUni->convert($data['mem_ctz_year']) . '-' .
+                                    Yii::$app->engToUni->convert($data['mem_ctz_month']) . '-' .
+                                    Yii::$app->engToUni->convert($data['mem_ctz_day']) . ' / ' .
+                                    $data['mem_ctz_district'] . '</td>';
+                                $html .= '<td>' . $data['mem_ctz_no'] . ' / ' . $data['ad_mem_ctz_year'] . '-' .
+                                    $data['ad_mem_ctz_month'] . '-' . $data['ad_mem_ctz_day'] . ' A.D.' . ' / ' .
+                                    Yii::$app->engDis->convert($data['mem_ctz_district']) . '</td>';
                                 $html .= '<td>' . $data['mem_gender'] . '</td>';
                                 $html .= '<td>' . $data['relation_with_inf'] . '</td>';
                                 $html .= '</tr>';

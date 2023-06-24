@@ -9,7 +9,7 @@ use yii\widgets\Pjax;
 use app\components\CustomPager;
 use kartik\export\ExportMenu;
 use kartik\mpdf\Pdf;
-
+use yii\widgets\ActiveForm;
 
 // use yii\widgets\ListView;
 
@@ -25,6 +25,7 @@ $this->registerJsFile('@web/js/nepa.js', ['depends' => 'yii\web\JqueryAsset']);
 
 
 ?>
+
 <div class="card">
     <div class="birth-index">
         <?php Pjax::begin(); ?>
@@ -34,6 +35,7 @@ $this->registerJsFile('@web/js/nepa.js', ['depends' => 'yii\web\JqueryAsset']);
                     <?= Html::a('Create Birth', ['create'], ['class' => 'btn btn-success btn-sm']) ?>
                     <!-- <?= Html::a('Export Data', ['export'], ['class' => 'btn btn-primary btn-sm']) ?> -->
                 </div>
+
                 <div class="col-sm-9 ">
                     <div class="row">
                         <div class="col">
@@ -62,21 +64,21 @@ $this->registerJsFile('@web/js/nepa.js', ['depends' => 'yii\web\JqueryAsset']);
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
                         [
-                            'label' => 'ठेगाना',
+                            'label' => 'Permanent Address',
                             'attribute' => 'p_district',
                             'value' => function ($model) {
                                 return $model->p_district . '-' . $model->p_muni;
                             }
                         ],
                         [
-                            'label' => 'वडा',
+                            'label' => 'Ward No.',
                             'attribute' => 'p_ward',
                             'value' => function ($model) {
                                 return $model->p_ward;
                             }
                         ],
                         [
-                            'label' => 'दर्ता नं.',
+                            'label' => 'Registration No.',
                             'attribute' => 'reg_no',
                             'value' => function ($model) {
                                 return $model->reg_no;
@@ -84,7 +86,7 @@ $this->registerJsFile('@web/js/nepa.js', ['depends' => 'yii\web\JqueryAsset']);
                         ],
 
                         [
-                            'label' => 'दर्ता मिति(वि.स.)',
+                            'label' => 'Registration Date(B.S.)',
                             'attribute' => 'reg_year',
                             'value' => function ($model) {
                                 return Yii::$app->engToUni->convert($model->reg_year) . '-' .
@@ -94,14 +96,14 @@ $this->registerJsFile('@web/js/nepa.js', ['depends' => 'yii\web\JqueryAsset']);
                         ],
                         [
                             'attribute' => 'fname',
-                            'label' =>   'शिशुको नाम',
+                            'label' =>   'Name',
                             'value' => function ($model) {
                                 return $model->fname . ' ' . $model->mname . ' ' . $model->lname;
                             }
                         ],
                         [
                             'attribute' => 'birth_year',
-                            'label' =>   'जन्म मिति(वि.स.)',
+                            'label' =>   'Date of Birth',
                             'value' => function ($model) {
                                 return Yii::$app->engToUni->convert($model->birth_year) . '-' .
                                     Yii::$app->engToUni->convert($model->birth_month) . '-' .
@@ -118,7 +120,7 @@ $this->registerJsFile('@web/js/nepa.js', ['depends' => 'yii\web\JqueryAsset']);
                         // ],
                         [
                             'attribute' => 'father_fname',
-                            'label' =>   'बाबुको नाम',
+                            'label' =>   'Name of Father',
                             'value' => function ($model) {
                                 return $model->father_fname . ' ' . $model->father_mname . ' ' . $model->father_lname;
                             }
@@ -126,7 +128,7 @@ $this->registerJsFile('@web/js/nepa.js', ['depends' => 'yii\web\JqueryAsset']);
 
                         [
                             'attribute' => 'mother_fname',
-                            'label' =>   'आमाको नाम',
+                            'label' =>   'Name of Mother',
                             'value' => function ($model) {
                                 return $model->mother_fname . ' ' . $model->mother_mname . ' ' . $model->mother_lname;
                             }
@@ -134,16 +136,20 @@ $this->registerJsFile('@web/js/nepa.js', ['depends' => 'yii\web\JqueryAsset']);
 
                         [
                             'attribute' => 'informant_fname',
-                            'label' =>   'सूचकको नाम',
+                            'label' =>   'Name of informant',
                             'value' => function ($model) {
                                 return $model->informant_fname . ' ' . $model->informant_mname . ' ' . $model->informant_lname;
                             }
                         ],
 
+
                         [
                             'class' => 'yii\grid\ActionColumn',
                             'options' => ['style' => 'width:auto;'],
-                            'buttonOptions' => ['class' => 'btn btn-default'],
+                            'buttonOptions' => [
+                                'class' => 'btn btn-default btn-sm',
+                                'style' => 'border:none; padding:none; margin:none;',
+                            ],
                             'template' => '<div class = "btn-group btn-group-sm text-center" role ="group">{view}{update}{delete}</div>'
                         ],
                         // [

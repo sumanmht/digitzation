@@ -10,6 +10,7 @@ use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 use app\controllers\Pagination;
 use yii\data\ActiveDataProvider;
+
 /**
  * DeathController implements the CRUD actions for Death model.
  */
@@ -73,11 +74,11 @@ class DeathController extends Controller
 
         if ($model->load($this->request->post()) && $model->save()) {
             $model->d_scanned_image = UploadedFile::getInstance($model, 'd_scanned_image');
-            $fileName = $model->fname. '-' .$model->mname. '-' .$model->lname.'.'.$model->d_scanned_image->extension;
-            $model->d_scanned_image->saveAs('uploads/' .$fileName);
+            $fileName = $model->fname . '-' . $model->mname . '-' . $model->lname . '.' . $model->d_scanned_image->extension;
+            $model->d_scanned_image->saveAs('uploads/' . $fileName);
             $model->d_scanned_image = $fileName;
             $model->save();
-            
+
             return $this->redirect(['view', 'id' => $model->id]); //redirect to view action with created id
         }
 
@@ -96,30 +97,27 @@ class DeathController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->d_scanned_image = $model->d_scanned_image;
+        //retrieve existing image file name from the database
+        $existingImageFileName = $model->d_scanned_image;
+        if ($this->request->isPost && $model->load($this->request->post())) {
 
-            if ($this->request->isPost && $model->load($this->request->post()) ) {
-            $oldFile = $model->d_scanned_image; // get the name of the old file
-
-            $model->d_scanned_image = UploadedFile::getInstance($model, 'd_scanned_image'); // retrieve the new file
-
-            if ($model->validate()) {
-                if ($model->d_scanned_image) {
-                    $fileName = $model->fname. '-' .$model->mname. '-' .$model->lname. '-'. 'new_file_' . time() . '.' . $model->d_scanned_image->extension;
-                    $model->d_scanned_image->saveAs('uploads/' . $fileName);
-                    $model->d_scanned_image = $fileName;
-                }
-
-                if ($model->save()) {
-                    if ($oldFile && $oldFile !== $model->d_scanned_image) {
-                        unlink('uploads/' . $oldFile); // delete the old file
-                    }
-                    return $this->redirect(['view', 'id' => $model->id]);
-                }
+            if (UploadedFile::getInstance($model, 'd_scanned_image') != null) {
+                $model->d_scanned_image = UploadedFile::getInstance($model, 'd_scanned_image'); //upload files
+                $fileName = $model->fname . '-' . $model->mname . '-' . $model->lname . '.' . $model->d_scanned_image->extension; //save as timestamp+imageextension
+                $model->d_scanned_image->saveAs('uploads/' . $fileName); //save in directory
+                $model->d_scanned_image = $fileName; //save in database
+            } else {
+                $model->d_scanned_image = $existingImageFileName; //assign existing image file name to the model
             }
+            $model->save();
+            return $this->redirect(['view', 'id' => $model->id]);
         }
+
         return $this->render('update', [
-                'model' => $model,
-            ]);    }
+            'model' => $model,
+        ]);
+    }
 
     /**
      * Deletes an existing Death model.

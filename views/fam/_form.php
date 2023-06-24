@@ -8,6 +8,11 @@ use yii\widgets\ActiveForm;
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
+<?php
+$this->registerJsFile('@web/js/migration/migBsToAd.js', ['depends' => 'yii\web\JqueryAsset']);
+$this->registerJsFile('@web/js/migration/hidden.js', ['depends' => 'yii\web\JqueryAsset']);
+//$this->registerJsFile('@web/js/birth/birthBsToAd.js', ['depends' => 'yii\web\JqueryAsset']);
+?>
 <div class="fam-form">
 
     <?php $form = ActiveForm::begin(); ?>

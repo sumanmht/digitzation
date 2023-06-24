@@ -4,9 +4,17 @@ namespace app\controllers;
 
 use app\models\Divorce;
 use app\models\DivorceSearch;
+use app\models\Municipality;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
+use yii;
+use app\models\Ward;
+use app\models\District;
+use Mpdf\Tag\Form;
+use yii\helpers\Json;
+use yii\web\ForbiddenHttpException;
 
 /**
  * DivorceController implements the CRUD actions for Divorce model.
@@ -67,19 +75,25 @@ class DivorceController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Divorce();
+        if (Yii::$app->user->can('create-birth')) {
+            $model = new Divorce();
 
-        if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
-        } else {
-            $model->loadDefaultValues();
-        }
+                $model->di_scanned_image = UploadedFile::getInstance($model, 'di_scanned_image');
+                $fileName = $model->groom_fname . '-' . $model->groom_mname . '-' . $model->bride_lname . '.' . $model->di_scanned_image->extension;
+                $model->di_scanned_image->saveAs('uploads/' . $fileName);
+                $model->di_scanned_image = $fileName;
+                $model->save();
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+                return $this->redirect(['view', 'id' => $model->id]); //redirect to view action with created id
+            }
+
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        } else {
+            throw new ForbiddenHttpException;
+        }
     }
 
     /**
@@ -91,15 +105,31 @@ class DivorceController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        if (Yii::$app->user->can('update-birth')) {
+            $model = $this->findModel($id);
+            $model->di_scanned_image = $model->di_scanned_image;
+            //retrieve existing image file name from the database
+            $existingImageFileName = $model->di_scanned_image;
+            if ($this->request->isPost && $model->load($this->request->post())) {
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+                if (UploadedFile::getInstance($model, 'di_scanned_image') != null) {
+                    $model->di_scanned_image = UploadedFile::getInstance($model, 'di_scanned_image'); //upload files
+                    $fileName = $model->groom_fname . '-' . $model->groom_mname . '-' . $model->bride_lname . '.' . $model->di_scanned_image->extension; //save as timestamp+imageextension
+                    $model->di_scanned_image->saveAs('uploads/' . $fileName); //save in directory
+                    $model->di_scanned_image = $fileName; //save in database
+                } else {
+                    $model->di_scanned_image = $existingImageFileName; //assign existing image file name to the model
+                }
+                $model->save();
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        } else {
+            throw new ForbiddenHttpException;
         }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
     }
 
     /**
@@ -130,5 +160,33 @@ class DivorceController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionMunicipality($id)
+    {
+
+        $muns = Municipality::find()->where(['district_id' => $id])->all();
+        $opts = '<option value="">गा.पा/न.पा</option>';
+        foreach ($muns as $mun) {
+            $opts .= '<option value="' . $mun->district_id . '">' . $mun->name . '</option>';
+        }
+
+        echo $opts;
+        Yii::$app->end();
+    }
+
+
+    public function actionWard($id)
+    {
+
+        $wards = Ward::find()->where(['local_level_id' => $id])->all();
+
+        $options = '<option value="">वडा नं</option>';
+        foreach ($wards as $ward) {
+            $options .= '<option value="' . $ward->local_level_id . '">' . $ward->number . '</option>';
+        }
+
+        echo $options;
+        Yii::$app->end();
     }
 }

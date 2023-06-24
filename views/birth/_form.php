@@ -27,11 +27,11 @@ $this->registerJsFile('@web/js/birth/birthBsToAd.js', ['depends' => 'yii\web\Jqu
 ?>
 <div class="card">
     <div class="card-body">
-        <div class="marriage-form">
+        <div class="birth-form">
 
             <?php $form = ActiveForm::begin([
 
-                'options' => ['enctype' => 'multipart/form-data', 'style' => 'font-size:12px;', 'class' => 'nepali'],
+                'options' => ['enctype' => 'multipart/form-data', 'style' => 'font-size:12px;', 'class' => 'nepali', 'id' => 'birth-form'],
                 'fieldConfig' => ['labelOptions' => ['class' => 'col-sm-1 control-label'],]
             ]); ?>
 
@@ -96,7 +96,7 @@ $this->registerJsFile('@web/js/birth/birthBsToAd.js', ['depends' => 'yii\web\Jqu
                     </div>
 
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 hidden">
                     <div class="form-heading">दर्ता मिति(ई.स.)</div>
                     <div class="row">
                         <div class="col-sm-4 ad_reg_year">
@@ -179,7 +179,7 @@ $this->registerJsFile('@web/js/birth/birthBsToAd.js', ['depends' => 'yii\web\Jqu
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3 ">
+                <div class="col-sm-3 hidden ">
                     <div class="form-heading">जन्म मिति(ई.स.)</div>
                     <div class="row">
                         <div class="col-sm-4 ad_birth_year">
@@ -197,14 +197,15 @@ $this->registerJsFile('@web/js/birth/birthBsToAd.js', ['depends' => 'yii\web\Jqu
                 <div class="col-sm-1">
                     <div class="form-heading">लिङ्ग</div>
                     <div class="row">
-                        <?= $form->field($model, 'gender')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'लिङ्ग'])->label(' ')->dropdownList(
-                            ArrayHelper::map(Gender::find()->all(), 'gender', 'gender'),
-                            [
-                                'placeholder' => 'लिङ्ग',
-                                'prompt' => '',
-                                'class' => 'form-control form-control-sm'
-                            ]
-                        ) ?>
+                        <?= $form->field($model, 'gender')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'लिङ्ग'])->label(' ')
+                            ->dropdownList(
+                                ArrayHelper::map(Gender::find()->all(), 'gender', 'gender'),
+                                [
+                                    'placeholder' => 'लिङ्ग',
+                                    'prompt' => '',
+                                    'class' => 'form-control form-control-sm'
+                                ]
+                            ) ?>
                     </div>
                 </div>
                 <div class="col-sm-1">
@@ -343,7 +344,7 @@ $this->registerJsFile('@web/js/birth/birthBsToAd.js', ['depends' => 'yii\web\Jqu
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4 hidden">
                     <div class="form-heading">जारी मिति(ई.स.)</div>
                     <div class="row">
                         <div class="col-sm-4">
@@ -635,13 +636,13 @@ $this->registerJsFile('@web/js/birth/birthBsToAd.js', ['depends' => 'yii\web\Jqu
                         <div class="form-heading">सूचकको नाम(English)</div>
                         <div class="row">
                             <div class="col-sm-4">
-                                <?= $form->field($model, 'inf_fname_eng')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'पहिलो नाम', 'id' => 'inf_fname_eng'])->label(' ') ?>
+                                <?= $form->field($model, 'inf_fname_eng')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'First Name', 'id' => 'inf_fname_eng'])->label(' ') ?>
                             </div>
                             <div class="col-sm-4">
-                                <?= $form->field($model, 'inf_mname_eng')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'बीचको नाम', 'id' => 'inf_mname_eng'])->label(' ') ?>
+                                <?= $form->field($model, 'inf_mname_eng')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'Middle Name', 'id' => 'inf_mname_eng'])->label(' ') ?>
                             </div>
                             <div class="col-sm-4">
-                                <?= $form->field($model, 'inf_lname_eng')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'थर', 'id' => 'inf_lname_eng'])->label(' ') ?>
+                                <?= $form->field($model, 'inf_lname_eng')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'Last Name', 'id' => 'inf_lname_eng'])->label(' ') ?>
                             </div>
                         </div>
                     </div>
@@ -653,7 +654,7 @@ $this->registerJsFile('@web/js/birth/birthBsToAd.js', ['depends' => 'yii\web\Jqu
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 c6" style="flex-grow: 1; flex-shrink: 0;">
+                    <div class="col-sm-6 c6" style="flex-grow: 1; flex-shrink: 0; margin-right:0px;">
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="form-heading">नागरिकता नं.</div>
@@ -665,7 +666,7 @@ $this->registerJsFile('@web/js/birth/birthBsToAd.js', ['depends' => 'yii\web\Jqu
                                 <div class="form-heading">जारी मिति</div>
                                 <div class="row">
                                     <div class="col-sm-4 b_inf_ctz_year">
-                                        <?= $form->field($model, 'inf_ctz_year')->textInput(['maxlength' => 4, 'class' => 'form-control form-control-sm b_inf_ctz_year', 'placeholder' => 'साल', 'id' => 'b_inf_ctz_year'])->label(' ') ?>
+                                        <?= $form->field($model, 'inf_ctz_year')->textInput(['maxlength' => 4, 'class' => 'form-control form-control-sm b_inf_ctz_year', 'placeholder' => 'साल', 'id' => 'b_inf_ctz_year'])->label(' ')->error(['class' => 'highlight-empty', 'enableAjaxValidation' => true, 'validateOnChange' => false, 'validateOnBlur' => false]) ?>
                                     </div>
                                     <div class="col-sm-4 ">
                                         <?= $form->field($model, 'inf_ctz_month')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'b_inf_ctz_month'])->label(' ') ?>
@@ -745,7 +746,7 @@ $this->registerJsFile('@web/js/birth/birthBsToAd.js', ['depends' => 'yii\web\Jqu
 
     .c6 {
         flex-basis: 35%;
-        max-width: 35%;
+        max-width: 40%;
     }
 
     .hidden {

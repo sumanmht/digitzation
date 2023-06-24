@@ -19,6 +19,7 @@ use app\models\Municipality;
 
 $this->registerJsFile('@web/js/marriage/marriageBsToAd.js', ['depends' => 'yii\web\JqueryAsset']);
 $this->registerJsFile('@web/js/marriage/marriagecheck.js', ['depends' => 'yii\web\JqueryAsset']);
+$this->registerJsFile('@web/js/marriage/marriage.js', ['depends' => 'yii\web\JqueryAsset']);
 ?>
 <div class="card">
     <?php $form = ActiveForm::begin([
@@ -80,13 +81,13 @@ $this->registerJsFile('@web/js/marriage/marriagecheck.js', ['depends' => 'yii\we
                     <div class="form-heading">दर्ता मिति(वि.स.)</div>
                     <div class="row">
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'reg_year')->textInput(['onchange' => 'regAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'साल', 'id' => 'm_reg_year'])->label(' ')  ?>
+                            <?= $form->field($model, 'reg_year')->textInput(['maxlength' => 4, 'onchange' => 'regAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'साल', 'id' => 'm_reg_year'])->label(' ')  ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'reg_month')->textInput(['onchange' => 'regAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'm_reg_month'])->label(' ')  ?>
+                            <?= $form->field($model, 'reg_month')->textInput(['maxlength' => 2, 'onchange' => 'regAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'm_reg_month'])->label(' ')  ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'reg_day')->textInput(['onchange' => 'regAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'm_reg_day'])->label(' ')  ?>
+                            <?= $form->field($model, 'reg_day')->textInput(['maxlength' => 2, 'onchange' => 'regAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'm_reg_day'])->label(' ')  ?>
                         </div>
                     </div>
                 </div>
@@ -94,13 +95,13 @@ $this->registerJsFile('@web/js/marriage/marriagecheck.js', ['depends' => 'yii\we
                     <div class="form-heading">दर्ता मिति(ई.स.)</div>
                     <div class="row">
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'ad_reg_year')->textInput(['class' => 'form-control form-control-sm', 'placeholder' => 'साल', 'id' => 'ad_m_reg_year'])->label(' ')  ?>
+                            <?= $form->field($model, 'ad_reg_year')->textInput(['maxlength' => 4, 'class' => 'form-control form-control-sm', 'placeholder' => 'साल', 'id' => 'ad_m_reg_year'])->label(' ')  ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'ad_reg_month')->textInput(['class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'ad_m_reg_month'])->label(' ')  ?>
+                            <?= $form->field($model, 'ad_reg_month')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'ad_m_reg_month'])->label(' ')  ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'ad_reg_day')->textInput(['class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'ad_m_reg_day'])->label(' ')  ?>
+                            <?= $form->field($model, 'ad_reg_day')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'ad_m_reg_day'])->label(' ')  ?>
                         </div>
                     </div>
                 </div>
@@ -108,13 +109,13 @@ $this->registerJsFile('@web/js/marriage/marriagecheck.js', ['depends' => 'yii\we
                     <div class="form-heading">विवाह मिति(वि.स.)</div>
                     <div class="row">
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'marriage_year')->textInput(['onchange' => 'marriageAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'साल', 'id' => 'm_marriage_year'])->label(' ')  ?>
+                            <?= $form->field($model, 'marriage_year')->textInput(['maxlength' => 4, 'onchange' => 'marriageAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'साल', 'id' => 'm_marriage_year'])->label(' ')  ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'marriage_month')->textInput(['onchange' => 'marriageAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'm_marriage_month'])->label(' ')  ?>
+                            <?= $form->field($model, 'marriage_month')->textInput(['maxlength' => 2, 'onchange' => 'marriageAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'm_marriage_month'])->label(' ')  ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'marriage_day')->textInput(['onchange' => 'marriageAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'm_marriage_day'])->label(' ')  ?>
+                            <?= $form->field($model, 'marriage_day')->textInput(['maxlength' => 2, 'onchange' => 'marriageAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'm_marriage_day'])->label(' ')  ?>
                         </div>
                     </div>
                 </div>
@@ -122,13 +123,13 @@ $this->registerJsFile('@web/js/marriage/marriagecheck.js', ['depends' => 'yii\we
                     <div class="form-heading">विवाह मिति(ई.स.)</div>
                     <div class="row">
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'ad_marriage_year')->textInput(['class' => 'form-control form-control-sm', 'placeholder' => 'साल', 'id' => 'ad_m_marriage_year'])->label(' ')  ?>
+                            <?= $form->field($model, 'ad_marriage_year')->textInput(['maxlength' => 4, 'class' => 'form-control form-control-sm', 'placeholder' => 'साल', 'id' => 'ad_m_marriage_year'])->label(' ')  ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'ad_marriage_month')->textInput(['class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'ad_m_marriage_month'])->label(' ')  ?>
+                            <?= $form->field($model, 'ad_marriage_month')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'ad_m_marriage_month'])->label(' ')  ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'ad_marriage_day')->textInput(['class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'ad_m_marriage_day'])->label(' ')  ?>
+                            <?= $form->field($model, 'ad_marriage_day')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'ad_m_marriage_day'])->label(' ')  ?>
                         </div>
                     </div>
                 </div>
@@ -183,13 +184,13 @@ $this->registerJsFile('@web/js/marriage/marriagecheck.js', ['depends' => 'yii\we
                     <div class="form-heading">जन्म मिति(वि.स.)</div>
                     <div class="row">
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'g_birth_year')->textInput(['onchange' => 'gBirthAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'साल', 'id' => 'm_g_birth_year'])->label(' ') ?>
+                            <?= $form->field($model, 'g_birth_year')->textInput(['maxlength' => 4, 'onchange' => 'gBirthAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'साल', 'id' => 'm_g_birth_year'])->label(' ') ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'g_birth_month')->textInput(['onchange' => 'gBirthAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'm_g_birth_month'])->label(' ') ?>
+                            <?= $form->field($model, 'g_birth_month')->textInput(['maxlength' => 2, 'onchange' => 'gBirthAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'm_g_birth_month'])->label(' ') ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'g_birth_day')->textInput(['onchange' => 'gBirthAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'm_g_birth_day'])->label(' ') ?>
+                            <?= $form->field($model, 'g_birth_day')->textInput(['maxlength' => 2, 'onchange' => 'gBirthAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'm_g_birth_day'])->label(' ') ?>
                         </div>
                     </div>
                 </div>
@@ -197,13 +198,13 @@ $this->registerJsFile('@web/js/marriage/marriagecheck.js', ['depends' => 'yii\we
                     <div class="form-heading">जन्म मिति(ई.स.)</div>
                     <div class="row">
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'ad_g_birth_year')->textInput(['class' => 'form-control form-control-sm', 'placeholder' => 'साल', 'id' => 'ad_m_g_birth_year'])->label(' ') ?>
+                            <?= $form->field($model, 'ad_g_birth_year')->textInput(['maxlength' => 4, 'class' => 'form-control form-control-sm', 'placeholder' => 'साल', 'id' => 'ad_m_g_birth_year'])->label(' ') ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'ad_g_birth_month')->textInput(['class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'ad_m_g_birth_month'])->label(' ') ?>
+                            <?= $form->field($model, 'ad_g_birth_month')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'ad_m_g_birth_month'])->label(' ') ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'ad_g_birth_day')->textInput(['class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'ad_m_g_birth_day'])->label(' ') ?>
+                            <?= $form->field($model, 'ad_g_birth_day')->textInput(['maxlength' => 2, 'class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'ad_m_g_birth_day'])->label(' ') ?>
                         </div>
                     </div>
                 </div>
@@ -265,7 +266,7 @@ $this->registerJsFile('@web/js/marriage/marriagecheck.js', ['depends' => 'yii\we
                     <div class="form-heading">नागरिकता नं.</div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <?= $form->field($model, 'g_ctz_no')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'नागरिकता नं.', 'id' => 'gCtz'])->label('') ?>
+                            <?= $form->field($model, 'g_ctz_no')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm gCtz', 'placeholder' => 'नागरिकता नं.', 'id' => 'gCtz'])->label('') ?>
                         </div>
                     </div>
                 </div>
@@ -273,13 +274,13 @@ $this->registerJsFile('@web/js/marriage/marriagecheck.js', ['depends' => 'yii\we
                     <div class="form-heading">जारी मिति(वि.स.)</div>
                     <div class="row">
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'g_ctz_year')->textInput(['onchange' => 'gCtzAd()', 'maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'साल', 'id' => 'm_g_ctz_year'])->label('') ?>
+                            <?= $form->field($model, 'g_ctz_year')->textInput(['maxlength' => 4, 'onchange' => 'gCtzAd()', 'maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'साल', 'id' => 'm_g_ctz_year'])->label('') ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'g_ctz_month')->textInput(['onchange' => 'gCtzAd()', 'maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'm_g_ctz_month'])->label('') ?>
+                            <?= $form->field($model, 'g_ctz_month')->textInput(['maxlength' => 2, 'onchange' => 'gCtzAd()', 'maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'm_g_ctz_month'])->label('') ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'g_ctz_day')->textInput(['onchange' => 'gCtzAd()', 'maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'm_g_ctz_day'])->label('') ?>
+                            <?= $form->field($model, 'g_ctz_day')->textInput(['maxlength' => 2, 'onchange' => 'gCtzAd()', 'maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'm_g_ctz_day'])->label('') ?>
                         </div>
                     </div>
                 </div>
@@ -428,17 +429,17 @@ $this->registerJsFile('@web/js/marriage/marriagecheck.js', ['depends' => 'yii\we
                     <div class="form-heading">जन्म मिति(वि.स.)</div>
                     <div class="row">
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'b_birth_year')->textInput(['onchange' => 'bBirthAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'साल', 'id' => 'm_b_birth_year'])->label(' ') ?>
+                            <?= $form->field($model, 'b_birth_year')->textInput(['maxlength' => 4, 'onchange' => 'bBirthAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'साल', 'id' => 'm_b_birth_year'])->label(' ') ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'b_birth_month')->textInput(['onchange' => 'bBirthAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'm_b_birth_month'])->label(' ') ?>
+                            <?= $form->field($model, 'b_birth_month')->textInput(['maxlength' => 2, 'onchange' => 'bBirthAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'm_b_birth_month'])->label(' ') ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'b_birth_day')->textInput(['onchange' => 'bBirthAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'm_b_birth_day'])->label(' ') ?>
+                            <?= $form->field($model, 'b_birth_day')->textInput(['maxlength' => 2, 'onchange' => 'bBirthAd()', 'class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'm_b_birth_day'])->label(' ') ?>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 hidden">
                     <div class="form-heading">जन्म मिति(ई.स.)</div>
                     <div class="row">
                         <div class="col-sm-4">
@@ -518,13 +519,13 @@ $this->registerJsFile('@web/js/marriage/marriagecheck.js', ['depends' => 'yii\we
                     <div class="form-heading">जारी मिति(वि.स.)</div>
                     <div class="row">
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'b_ctz_year')->textInput(['onchange' => 'bCtzAd()', 'maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'साल', 'id' => 'm_b_ctz_year'])->label('') ?>
+                            <?= $form->field($model, 'b_ctz_year')->textInput(['maxlength' => 4, 'onchange' => 'bCtzAd()', 'maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'साल', 'id' => 'm_b_ctz_year'])->label('') ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'b_ctz_month')->textInput(['onchange' => 'bCtzAd()', 'maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'm_b_ctz_month'])->label('') ?>
+                            <?= $form->field($model, 'b_ctz_month')->textInput(['maxlength' => 2, 'onchange' => 'bCtzAd()', 'maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'महिना', 'id' => 'm_b_ctz_month'])->label('') ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'b_ctz_day')->textInput(['onchange' => 'bCtzAd()', 'maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'm_b_ctz_day'])->label('') ?>
+                            <?= $form->field($model, 'b_ctz_day')->textInput(['maxlength' => 2, 'onchange' => 'bCtzAd()', 'maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'गते', 'id' => 'm_b_ctz_day'])->label('') ?>
                         </div>
                     </div>
                 </div>
@@ -719,9 +720,10 @@ $this->registerJsFile('@web/js/marriage/marriagecheck.js', ['depends' => 'yii\we
                 </div>
             </div>
             <div class="form-group hidden" id="inf2">
+                <label>दुलही</label>
                 <div class="row">
                     <div class="col-sm-5">
-                        <div class="form-heading">दुलही</div>
+                        <div class="form-heading">नाम</div>
                         <div class="row">
                             <div class="col-sm-4">
                                 <?= $form->field($model, 'inf2_fname')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm',  'id' => 'inf2Fname', 'placeholder' => 'पहिलो नाम'])->label(' ') ?>

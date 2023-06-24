@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Births', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
+
 <div class="card">
     <div class="card-header">
         <h5>
@@ -20,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="birth-view col-sm-5">
+            <div class="birth-view col-sm-6">
 
                 <div class="row">
                     <?= DetailView::widget([
@@ -208,7 +209,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     $model = $widget->model;
                                     return
                                         Yii::$app->engToUni->convert($model->father_ctz_no) . ' / ' .
-                                        Yii::$app->engToUni->convert($model->father_ctz_year) . '-'  .
+                                        'वि.स.' . Yii::$app->engToUni->convert($model->father_ctz_year) . '-'  .
                                         Yii::$app->engToUni->convert($model->father_ctz_month) . '-' .
                                         Yii::$app->engToUni->convert($model->father_ctz_day) . ' / ' . $model->father_ctz_district;
                                 },
@@ -220,7 +221,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     $model = $widget->model;
                                     return
                                         $model->father_ctz_no . ' / ' .
-                                        $model->ad_father_ctz_year . '-'  . $model->ad_father_ctz_month . '-' . $model->ad_father_ctz_day . ' / ' .
+                                        $model->ad_father_ctz_year . '-'  . $model->ad_father_ctz_month . '-' . $model->ad_father_ctz_day . ' A.D.' . ' / ' .
                                         Yii::$app->engDis->convert($model->father_ctz_district);
                                 },
                             ],
@@ -247,7 +248,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     $model = $widget->model;
                                     return
                                         Yii::$app->engToUni->convert($model->mother_ctz_no) . ' / ' .
-                                        Yii::$app->engToUni->convert($model->mother_ctz_year) . '-'  .
+                                        'वि.स.' . Yii::$app->engToUni->convert($model->mother_ctz_year) . '-'  .
                                         Yii::$app->engToUni->convert($model->mother_ctz_month) . '-' .
                                         Yii::$app->engToUni->convert($model->mother_ctz_day) . ' / ' . $model->mother_ctz_district;
                                 },
@@ -259,7 +260,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     $model = $widget->model;
                                     return
                                         $model->mother_ctz_no . ' / ' .
-                                        $model->ad_mother_ctz_year . '-' . $model->ad_mother_ctz_month . '-' . $model->ad_mother_ctz_day . '/ ' .
+                                        $model->ad_mother_ctz_year . '-' . $model->ad_mother_ctz_month . '-' . $model->ad_mother_ctz_day . ' A.D.' . '/ ' .
                                         Yii::$app->engDis->convert($model->mother_ctz_district);
                                 }
                             ],
@@ -274,83 +275,88 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                     ]) ?>
                 </div>
-                <div class="row">
-                    <?= DetailView::widget([
-                        'model' => $model,
-                        'options' => ['style' => 'font-size:12px;', 'class' => 'table table-bordered table-hover table-condensed '],
-                        'template' =>   function ($attribute, $index, $widget) {
-                            if ($index === 0) {
-                                return '<tr><th colspan="2" style="text-align:center">सूचकको विवरण</th></tr>';
-                            }
-                            return '<tr><th style="width:40%">' . $attribute['label'] . '</th><td style="width:60%">' . $attribute['value'] . '</td></tr>';
-                        },
-                        'attributes' => [
-                            [
-                                'attribute' => 'informant_fname',
-                                'label' => '',
-                                'format' => 'raw',
-                                'value' => function ($model) {
-                                    return '';
-                                },
-                            ],
-                            [
-                                'attribute' => 'informant_fname',
-                                'label' =>   'सूचकको नाम',
-                                'value' => function ($form, $widget) {
-                                    $model = $widget->model;
-                                    return $model->informant_fname . ' ' . $model->informant_mname . ' ' . $model->informant_lname . ' / ' . $model->inf_fname_eng . ' ' . $model->inf_mname_eng . ' ' . $model->inf_lname_eng;
-                                }
-                            ],
-                            [
-                                'attribute' => 'relation',
-                                'label' =>   'शिशुसँगको नाता',
-                                'value' => function ($form, $widget) {
-                                    $model = $widget->model;
-                                    return $model->relation;
-                                }
-                            ],
-                            [
-                                'attribute' => 'inf_ctz_no.',
-                                'label' =>   'नागरिकता विवरण',
-                                'value' => function ($form, $widget) {
-                                    $model = $widget->model;
-                                    return
-                                        Yii::$app->engToUni->convert($model->inf_ctz_no) . ' / ' .
-                                        Yii::$app->engToUni->convert($model->inf_ctz_year) . '-'  .
-                                        Yii::$app->engToUni->convert($model->inf_ctz_month) . '-' .
-                                        Yii::$app->engToUni->convert($model->inf_ctz_day) . ' / ' . $model->inf_ctz_district;
-                                },
-                            ],
-                            [
-                                'attribute' => 'inf_ctz_no.',
-                                'label' =>   'Citizenship Details',
-                                'value' => function ($form, $widget) {
-                                    $model = $widget->model;
-                                    return
-                                        $model->inf_ctz_no . ' / ' . $model->ad_inf_ctz_year . '-' . $model->ad_inf_ctz_month . '-' . $model->ad_inf_ctz_day . '/ ' .
-                                        Yii::$app->engDis->convert($model->inf_ctz_district);
-                                }
-                            ],
-                        ],
-                    ]) ?>
-                </div>
-            </div>
-            <div class="birth-view col-sm-7">
-                <?php echo DetailView::widget([
-                    'model' => $model,
-                    'template' => '<tr><td style="width:100%;">{value}</td></tr>',
-                    //'valueColOptions'=>['style'=>'width:70%'],
-                    'attributes' => [
-                        [
-                            'attributes' => 'scanned_image',
-                            'label' => '',
-                            'value' => Yii::getAlias('@web/uploads') . '/' . $model->scanned_image,
-                            'format' => ['image', ['class' => 'img-fluid']]
-                        ],
-                    ]
-                ]) ?>
 
             </div>
+            <div class="birth-view col-sm-6">
+                <div class="row">
+                    <?php echo DetailView::widget([
+                        'model' => $model,
+                        'template' => '<tr><td style="width:100%;">{value}</td></tr>',
+                        //'valueColOptions'=>['style'=>'width:70%'],
+                        'attributes' => [
+                            [
+                                'attributes' => 'scanned_image',
+                                'label' => '',
+                                'value' => Yii::getAlias('@web/uploads') . '/' . $model->scanned_image,
+                                'format' => ['image', ['class' => 'img-fluid full-screen-image']]
+                            ],
+                        ]
+                    ]) ?>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <?= DetailView::widget([
+                            'model' => $model,
+                            'options' => ['style' => 'font-size:12px;', 'class' => 'table table-bordered table-hover table-condensed '],
+                            'template' =>   function ($attribute, $index, $widget) {
+                                if ($index === 0) {
+                                    return '<tr><th colspan="2" style="text-align:center">सूचकको विवरण</th></tr>';
+                                }
+                                return '<tr><th style="width:40%">' . $attribute['label'] . '</th><td style="width:60%">' . $attribute['value'] . '</td></tr>';
+                            },
+                            'attributes' => [
+                                [
+                                    'attribute' => 'informant_fname',
+                                    'label' => '',
+                                    'format' => 'raw',
+                                    'value' => function ($model) {
+                                        return '';
+                                    },
+                                ],
+                                [
+                                    'attribute' => 'informant_fname',
+                                    'label' =>   'सूचकको नाम',
+                                    'value' => function ($form, $widget) {
+                                        $model = $widget->model;
+                                        return $model->informant_fname . ' ' . $model->informant_mname . ' ' . $model->informant_lname . ' / ' . $model->inf_fname_eng . ' ' . $model->inf_mname_eng . ' ' . $model->inf_lname_eng;
+                                    }
+                                ],
+                                [
+                                    'attribute' => 'relation',
+                                    'label' =>   'शिशुसँगको नाता',
+                                    'value' => function ($form, $widget) {
+                                        $model = $widget->model;
+                                        return $model->relation;
+                                    }
+                                ],
+                                [
+                                    'attribute' => 'inf_ctz_no.',
+                                    'label' =>   'नागरिकता विवरण',
+                                    'value' => function ($form, $widget) {
+                                        $model = $widget->model;
+                                        return
+                                            Yii::$app->engToUni->convert($model->inf_ctz_no) . ' / ' .
+                                            'वि.स.' . Yii::$app->engToUni->convert($model->inf_ctz_year) . '-'  .
+                                            Yii::$app->engToUni->convert($model->inf_ctz_month) . '-' .
+                                            Yii::$app->engToUni->convert($model->inf_ctz_day) . ' / ' . $model->inf_ctz_district;
+                                    },
+                                ],
+                                [
+                                    'attribute' => 'inf_ctz_no.',
+                                    'label' =>   'Citizenship Details',
+                                    'value' => function ($form, $widget) {
+                                        $model = $widget->model;
+                                        return
+                                            $model->inf_ctz_no . ' / ' . $model->ad_inf_ctz_year . '-' . $model->ad_inf_ctz_month . '-' . $model->ad_inf_ctz_day . ' A.D.' . '/ ' .
+                                            Yii::$app->engDis->convert($model->inf_ctz_district);
+                                    }
+                                ],
+                            ],
+                        ]) ?>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
     </div>

@@ -286,7 +286,7 @@ $headerrows = '<tr>
                             'attributes' => 'ma_scanned_image',
                             'label' => '',
                             'value' => Yii::getAlias('@web/uploads') . '/' . $model->ma_scanned_image,
-                            'format' => ['image', ['class' => 'img-fluid']]
+                            'format' => ['image', ['class' => 'img-fluid full-screen-image']]
                         ],
                     ]
                 ]) ?>

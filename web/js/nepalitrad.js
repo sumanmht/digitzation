@@ -1,6 +1,6 @@
 'use strict';
 
-(function (nepalify, jQuery) {
+(function (neptrad, jQuery) {
 
   // array to hold unicode values - maps unicode values with ascii indices
   /* --------------------------------------------------------------------------
@@ -9,7 +9,7 @@
      hence necessary increment/decrement should be done ( by 32 )
      --------------------------------------------------------------------------
      */
-  var unicodeRomanToNepaliMap = [
+  var unicodeMap = [
  '\u0020',	// SPACE
 '\u0021',	// ! -> !
 '\u0942',	// ' ->
@@ -109,15 +109,15 @@
 ];
 
   // Default class to be nepalified
-  var nepalifyClass = 'nepalify';
+  var neptradClass = 'neptrad';
 
   // variable that holds the toggle state, intially false
   // on page load, toggle is called which toggles on
-  // nepalify because the state is initially false, i.e. toggled off
-  var nepalifyToggled = false;
+  // neptrad because the state is initially false, i.e. toggled off
+  var neptradToggled = false;
 
   // Return the unicode of the key passed ( else return the key itself )
-  function romanToNepaliUnicodeChar(keyCode, array)
+  function UnicodeChar(keyCode, array)
   {
     debugger
     if (keyCode === 199) {
@@ -128,9 +128,9 @@
   }
 
   // Wrapper function for the keymap function
-  function unicodify(character)
+  function unify(character)
   {
-    return romanToNepaliUnicodeChar(character, unicodeRomanToNepaliMap);
+    return UnicodeChar(character, unicodeMap);
   }
 
   // Extracted from StackOverflow
@@ -210,10 +210,10 @@
     }
   }
 
-  // Initialize the Nepalify
+  // Initialize the neptrad
   function initialize() {
     // Only on the selected classes
-    jQuery('.' + nepalifyClass).keypress(function (event) {
+    jQuery('.' + neptradClass).keypress(function (event) {
 
       // Only on input fields and textareas
       if (event.target.type === 'text' || event.target.type === 'textarea') {
@@ -229,50 +229,50 @@
           var selectionStart = selectionTarget.start;
           var selectionEnd = selectionTarget.end;
 
-          var nepalifiedKey = unicodify(eventKey);
+          var nepalifiedKey = unify(eventKey);
 
           target.value =  target.value.substring(0, selectionStart) + nepalifiedKey + target.value.substring(selectionEnd);
           setCaretToPos(target, selectionStart + nepalifiedKey.length, selectionStart + nepalifiedKey.length);
 
         }
       }
-      nepalifyToggled = true;
+      neptradToggled = true;
     });
   }
 
   // Common handler for un/binding keypress events
   function keypressUnbindCallbackHandler() {
-    nepalifyToggled = false;
+    neptradToggled = false;
   }
 
 
-  // Destroy the keypress handler -> Disable nepalify
+  // Destroy the keypress handler -> Disable neptrad
   function terminate() {
     // Only on the selected classes
-    jQuery('.' + nepalifyClass).unbind('keypress', keypressUnbindCallbackHandler());
+    jQuery('.' + neptradClass).unbind('keypress', keypressUnbindCallbackHandler());
   }
 
   // Set custom class
-  nepalify.setNepalifyClass = function (customClass) {
+  neptrad.setneptradClass = function (customClass) {
     terminate();
     if (customClass === undefined || customClass === '') {
-      nepalifyClass = 'nepalify';
+      neptradClass = 'neptrad';
     } else {
-      nepalifyClass = customClass;
+      neptradClass = customClass;
     }
     initialize();
   };
 
-  // Toggle nepalify
-  nepalify.toggle = function () {
-    if (nepalifyToggled === true) {
+  // Toggle neptrad
+  neptrad.toggle = function () {
+    if (neptradToggled === true) {
       terminate();
-    } else if (nepalifyToggled === false) {
+    } else if (neptradToggled === false) {
       initialize();
     }
   };
 
   // Initialize on page load
-  nepalify.toggle();
+  neptrad.toggle();
 
-})(window.nepalify = window.nepalify || {}, window.jQuery);
+})(window.neptrad = window.neptrad || {}, window.jQuery);

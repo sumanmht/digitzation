@@ -38,12 +38,12 @@ class Fam extends \yii\db\ActiveRecord
     {
         return [
             [['inf_id'], 'integer'],
-            [['mem_fname', 'mem_mname', 'mem_lname'], 'string', 'max' => 40],
-            [['birth_year', 'mem_ctz_year'], 'string', 'max' => 4],
-            [['birth_month', 'birth_day', 'mem_birth_place', 'mem_ctz_month', 'mem_ctz_month'], 'string', 'max' => 2],
+            [['mem_fname', 'mem_mname', 'mem_lname', 'mem_fname_eng', 'mem_mname_eng', 'mem_lname_eng'], 'string', 'max' => 40],
+            [['birth_year', 'ad_birth_year', 'mem_ctz_year', 'ad_mem_ctz_year'], 'string', 'max' => 4],
+            [['birth_month', 'ad_birth_month', 'birth_day', 'ad_birth_day', 'mem_birth_place', 'mem_ctz_month', 'ad_mem_ctz_month', 'mem_ctz_month', 'ad_mem_ctz_day'], 'string', 'max' => 2],
             [['mem_gender'], 'string', 'max' => 10],
-            [['mem_ctz_no'], 'string', 'max' =>14],
-            [['relation_with_inf','mem_ctz_district'], 'string', 'max' => 50],
+            [['mem_ctz_no'], 'string', 'max' => 14],
+            [['relation_with_inf', 'mem_ctz_district'], 'string', 'max' => 50],
             [['inf_id'], 'exist', 'skipOnError' => true, 'targetClass' => Mig::class, 'targetAttribute' => ['inf_id' => 'id']],
         ];
     }
@@ -77,5 +77,4 @@ class Fam extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Mig::class, ['id' => 'inf_id']);
     }
-    
 }

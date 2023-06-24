@@ -21,7 +21,7 @@ use yii\widgets\Pjax;
     ]); ?>
     <div class="row form-group">
         <div class="col">
-            <?= $form->field($model, 'birthsearch')->textInput(['placeholder' => 'Search', 'class' => 'form-control form-control-sm nepalify'])->label(false) ?>
+            <?= $form->field($model, 'birthsearch')->textInput(['placeholder' => 'Search', 'class' => 'form-control form-control-sm'])->label(false) ?>
         </div>
 
     </div>

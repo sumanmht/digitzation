@@ -34,6 +34,12 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'reg_day') ?>
 
+    <?php // echo $form->field($model, 'ad_reg_year') ?>
+
+    <?php // echo $form->field($model, 'ad_reg_month') ?>
+
+    <?php // echo $form->field($model, 'ad_reg_day') ?>
+
     <?php // echo $form->field($model, 'registrar_name') ?>
 
     <?php // echo $form->field($model, 'marriage_year') ?>
@@ -42,17 +48,35 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'marriage_day') ?>
 
+    <?php // echo $form->field($model, 'ad_marriage_year') ?>
+
+    <?php // echo $form->field($model, 'ad_marriage_month') ?>
+
+    <?php // echo $form->field($model, 'ad_marriage_day') ?>
+
     <?php // echo $form->field($model, 'groom_fname') ?>
 
     <?php // echo $form->field($model, 'groom_mname') ?>
 
     <?php // echo $form->field($model, 'groom_lname') ?>
 
+    <?php // echo $form->field($model, 'groom_fname_eng') ?>
+
+    <?php // echo $form->field($model, 'groom_mname_eng') ?>
+
+    <?php // echo $form->field($model, 'groom_lname_eng') ?>
+
     <?php // echo $form->field($model, 'g_birth_year') ?>
 
     <?php // echo $form->field($model, 'g_birth_month') ?>
 
     <?php // echo $form->field($model, 'g_birth_day') ?>
+
+    <?php // echo $form->field($model, 'ad_g_birth_year') ?>
+
+    <?php // echo $form->field($model, 'ad_g_birth_month') ?>
+
+    <?php // echo $form->field($model, 'ad_g_birth_day') ?>
 
     <?php // echo $form->field($model, 'g_place_of_birth') ?>
 
@@ -74,6 +98,12 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'g_ctz_day') ?>
 
+    <?php // echo $form->field($model, 'ad_g_ctz_year') ?>
+
+    <?php // echo $form->field($model, 'ad_g_ctz_month') ?>
+
+    <?php // echo $form->field($model, 'ad_g_ctz_day') ?>
+
     <?php // echo $form->field($model, 'g_ctz_district') ?>
 
     <?php // echo $form->field($model, 'g_grand_fname') ?>
@@ -82,11 +112,23 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'g_grand_lname') ?>
 
+    <?php // echo $form->field($model, 'g_grand_fname_eng') ?>
+
+    <?php // echo $form->field($model, 'g_grand_mname_eng') ?>
+
+    <?php // echo $form->field($model, 'g_grand_lname_eng') ?>
+
     <?php // echo $form->field($model, 'g_father_fname') ?>
 
     <?php // echo $form->field($model, 'g_father_mname') ?>
 
     <?php // echo $form->field($model, 'g_father_lname') ?>
+
+    <?php // echo $form->field($model, 'g_father_fname_eng') ?>
+
+    <?php // echo $form->field($model, 'g_father_mname_eng') ?>
+
+    <?php // echo $form->field($model, 'g_father_lname_eng') ?>
 
     <?php // echo $form->field($model, 'bride_fname') ?>
 
@@ -94,11 +136,23 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'bride_lname') ?>
 
+    <?php // echo $form->field($model, 'bride_fname_eng') ?>
+
+    <?php // echo $form->field($model, 'bride_mname_eng') ?>
+
+    <?php // echo $form->field($model, 'bride_lname_eng') ?>
+
     <?php // echo $form->field($model, 'b_birth_year') ?>
 
     <?php // echo $form->field($model, 'b_birth_month') ?>
 
     <?php // echo $form->field($model, 'b_birth_day') ?>
+
+    <?php // echo $form->field($model, 'ad_b_birth_year') ?>
+
+    <?php // echo $form->field($model, 'ad_b_birth_month') ?>
+
+    <?php // echo $form->field($model, 'ad_b_birth_day') ?>
 
     <?php // echo $form->field($model, 'b_place_of_birth') ?>
 
@@ -120,6 +174,12 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'b_ctz_day') ?>
 
+    <?php // echo $form->field($model, 'ad_b_ctz_year') ?>
+
+    <?php // echo $form->field($model, 'ad_b_ctz_month') ?>
+
+    <?php // echo $form->field($model, 'ad_b_ctz_day') ?>
+
     <?php // echo $form->field($model, 'b_ctz_district') ?>
 
     <?php // echo $form->field($model, 'b_grand_fname') ?>
@@ -128,11 +188,23 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'b_grand_lname') ?>
 
+    <?php // echo $form->field($model, 'b_grand_fname_eng') ?>
+
+    <?php // echo $form->field($model, 'b_grand_mname_eng') ?>
+
+    <?php // echo $form->field($model, 'b_grand_lname_eng') ?>
+
     <?php // echo $form->field($model, 'b_father_fname') ?>
 
     <?php // echo $form->field($model, 'b_father_mname') ?>
 
     <?php // echo $form->field($model, 'b_father_lname') ?>
+
+    <?php // echo $form->field($model, 'b_father_fname_eng') ?>
+
+    <?php // echo $form->field($model, 'b_father_mname_eng') ?>
+
+    <?php // echo $form->field($model, 'b_father_lname_eng') ?>
 
     <?php // echo $form->field($model, 'total_child') ?>
 
@@ -148,6 +220,12 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'inf_lname') ?>
 
+    <?php // echo $form->field($model, 'inf_fname_eng') ?>
+
+    <?php // echo $form->field($model, 'inf_mname_eng') ?>
+
+    <?php // echo $form->field($model, 'inf_lname_eng') ?>
+
     <?php // echo $form->field($model, 'inf_ctz_no') ?>
 
     <?php // echo $form->field($model, 'inf_ctz_year') ?>
@@ -155,6 +233,12 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'inf_ctz_month') ?>
 
     <?php // echo $form->field($model, 'inf_ctz_day') ?>
+
+    <?php // echo $form->field($model, 'ad_inf_ctz_year') ?>
+
+    <?php // echo $form->field($model, 'ad_inf_ctz_month') ?>
+
+    <?php // echo $form->field($model, 'ad_inf_ctz_day') ?>
 
     <?php // echo $form->field($model, 'inf_ctz_district') ?>
 
@@ -167,6 +251,12 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'decison_month') ?>
 
     <?php // echo $form->field($model, 'decision_day') ?>
+
+    <?php // echo $form->field($model, 'ad_decison_year') ?>
+
+    <?php // echo $form->field($model, 'ad_decison_month') ?>
+
+    <?php // echo $form->field($model, 'ad_decision_day') ?>
 
     <?php // echo $form->field($model, 'di_scanned_image') ?>
 
