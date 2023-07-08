@@ -13,12 +13,12 @@ use yii\bootstrap4\NavBar;
 AppAsset::register($this);
 ?>
 
-<aside class="main-sidebar sidebar-dark-primary elevation-4 fixed-left" style="position: fixed;">
+<aside class="main-sidebar sidebar-dark-primary elevation-4 fixed-left" style="position: fixed;" style="font-family: Dosis;">
     <!-- Brand Logo -->
     <a href="site/index" class="brand-link">
         <!-- <img  class="brand-image img-circle elevation-3" style="opacity: .8"> -->
         <strong>
-            <h4 class="brand-text font-weight-light" style="text-align: center;">DIGITIZATION</h4>
+            <h4 class="brand-text font-weight-light" style="text-align: center; font-family: Dosis;">DIGITIZATION</h4>
         </strong>
     </a>
 
@@ -33,34 +33,31 @@ AppAsset::register($this);
 
             </div>
         </div>
-
-        <!-- SidebarSearch Form -->
-        <!-- href be escaped -->
-        <!-- <div class="form-inline">
-            <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-sidebar">
-                        <i class="fas fa-search fa-fw"></i>
-                    </button>
-                </div>
-            </div>
-        </div> -->
-
         <!-- Sidebar Menu -->
         <nav class="mt-2">
+            <!-- <?php
+                    echo Nav::widget([
+                        'options' => ['class' => 'navbar-nav'],
+                        'items' => [
+                            [
+                                'label' => '<i class="bi bi-people-fill"></i> Birth',
+                                'encode' => false, // This is important to render the HTML code for the icon
+                                'url' => ['birth/index']
+                            ],
+                            ['label' => 'Birth', 'class' => 'fa-solid fa-user fa-bounce', 'url' => ['birth/index']],
+                            ['label' => 'Death', 'icon' => 'fa-solid fa-bed', 'url' => ['death/index']],
+                            ['label' => 'Marriage', 'icon' => 'bi bi-people-fill', 'url' => ['marriage/index']],
+                            ['label' => 'Migration', 'icon' => 'fas fa-envelope', 'url' => ['mig/index']],
+                            ['label' => 'Divorce', 'icon' => 'bi bi-heartbreak-fill', 'url' => ['divorce/index']],
+                            //['label' => 'Gender', 'icon' => 'th', 'url' => ['gender/index']],
+                        ],
+
+                    ]);
+                    ?> -->
             <?php
             echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
-                    // [
-                    //     'label' => 'Starter Pages',
-                    //     'icon' => 'tachometer-alt',
-                    //     'badge' => '<span class="right badge badge-info">2</span>',
-                    //     'items' => [
-                    //         ['label' => 'Active Page', 'url' => ['site/index'], 'iconStyle' => 'far'],
-                    //         ['label' => 'Inactive Page', 'iconStyle' => 'far'],
-                    //     ]
-                    // ],
+
                     ['label' => 'Birth', 'icon' => 'fa-solid fa-user fa-bounce', 'url' => ['birth/index']],
                     ['label' => 'Death', 'icon' => 'fa-solid fa-bed', 'url' => ['death/index']],
                     ['label' => 'Marriage', 'icon' => 'bi bi-people-fill', 'url' => ['marriage/index']],

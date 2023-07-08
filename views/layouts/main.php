@@ -35,15 +35,17 @@ $this->registerJsFile(Yii::$app->request->baseUrl . '/js/image.js', ['depends' =
     <?php $this->registerCsrfMetaTags() ?>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet">
+
     <title><?= Html::encode($this->title) ?></title>
 
 
     <?php $this->head() ?>
 </head>
 
-<body class=" hold-transition side-mini">
+<body class=" hold-transition side-mini" style="font-family: 'Dosis', Arial, sans-serif;">
     <?php $this->beginBody() ?>
-    <div class="wrapper">
+    <div class=" wrapper">
 
         <!-- Main Sidebar Container -->
         <?= $this->render('sidebar', ['assetDir' => $assetDir]) ?>

@@ -33,7 +33,8 @@ class AppAsset extends AssetBundle
         'js/marriage/marriageBsToAd.js',
         'js/marriage/marriage.js',
         'js/image.js',
-        'js/migration/migBsToAd.js'
+        'js/migration/migBsToAd.js',
+        'js/unicodejs.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

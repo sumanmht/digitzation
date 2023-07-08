@@ -20,14 +20,63 @@ use app\models\Municipality;
 /** @var app\models\Divorce $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
+<div class="card">
+    <div class="card-body">
+        <?php $form = ActiveForm::begin([
 
+            'options' => ['enctype' => 'multipart/form-data', 'style' => 'font-size:12px;', 'class' => 'nepali', 'id' => 'birth-form'],
+            'fieldConfig' => ['labelOptions' => ['class' => 'control-label horizontal'],]
+        ]); ?>
+        <div class="row">
+            <?= $form->field($model, 'district')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm mb-2 mr-sm-2 '])->label(' District', ['class' => 'control-label horizontal'])
+                ->dropdownList(
+                    ArrayHelper::map(District::find()->all(), 'id', 'name'),
+                    [
+                        'prompt' => 'जिल्ला',
+                        //'id' => 'hey',
+                        'class' => '',
+                        'onchange' => '$.post("index.php?r=divorce/municipality&id=" + $(this).val(), function(data) {
+                            $("select#divorce-local_level").html(data);
+                            
+                        });',
+                        //'onchange' => '$("#divorce-local_level").prop("disabled", false);'
+                    ]
+                ) ?>
+            <?= $form->field($model, 'local_level')->textInput(['maxlength' => true, 'class' => ' mb-2 mr-sm-2'])->label(' District', ['class' => 'control-label horizontal'])
+                ->dropdownList(
+                    ArrayHelper::map(Municipality::find()->all(), 'id', 'name'),
+                    [
+
+                        'prompt' => 'गा.पा/न.पा',
+                        //'id' => 'dis',
+                        //'disabled' => true,
+                        'class' => '',
+                        'onchange' => '$.post("index.php?r=divorce/ward&id=" + $(this).val(), function(data) {
+                                            $("select#divorce-ward").html(data);
+                                        });',
+                    ]
+                ) ?>
+            <?= $form->field($model, 'ward')->textInput(['maxlength' => true, 'class' => '', 'placeholder' => 'वडा नं'])
+                ->dropdownList(
+                    ArrayHelper::map(Ward::find()->all(), 'id', 'number'),
+                    [
+                        'prompt' => 'वडा नं.',
+                        ///'id' => 'ward',
+                        //'disabled' => true,
+                        'class' => ''
+                    ]
+                ) ?>
+        </div>
+        <?php ActiveForm::end(); ?>
+    </div>
+</div>
 <div class="card">
     <div class="card-body">
         <div class="divorce-form">
             <?php $form = ActiveForm::begin([
 
                 'options' => ['enctype' => 'multipart/form-data', 'style' => 'font-size:12px;', 'class' => 'nepali', 'id' => 'birth-form'],
-                'fieldConfig' => ['labelOptions' => ['class' => 'col-sm-1 control-label'],]
+                'fieldConfig' => ['labelOptions' => ['class' => 'control-label horizontal'],]
             ]); ?>
 
             <label>दर्ता विवरण</label>
@@ -36,13 +85,13 @@ use app\models\Municipality;
                     <div class="form-heading">दर्ता भएको ठेगाना</div>
                     <div class="form-row">
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'district')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm '])->label(' ')
+                            <?= $form->field($model, 'district')->textInput(['maxlength' => true, 'class' => ''])
                                 ->dropdownList(
                                     ArrayHelper::map(District::find()->all(), 'id', 'name'),
                                     [
                                         'prompt' => 'जिल्ला',
                                         //'id' => 'hey',
-                                        'class' => 'form-control form-control-sm',
+                                        'class' => '',
                                         'onchange' => '$.post("index.php?r=divorce/municipality&id=" + $(this).val(), function(data) {
                                             $("select#divorce-local_level").html(data);
                                             
@@ -53,7 +102,7 @@ use app\models\Municipality;
                                 ) ?>
                         </div>
                         <div class="col-sm-5">
-                            <?= $form->field($model, 'local_level')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm '])->label(' ')
+                            <?= $form->field($model, 'local_level')->textInput(['maxlength' => true, 'class' => ' '])
                                 ->dropdownList(
                                     ArrayHelper::map(Municipality::find()->all(), 'id', 'name'),
                                     [
@@ -61,7 +110,7 @@ use app\models\Municipality;
                                         'prompt' => 'गा.पा/न.पा',
                                         //'id' => 'dis',
                                         //'disabled' => true,
-                                        'class' => 'form-control form-control-sm',
+                                        'class' => '',
                                         'onchange' => '$.post("index.php?r=divorce/ward&id=" + $(this).val(), function(data) {
                                             $("select#divorce-ward").html(data);
                                         });',
@@ -69,14 +118,14 @@ use app\models\Municipality;
                                 ) ?>
                         </div>
                         <div class="col-sm-3">
-                            <?= $form->field($model, 'ward')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm', 'placeholder' => 'वडा नं'])->label(' ')
+                            <?= $form->field($model, 'ward')->textInput(['maxlength' => true, 'class' => '', 'placeholder' => 'वडा नं'])
                                 ->dropdownList(
                                     ArrayHelper::map(Ward::find()->all(), 'id', 'number'),
                                     [
                                         'prompt' => 'वडा नं.',
                                         ///'id' => 'ward',
                                         //'disabled' => true,
-                                        'class' => 'form-control form-control-sm'
+                                        'class' => ''
                                     ]
                                 ) ?>
                         </div>
@@ -86,20 +135,20 @@ use app\models\Municipality;
                 <div class="col-sm-1">
                     <div class="form-row">
                         <div class="form-heading">दर्ता नं.</div>
-                        <?= $form->field($model, 'reg_no')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm nepalify required nn', 'placeholder' => 'दर्ता नं.'])->label(' ') ?>
+                        <?= $form->field($model, 'reg_no')->textInput(['maxlength' => true, 'class' => ' nepalify required nn', 'placeholder' => 'दर्ता नं.'])->label(' ') ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-heading">दर्ता मिति(वि.स.)</div>
                     <div class="form-row">
                         <div class="col-sm-4 b_reg_year">
-                            <?= $form->field($model, 'reg_year')->textInput(['onchange' => 'regAd()', 'maxlength' => 4, 'class' => 'form-control form-control-sm ', 'placeholder' => 'साल', 'id' => 'b_reg_year'])->label(' ')  ?>
+                            <?= $form->field($model, 'reg_year')->textInput(['onchange' => 'regAd()', 'maxlength' => 4, 'class' => ' ', 'placeholder' => 'साल', 'id' => 'b_reg_year'])->label(' ')  ?>
                         </div>
                         <div class="col-sm-4 ">
-                            <?= $form->field($model, 'reg_month')->textInput(['onchange' => 'regAd()', 'maxlength' => 2, 'class' => 'form-control form-control-sm ', 'placeholder' => 'महिना', 'id' => 'b_reg_month'])->label(' ')  ?>
+                            <?= $form->field($model, 'reg_month')->textInput(['onchange' => 'regAd()', 'maxlength' => 2, 'class' => '', 'placeholder' => 'महिना', 'id' => 'b_reg_month'])->label(' ')  ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($model, 'reg_day')->textInput(['onchange' => 'regAd()', 'maxlength' => 2, 'class' => 'form-control form-control-sm ', 'placeholder' => 'गते', 'id' => 'b_reg_day'])->label(' ') ?>
+                            <?= $form->field($model, 'reg_day')->textInput(['onchange' => 'regAd()', 'maxlength' => 2, 'class' => ' ', 'placeholder' => 'गते', 'id' => 'b_reg_day'])->label(' ') ?>
                         </div>
                         <div class="error-message"></div>
                     </div>

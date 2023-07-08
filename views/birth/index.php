@@ -65,10 +65,12 @@ $this->registerJsFile('@web/js/nepa.js', ['depends' => 'yii\web\JqueryAsset']);
                         ['class' => 'yii\grid\SerialColumn'],
                         [
                             'label' => 'Permanent Address',
+                            'header' => 'Permanent Address',
                             'attribute' => 'p_district',
                             'value' => function ($model) {
                                 return $model->p_district . '-' . $model->p_muni;
-                            }
+                            },
+                            'headerOptions' => ['style' => 'color: #17202A ;'],
                         ],
                         [
                             'label' => 'Ward No.',

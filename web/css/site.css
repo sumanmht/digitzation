@@ -89,3 +89,10 @@ a.desc:after {
     overflow-x: auto; !important
     width:100%; !important
 }*/
+html, body {
+    font-family: "Dosis", Arial, sans-serif;
+}
+.kalimati-font {
+    font-family: "Dosis", Kalimati, Arial, sans-serif;
+  }
+  

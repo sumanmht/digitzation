@@ -26,28 +26,33 @@ $this->title = 'Dashboard';
 <body class=" hold-transition side-mini">
     <?php $this->beginBody() ?>
     <div class="wrapper">
+        <?php echo "Php" . phpversion(); ?>
         <div class="row">
             <div class="col-md-2">
                 <div class="card">
-                    <div class="card-header"><b><center>Ward No. 1</center></b></div>
+                    <div class="card-header"><b>
+                            <center>Ward No. 1</center>
+                        </b></div>
                     <div class="card-body">
-                        
+
                         <h6>No. of Entries</h6>
                         <h6>Birth: <?= $birth1 ?></h6>
                         <h6>Marriage: <?= $marriage1 ?></h6>
                         <h6>Death: <?= $death1 ?></h6>
                         <h6>Migration: <?= $migration1 ?></h6>
                         <h6>Divorce: <?= $divorce1 ?></h6>
-                        
+
                     </div>
-                    
+
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="card">
-                    <div class="card-header"><b><center>Ward No. 2</center></b></div>
+                    <div class="card-header"><b>
+                            <center>Ward No. 2</center>
+                        </b></div>
                     <div class="card-body">
-                        
+
                         <h6>No. of Entries</h6>
                         <h6>Birth: <?= $birth2 ?></h6>
                         <h6>Marriage: <?= $marriage2 ?></h6>
@@ -56,12 +61,14 @@ $this->title = 'Dashboard';
                         <h6>Divorce: <?= $divorce2 ?></h6>
 
                     </div>
-                    
+
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="card">
-                    <div class="card-header"><b><center>Ward No. 3</center></b></div>
+                    <div class="card-header"><b>
+                            <center>Ward No. 3</center>
+                        </b></div>
                     <div class="card-body">
                         <h6>No. of Entries</h6>
                         <h6>Birth: <?= $birth3 ?></h6>
@@ -72,12 +79,14 @@ $this->title = 'Dashboard';
 
 
                     </div>
-                    
+
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="card">
-                    <div class="card-header"><b><center>Ward No. 4</center></b></div>
+                    <div class="card-header"><b>
+                            <center>Ward No. 4</center>
+                        </b></div>
                     <div class="card-body">
                         <h6>No. of Entries</h6>
                         <h6>Birth: <?= $birth4 ?></h6>
@@ -88,12 +97,14 @@ $this->title = 'Dashboard';
 
 
                     </div>
-                    
+
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="card">
-                    <div class="card-header"><b><center>Ward No. 5</center></b></div>
+                    <div class="card-header"><b>
+                            <center>Ward No. 5</center>
+                        </b></div>
                     <div class="card-body">
                         <h6>No. of Entries</h6>
                         <h6>Birth: <?= $birth5 ?></h6>
@@ -104,11 +115,13 @@ $this->title = 'Dashboard';
 
 
                     </div>
-                                    </div>
+                </div>
             </div>
             <div class="col-md-2">
                 <div class="card">
-                    <div class="card-header"><b><center>Ward No. 6</center></b></div>
+                    <div class="card-header"><b>
+                            <center>Ward No. 6</center>
+                        </b></div>
                     <div class="card-body">
                         <h6>No. of Entries</h6>
                         <h6>Birth: <?= $birth6 ?></h6>
@@ -119,14 +132,16 @@ $this->title = 'Dashboard';
 
 
                     </div>
-                    
+
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-2">
                 <div class="card">
-                    <div class="card-header"><b><center>Ward No. 7</center></b></div>
+                    <div class="card-header"><b>
+                            <center>Ward No. 7</center>
+                        </b></div>
                     <div class="card-body">
                         <h6>No. of Entries</h6>
                         <h6>Birth: <?= $birth7 ?></h6>
@@ -137,12 +152,14 @@ $this->title = 'Dashboard';
 
 
                     </div>
-                   
+
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="card">
-                    <div class="card-header"><b><center>Ward No. 8</center></b></div>
+                    <div class="card-header"><b>
+                            <center>Ward No. 8</center>
+                        </b></div>
                     <div class="card-body">
                         <h6>No. of Entries</h6>
                         <h6>Birth: <?= $birth8 ?></h6>
@@ -153,14 +170,16 @@ $this->title = 'Dashboard';
 
 
                     </div>
-                    
+
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="card">
-                    <div class="card-header"><b><center>Ward No. 9</center></b></div>
+                    <div class="card-header"><b>
+                            <center>Ward No. 9</center>
+                        </b></div>
                     <div class="card-body">
-                       <h6>No. of Entries</h6>
+                        <h6>No. of Entries</h6>
                         <h6>Birth: <?= $birth9 ?></h6>
                         <h6>Marriage: <?= $marriage9 ?></h6>
                         <h6>Death: <?= $death9 ?></h6>
@@ -168,12 +187,14 @@ $this->title = 'Dashboard';
                         <h6>Divorce: <?= $divorce9 ?></h6>
 
                     </div>
-                    
+
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="card">
-                    <div class="card-header"><b><center>Ward No. 10</center></b></div>
+                    <div class="card-header"><b>
+                            <center>Ward No. 10</center>
+                        </b></div>
                     <div class="card-body">
                         <h6>No. of Entries</h6>
                         <h6>Birth: <?= $birth10 ?></h6>
@@ -182,12 +203,14 @@ $this->title = 'Dashboard';
                         <h6>Migration: <?= $migration10 ?></h6>
                         <h6>Divorce: <?= $divorce10 ?></h6>
                     </div>
-                    
+
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="card">
-                    <div class="card-header"><b><center>Ward No. 11</center></b></div>
+                    <div class="card-header"><b>
+                            <center>Ward No. 11</center>
+                        </b></div>
                     <div class="card-body">
                         <h6>No. of Entries</h6>
                         <h6>Birth: <?= $birth11 ?></h6>
@@ -197,12 +220,14 @@ $this->title = 'Dashboard';
                         <h6>Divorce: <?= $divorce11 ?></h6>
 
                     </div>
-                    
+
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="card">
-                    <div class="card-header"><b><center>Ward No. 12</center></b></div>
+                    <div class="card-header"><b>
+                            <center>Ward No. 12</center>
+                        </b></div>
                     <div class="card-body">
                         <h6>No. of Entries</h6>
                         <h6>Birth: <?= $birth12 ?></h6>
@@ -212,14 +237,16 @@ $this->title = 'Dashboard';
                         <h6>Divorce: <?= $divorce12 ?></h6>
 
                     </div>
-                    
+
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-2">
                 <div class="card">
-                    <div class="card-header"><b><center>Ward No. 13</center></b></div>
+                    <div class="card-header"><b>
+                            <center>Ward No. 13</center>
+                        </b></div>
                     <div class="card-body">
                         <h6>No. of Entries</h6>
                         <h6>Birth: <?= $birth13 ?></h6>
@@ -229,12 +256,14 @@ $this->title = 'Dashboard';
                         <h6>Divorce: <?= $divorce13 ?></h6>
 
                     </div>
-                    
+
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="card">
-                    <div class="card-header"><b><center>Ward No. 14</center></b></div>
+                    <div class="card-header"><b>
+                            <center>Ward No. 14</center>
+                        </b></div>
                     <div class="card-body">
                         <h6>No. of Entries</h6>
                         <h6>Birth: <?= $birth14 ?></h6>
@@ -244,12 +273,14 @@ $this->title = 'Dashboard';
                         <h6>Divorce: <?= $divorce14 ?></h6>
 
                     </div>
-                    
+
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="card">
-                    <div class="card-header"><b><center>Ward No. 15</center></b></div>
+                    <div class="card-header"><b>
+                            <center>Ward No. 15</center>
+                        </b></div>
                     <div class="card-body">
                         <h6>No. of Entries</h6>
                         <h6>Birth: <?= $birth15 ?></h6>
@@ -259,12 +290,14 @@ $this->title = 'Dashboard';
                         <h6>Divorce: <?= $divorce15 ?></h6>
 
                     </div>
-                    
+
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="card">
-                    <div class="card-header"><b><center>Ward No. 16</center></b></div>
+                    <div class="card-header"><b>
+                            <center>Ward No. 16</center>
+                        </b></div>
                     <div class="card-body">
                         <h6>No. of Entries</h6>
                         <h6>Birth: <?= $birth16 ?></h6>
@@ -274,7 +307,7 @@ $this->title = 'Dashboard';
                         <h6>Divorce: <?= $divorce16 ?></h6>
 
                     </div>
-                   
+
                 </div>
             </div>
 
