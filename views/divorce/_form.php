@@ -20,72 +20,23 @@ use app\models\Municipality;
 /** @var app\models\Divorce $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
-<div class="card">
-    <div class="card-body">
-        <?php $form = ActiveForm::begin([
 
-            'options' => ['enctype' => 'multipart/form-data', 'style' => 'font-size:12px;', 'class' => 'nepali', 'id' => 'birth-form'],
-            'fieldConfig' => ['labelOptions' => ['class' => 'control-label horizontal'],]
-        ]); ?>
-        <div class="row">
-            <?= $form->field($model, 'district')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm mb-2 mr-sm-2 '])->label(' District', ['class' => 'control-label horizontal'])
-                ->dropdownList(
-                    ArrayHelper::map(District::find()->all(), 'id', 'name'),
-                    [
-                        'prompt' => 'जिल्ला',
-                        //'id' => 'hey',
-                        'class' => '',
-                        'onchange' => '$.post("index.php?r=divorce/municipality&id=" + $(this).val(), function(data) {
-                            $("select#divorce-local_level").html(data);
-                            
-                        });',
-                        //'onchange' => '$("#divorce-local_level").prop("disabled", false);'
-                    ]
-                ) ?>
-            <?= $form->field($model, 'local_level')->textInput(['maxlength' => true, 'class' => ' mb-2 mr-sm-2'])->label(' District', ['class' => 'control-label horizontal'])
-                ->dropdownList(
-                    ArrayHelper::map(Municipality::find()->all(), 'id', 'name'),
-                    [
-
-                        'prompt' => 'गा.पा/न.पा',
-                        //'id' => 'dis',
-                        //'disabled' => true,
-                        'class' => '',
-                        'onchange' => '$.post("index.php?r=divorce/ward&id=" + $(this).val(), function(data) {
-                                            $("select#divorce-ward").html(data);
-                                        });',
-                    ]
-                ) ?>
-            <?= $form->field($model, 'ward')->textInput(['maxlength' => true, 'class' => '', 'placeholder' => 'वडा नं'])
-                ->dropdownList(
-                    ArrayHelper::map(Ward::find()->all(), 'id', 'number'),
-                    [
-                        'prompt' => 'वडा नं.',
-                        ///'id' => 'ward',
-                        //'disabled' => true,
-                        'class' => ''
-                    ]
-                ) ?>
-        </div>
-        <?php ActiveForm::end(); ?>
-    </div>
-</div>
 <div class="card">
     <div class="card-body">
         <div class="divorce-form">
             <?php $form = ActiveForm::begin([
 
-                'options' => ['enctype' => 'multipart/form-data', 'style' => 'font-size:12px;', 'class' => 'nepali', 'id' => 'birth-form'],
+                'options' => ['enctype' => 'multipart/form-data', 'style' => 'font-size:0.8em;',  'id' => 'birth-form'],
                 'fieldConfig' => ['labelOptions' => ['class' => 'control-label horizontal'],]
             ]); ?>
 
             <label>दर्ता विवरण</label>
-            <div class="form-row">
+            <div class="form-group form-row">
                 <div class="col-sm-3">
                     <div class="form-heading">दर्ता भएको ठेगाना</div>
-                    <div class="form-row">
-                        <div class="col-sm-4">
-                            <?= $form->field($model, 'district')->textInput(['maxlength' => true, 'class' => ''])
+                    <div class="form-group form-row">
+                        <div class="col-sm-4 ">
+                            <?= $form->field($model, 'district')->textInput(['maxlength' => true, 'class' => 'form-control form-control-sm'])->label(' ')
                                 ->dropdownList(
                                     ArrayHelper::map(District::find()->all(), 'id', 'name'),
                                     [
@@ -102,7 +53,7 @@ use app\models\Municipality;
                                 ) ?>
                         </div>
                         <div class="col-sm-5">
-                            <?= $form->field($model, 'local_level')->textInput(['maxlength' => true, 'class' => ' '])
+                            <?= $form->field($model, 'local_level')->textInput(['maxlength' => true, 'class' => ' '])->label(' ')
                                 ->dropdownList(
                                     ArrayHelper::map(Municipality::find()->all(), 'id', 'name'),
                                     [

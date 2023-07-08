@@ -26,7 +26,7 @@ $this->title = 'Dashboard';
 <body class=" hold-transition side-mini">
     <?php $this->beginBody() ?>
     <div class="wrapper">
-        <?php echo "Php" . phpversion(); ?>
+
         <div class="row">
             <div class="col-md-2">
                 <div class="card">

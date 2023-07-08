@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'style' => 'width:100%'
                     ],
                     'layout' => "{items}\n{summary}\n{pager}",
-                    'options' => ['style' => 'font-size:12px;'],
+                    'options' => ['style' => 'font-size:0.7rem;'],
                     'pager' => [
                         'class' =>  CustomPager::class,
 
